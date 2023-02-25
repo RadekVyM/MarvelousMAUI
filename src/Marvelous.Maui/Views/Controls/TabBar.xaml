@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:simpleCore="clr-namespace:SimpleToolkit.Core;assembly=SimpleToolkit.Core"
+    x:Class="Marvelous.Maui.Views.Controls.TabBar"
+    CompressedLayout.IsHeadless="True">
+
+    <ContentView.Resources>
+        <Style TargetType="simpleCore:Icon">
+            <Setter Property="VerticalOptions" Value="Center"/>
+            <Setter Property="HorizontalOptions" Value="Center"/>
+            <Setter Property="WidthRequest" Value="22"/>
+            <Setter Property="HeightRequest" Value="22"/>
+        </Style>
+        <Style x:Key="TabButton" TargetType="simpleCore:ContentButton">
+            <Setter Property="Background" Value="Transparent"/>
+        </Style>
+    </ContentView.Resources>
+    
+    <Grid
+        x:Name="rootGrid"
+        RowDefinitions="10, 70, auto"
+        ColumnDefinitions="*, *, *, *, *"
+        CompressedLayout.IsHeadless="True">
+        <Rectangle
+            x:Name="backgroundRect"
+            Grid.Row="1" Grid.ColumnSpan="5" Grid.RowSpan="2"/>
+
+        <GraphicsView
+            x:Name="graphicsView"
+            Grid.Row="1" Grid.ColumnSpan="5"
+            Background="Transparent"/>
+
+        <Grid
+            Grid.Row="0"
+            Grid.RowSpan="2"
+            CompressedLayout.IsHeadless="True"
+            HorizontalOptions="Center" VerticalOptions="Start">
+            <BoxView
+                x:Name="wonderBoxView"
+                Color="White"
+                CornerRadius="33"
+                HeightRequest="65" WidthRequest="65"
+                HorizontalOptions="Center" VerticalOptions="Center"/>
+            <simpleCore:ContentButton
+                x:Name="wonderButton"
+                HeightRequest="58" WidthRequest="58"
+                Clicked="WonderButtonClicked"
+                HorizontalOptions="Center" VerticalOptions="Center">
+                <simpleCore:ContentButton.Clip>
+                    <EllipseGeometry Center="29, 29" RadiusX="27" RadiusY="27"/>
+                </simpleCore:ContentButton.Clip>
+                <Image
+                    x:Name="wonderImage"
+                    Aspect="AspectFill"/>
+            </simpleCore:ContentButton>
+        </Grid>
+
+        <simpleCore:ContentButton
+            Style="{StaticResource TabButton}"
+            Grid.Column="1" Grid.Row="1"
+            Clicked="TabButtonClicked">
+            <simpleCore:Icon/>
+        </simpleCore:ContentButton>
+
+        <simpleCore:ContentButton
+            Style="{StaticResource TabButton}"
+            Grid.Column="2" Grid.Row="1"
+            Clicked="TabButtonClicked">
+            <simpleCore:Icon/>
+        </simpleCore:ContentButton>
+
+        <simpleCore:ContentButton
+            Style="{StaticResource TabButton}"
+            Grid.Column="3" Grid.Row="1"
+            Clicked="TabButtonClicked">
+            <simpleCore:Icon/>
+        </simpleCore:ContentButton>
+
+        <simpleCore:ContentButton
+            Style="{StaticResource TabButton}"
+            Grid.Column="4" Grid.Row="1"
+            Clicked="TabButtonClicked">
+            <simpleCore:Icon/>
+        </simpleCore:ContentButton>
+    </Grid>
+</ContentView>

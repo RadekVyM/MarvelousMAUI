@@ -1,0 +1,111 @@
+﻿<?xml version = "1.0" encoding = "UTF-8" ?>
+<Application
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Marvelous.Maui"
+    xmlns:simpleCore="clr-namespace:SimpleToolkit.Core;assembly=SimpleToolkit.Core"
+    xmlns:converters="clr-namespace:Marvelous.Maui.Converters"
+    x:Class="Marvelous.Maui.App">
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
+                <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <x:Double x:Key="AppBarHeight">80</x:Double>
+
+            <converters:LocalizationConverter x:Key="LocalizationConverter"/>
+            <converters:YearToCeConverter x:Key="YearToCeConverter"/>
+            <converters:AbsConverter x:Key="AbsConverter"/>
+            <converters:WithoutFirstConverter x:Key="WithoutFirstConverter"/>
+            <converters:TimelineDateConverter x:Key="TimelineDateConverter"/>
+            <converters:UnsplashUrlConverter x:Key="UnsplashUrlConverter"/>
+            <converters:WonderMainPagePhotoConverter x:Key="WonderMainPagePhotoConverter"/>
+            <converters:WonderToListViewModelsConverter x:Key="WonderToListViewModelsConverter"/>
+            <converters:LocalizationSplitParagraphsConverter x:Key="LocalizationSplitParagraphsConverter"/>
+            <converters:TakeStringConverter x:Key="TakeStringConverter"/>
+            <converters:SkipStringConverter x:Key="SkipStringConverter"/>
+            <converters:YouTubeThumbnailConverter x:Key="YouTubeThumbnailConverter"/>
+            <converters:ArtifactCarouselItemsConverter x:Key="ArtifactCarouselItemsConverter"/>
+            <converters:NetMuseumImageConverter x:Key="NetMuseumImageConverter"/>
+            <converters:GroupCollectiblesConverter x:Key="GroupCollectiblesConverter"/>
+            <converters:CollectibleIconTypeToIconConverter x:Key="CollectibleIconTypeToIconConverter"/>
+            <converters:CollectibleStateToIsVisibleConverter x:Key="CollectibleStateToIsVisibleConverter"/>
+            <converters:CollectibleStateToIsNotVisibleConverter x:Key="CollectibleStateToIsNotVisibleConverter"/>
+            <converters:ZeroToFalseConverter x:Key="ZeroToFalseConverter"/>
+            <converters:CountToPluralConverter x:Key="CountToPluralConverter"/>
+
+            <Style TargetType="ContentPage" ApplyToDerivedTypes="True">
+                <Setter Property="Background" Value="{StaticResource DarkSecondaryBrush}"/>
+            </Style>
+            
+            <Style x:Key="AppBarButtonBorderStyle" TargetType="Border">
+                <Setter Property="Margin" Value="20, 15"/>
+                <Setter Property="Stroke" Value="Transparent"/>
+                <Setter Property="StrokeThickness" Value="0"/>
+                <Setter Property="WidthRequest" Value="50"/>
+                <Setter Property="HeightRequest" Value="50"/>
+                <Setter Property="HorizontalOptions" Value="Start"/>
+                <Setter Property="VerticalOptions" Value="Start"/>
+                <Setter Property="Background" Value="{StaticResource SecondaryBrush}"/>
+            </Style>
+
+            <Style x:Key="AppBarButtonIconStyle" TargetType="simpleCore:Icon">
+                <Setter Property="WidthRequest" Value="30"/>
+                <Setter Property="HeightRequest" Value="30"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="TintColor" Value="{StaticResource TertiaryColor}"/>
+            </Style>
+
+            <Style x:Key="AppBarTitleLabelStyle" TargetType="Label">
+                <Setter Property="TextTransform" Value="Uppercase"/>
+                <Setter Property="FontFamily" Value="RalewayBold"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="TextColor" Value="{StaticResource TertiaryColor}"/>
+            </Style>
+
+            <Style x:Key="TitleStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontFamily" Value="YesevaOne"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalOptions" Value="End"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="20,0,20,125"/>
+                <Setter Property="LineHeight" Value="0.8"/>
+                <Setter Property="FontSize" Value="60"/>
+                <!-- Shadows are broken -->
+                <!--<Setter Property="Shadow">
+                    <Setter.Value>
+                        <Shadow/>
+                    </Setter.Value>
+                </Setter>-->
+            </Style>
+
+            <Style x:Key="RectButtonBorderStyle" TargetType="Border">
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="StrokeThickness" Value="0"/>
+                <Setter Property="StrokeShape">
+                    <RoundRectangle CornerRadius="8"/>
+                </Setter>
+            </Style>
+
+            <Style x:Key="RectContentButtonStyle" TargetType="simpleCore:ContentButton" BasedOn="{StaticResource BaseContentButtonStyle}">
+                <Setter Property="Padding" Value="20, 22"/>
+                <Setter Property="Background" Value="{StaticResource SecondaryBrush}"/>
+            </Style>
+
+            <Style x:Key="RectButtonLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="TextTransform" Value="Uppercase"/>
+                <Setter Property="FontFamily" Value="RalewayBold"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

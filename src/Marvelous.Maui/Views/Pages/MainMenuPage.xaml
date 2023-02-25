@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:BaseContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Marvelous.Maui.Views.Controls"
+    xmlns:simpleCore="clr-namespace:SimpleToolkit.Core;assembly=SimpleToolkit.Core"
+    xmlns:pages="clr-namespace:Marvelous.Maui.Views.Pages"
+    x:Class="Marvelous.Maui.Views.Pages.MainMenuPage"
+    Title="MainMenuPage"
+    Background="Transparent">
+
+    <Grid>
+        <controls:IllustrationsCarouselView
+            x:Name="illustrationsCarouselView"
+            CurrentWonder="{Binding CurrentWonder}"
+            Wonders="{Binding Wonders}"
+            Closing="IllustrationsCarouselViewClosing"
+            Hiding="IllustrationsCarouselViewHiding"
+            Presenting="IllustrationsCarouselViewPresenting"/>
+
+        <Border
+            x:Name="menuButtonBorder"
+            Style="{StaticResource AppBarButtonBorderStyle}">
+            <Border.StrokeShape>
+                <Ellipse/>
+            </Border.StrokeShape>
+            <simpleCore:ContentButton
+                Clicked="MenuButtonClicked">
+                <simpleCore:Icon
+                    Source="common_icons_icon_menu.png"
+                    Style="{StaticResource AppBarButtonIconStyle}"/>
+            </simpleCore:ContentButton>
+        </Border>
+
+        <controls:AppMenu
+            x:Name="appMenu"
+            Wonders="{Binding Wonders}"
+            CurrentWonder="{Binding CurrentWonder}"
+            Hidden="AppMenuHidden"
+            Presenting="AppMenuPresenting"
+            AboutThisAppClicked="AboutThisAppClicked"
+            InputTransparent="False"/>
+    </Grid>
+</pages:BaseContentPage>

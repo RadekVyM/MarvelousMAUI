@@ -1,0 +1,27 @@
+﻿@implements IDisposable
+@using System.Globalization
+
+<iframe src="@openUrl" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+@code {
+    private const double offset = 11;
+
+    private string openUrl => $"https://www.openstreetmap.org/export/embed.html?bbox={(Lng - offset).ToString(CultureInfo.InvariantCulture)}%2C{(Lat - offset).ToString(CultureInfo.InvariantCulture)}%2C{(Lng + offset).ToString(CultureInfo.InvariantCulture)}%2C{(Lat + offset).ToString(CultureInfo.InvariantCulture)}&amp;layer=mapnik";
+
+    [Parameter]
+    public double Lng { get; set; }
+
+    [Parameter]
+    public double Lat { get; set; }
+
+    public void Dispose()
+    {
+    }
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+
+        StateHasChanged();
+    }
+}

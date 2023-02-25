@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:BaseContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:Marvelous.Maui.Views.Pages"
+    xmlns:core="clr-namespace:Marvelous.Core;assembly=Marvelous.Core"
+    xmlns:models="clr-namespace:Marvelous.Core.Models;assembly=Marvelous.Core"
+    xmlns:localModels="clr-namespace:Marvelous.Maui.Models"
+    xmlns:vm="clr-namespace:Marvelous.Core.Interfaces.ViewModels;assembly=Marvelous.Core"
+    xmlns:simpleCore="clr-namespace:SimpleToolkit.Core;assembly=SimpleToolkit.Core"
+    xmlns:controls="clr-namespace:Marvelous.Maui.Views.Controls"
+
+    x:Class="Marvelous.Maui.Views.Pages.CollectionPage"
+    x:Name="page"
+    x:DataType="vm:ICollectionPageViewModel"
+
+    Title="Collection">
+
+    <Grid
+        RowDefinitions="auto, auto, *, auto"
+        CompressedLayout.IsHeadless="True">
+        <Grid
+            x:Name="appBar"
+            VerticalOptions="Start"
+            HeightRequest="{StaticResource AppBarHeight}"
+            CompressedLayout.IsHeadless="True">
+            <Border
+                x:Name="menuButtonBorder"
+                Style="{StaticResource AppBarButtonBorderStyle}">
+                <Border.StrokeShape>
+                    <Ellipse/>
+                </Border.StrokeShape>
+                <simpleCore:ContentButton
+                    Clicked="MenuBackButtonClicked">
+                    <simpleCore:Icon
+                        Source="common_icons_icon_back.png"
+                        Style="{StaticResource AppBarButtonIconStyle}"/>
+                </simpleCore:ContentButton>
+            </Border>
+
+            <Label
+                Text="{x:Static core:Localization.collectionTitleCollection}"
+                HorizontalOptions="Center" VerticalOptions="Center"
+                TextColor="White"
+                FontFamily="RalewayBold"
+                FontSize="15"
+                TextTransform="Uppercase"/>
+        </Grid>
+
+        
+        <Label
+            Grid.Row="1"
+            VerticalOptions="Center" HorizontalOptions="Center"
+            Padding="8" Margin="0, 0, 0, 4"
+            FontFamily="RalewayBold"
+            TextColor="{StaticResource PrimaryColor}"
+            IsVisible="{Binding DiscoveredAndNotExploredCollectiblesCount, Converter={StaticResource ZeroToFalseConverter}}">
+            <Label.Text>
+                <MultiBinding StringFormat="{x:Static core:Localization.newlyDiscoveredLabelNew}">
+                    <Binding Path="DiscoveredAndNotExploredCollectiblesCount" />
+                    <Binding Path="DiscoveredAndNotExploredCollectiblesCount" Converter="{StaticResource CountToPluralConverter}"/>
+                </MultiBinding>
+            </Label.Text>
+
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Tapped="NewlyDiscoveredItemsTapped"/>
+            </Label.GestureRecognizers>
+        </Label>
+
+        <Grid
+            Grid.Row="2"
+            Background="{StaticResource SecondaryBrush}"
+            IsClippedToBounds="True">
+
+            <CollectionView
+                x:Name="collectionView"
+                Scrolled="CollectionViewScrolled"
+                ItemsSource="{Binding Collectibles, Converter={StaticResource GroupCollectiblesConverter}}">
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate
+                        x:DataType="localModels:CollectibleGroupViewModel">
+                        <Grid
+                            CompressedLayout.IsHeadless="True"
+                            RowDefinitions="auto, auto">
+                            <Label
+                                Text="{Binding WonderTitle, Converter={StaticResource LocalizationConverter}}"
+                                TextColor="{StaticResource TertiaryColor}"
+                                HorizontalOptions="Center" VerticalOptions="Center"
+                                Margin="25"
+                                FontFamily="TenorSans"
+                                FontSize="15"
+                                TextTransform="Uppercase"/>
+
+                            <StackLayout
+                                Grid.Row="1"
+                                BindableLayout.ItemsSource="{Binding .}"
+                                Orientation="Horizontal"
+                                Margin="20, 0, 20, 20"
+                                Spacing="20"
+                                CompressedLayout.IsHeadless="True">
+
+                                <BindableLayout.ItemTemplate>
+                                    <DataTemplate
+                                        x:DataType="models:Collectible">
+                                        <controls:CollectibleListItemView
+                                            HorizontalOptions="FillAndExpand"
+                                            HeightRequest="200"
+                                            Collectible="{Binding ., Mode=OneTime}"
+                                            CollectibleState="{Binding CollectibleState}"
+                                            Command="{Binding BindingContext.ArtifactCommand, Source={x:Reference page}, Mode=OneTime}"/>
+                                    </DataTemplate>
+                                </BindableLayout.ItemTemplate>
+                            </StackLayout>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+                <CollectionView.Footer>
+                    <ContentView
+                        CompressedLayout.IsHeadless="True">
+                        <Border
+                            Style="{StaticResource RectButtonBorderStyle}"
+                            Margin="20, 20, 20, 70"
+                            VerticalOptions="Start">
+                            <simpleCore:ContentButton
+                                Clicked="ResetClicked"
+                                Style="{StaticResource RectContentButtonStyle}"
+                                Padding="20"
+                                Background="{StaticResource TertiaryBrush}">
+                                <Label
+                                    Text="{x:Static core:Localization.collectionButtonReset}"
+                                    Style="{StaticResource RectButtonLabelStyle}"
+                                    TextColor="{StaticResource SecondaryColor}"/>
+                            </simpleCore:ContentButton>
+                        </Border>
+                    </ContentView>
+                </CollectionView.Footer>
+            </CollectionView>
+
+            <controls:VerticalShadow
+                x:Name="darkShadow"
+                VerticalOptions="Start"
+                HeightRequest="30"
+                Color="{StaticResource SuperDarkSecondaryColor}"
+                TransparentColor="#000a0a08"
+                IsFromTop="True"
+                Offset="0"/>
+
+            <Rectangle
+                InputTransparent="True"
+                VerticalOptions="End"
+                HeightRequest="70"
+                Margin="-1">
+                <Rectangle.Fill>
+                    <LinearGradientBrush
+                        StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Offset="0.1" Color="#00252621"/>
+                        <GradientStop Offset="1" Color="{StaticResource SecondaryColor}"/>
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+        </Grid>
+
+        <Grid
+            x:Name="countGrid"
+            Grid.Row="3"
+            Background="{StaticResource SecondaryBrush}"
+            RowDefinitions="40, 50">
+            <Label
+                TextColor="{StaticResource PrimaryColor}"
+                FontFamily="RalewayRegular"
+                Text="{Binding DiscoveredCollectiblesPercentage, StringFormat={x:Static core:Localization.collectionLabelDiscovered}}"
+                HorizontalOptions="Start" VerticalOptions="End"
+                Margin="20, 0"/>
+            <Label
+                TextColor="{StaticResource TertiaryColor}"
+                FontFamily="RalewayRegular"
+                HorizontalOptions="End" VerticalOptions="End"
+                Margin="20, 0">
+                <Label.Text>
+                    <MultiBinding StringFormat="{x:Static core:Localization.collectionLabelCount}">
+                        <Binding Path="DiscoveredCollectiblesCount" />
+                        <Binding Path="CollectiblesCount" />
+                    </MultiBinding>
+                </Label.Text>
+            </Label>
+
+            <GraphicsView
+                x:Name="percentageBarGraphicsView"
+                Grid.Row="1"
+                Background="Transparent"
+                VerticalOptions="Start"
+                HeightRequest="8"
+                Margin="20, 15"/>
+        </Grid>
+    </Grid>
+</pages:BaseContentPage>

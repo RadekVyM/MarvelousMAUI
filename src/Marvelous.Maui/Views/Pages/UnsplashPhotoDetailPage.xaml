@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:BaseContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:Marvelous.Maui.Views.Pages"
+    xmlns:simpleCore="clr-namespace:SimpleToolkit.Core;assembly=SimpleToolkit.Core"
+    xmlns:vm="clr-namespace:Marvelous.Core.Interfaces.ViewModels;assembly=Marvelous.Core"
+    xmlns:models="clr-namespace:Marvelous.Core.Models;assembly=Marvelous.Core"
+    x:Class="Marvelous.Maui.Views.Pages.UnsplashPhotoDetailPage"
+    
+    Background="Black"
+    
+    Title="UnsplashPhotoDetailPage"
+
+    x:DataType="vm:IUnsplashPhotoDetailPageViewModel">
+
+    <Grid
+        CompressedLayout.IsHeadless="True">
+        <CarouselView
+            x:Name="carouselView"
+            Background="Black"
+            ItemsSource="{Binding UnsplashPhotos}"
+            Position="{Binding CurrentUnsplashPhotoIndex, Mode=TwoWay}"
+            Loop="False">
+            <CarouselView.ItemTemplate>
+                <DataTemplate
+                    x:DataType="models:UnsplashPhoto">
+                    <Grid
+                        Background="Black">
+                        <!--
+                            There is a problem with recycled bitmaps on Android that causes a crash of the app.
+                            https://github.com/dotnet/maui/issues/10032
+                        
+                            Loop set to True throws NRE
+                        
+                            CurrentItem does not work
+                        -->
+                        <Image
+                            Source="{Binding Url, Converter={StaticResource UnsplashUrlConverter}}"
+                            IsOpaque="True"
+                            Background="Black"
+                            Margin="1"/>
+                    </Grid>
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+
+        <simpleCore:ContentButton
+            Background="Transparent"
+            HorizontalOptions="Start" VerticalOptions="Start"
+            WidthRequest="40" HeightRequest="40"
+            Margin="25, 20"
+            Clicked="CloseButtonClicked">
+            <simpleCore:Icon
+                VerticalOptions="Center" HorizontalOptions="Center"
+                WidthRequest="30" HeightRequest="30"
+                Source="common_icons_icon_close.png"
+                TintColor="White"/>
+        </simpleCore:ContentButton>
+    </Grid>
+    
+</pages:BaseContentPage>

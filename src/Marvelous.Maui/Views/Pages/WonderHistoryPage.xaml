@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:BaseContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:Marvelous.Maui.Views.Pages"
+    xmlns:controls="clr-namespace:Marvelous.Maui.Views.Controls"
+    xmlns:simpleCore="clr-namespace:SimpleToolkit.Core;assembly=SimpleToolkit.Core"
+    xmlns:viewModels="clr-namespace:Marvelous.Core.Interfaces.ViewModels;assembly=Marvelous.Core"
+    xmlns:models="clr-namespace:Marvelous.Core.Models;assembly=Marvelous.Core"
+    xmlns:core="clr-namespace:Marvelous.Core;assembly=Marvelous.Core"
+    x:Class="Marvelous.Maui.Views.Pages.WonderHistoryPage"
+    Title="WonderHistoryPage"
+    
+    Background="{StaticResource DarkSecondaryBrush}"
+    
+    x:DataType="viewModels:IWonderHistoryPageViewModel">
+
+    <Grid
+        CompressedLayout.IsHeadless="True">
+        <Grid
+            x:Name="headerGrid"
+            RowDefinitions="5*, 2*"
+            VerticalOptions="Start"
+            CompressedLayout.IsHeadless="True">
+            <Grid
+                IsClippedToBounds="True">
+                <Border
+                    x:Name="headerImageBorder"
+                    HorizontalOptions="Center"
+                    Margin="0, 20, 0, 0"
+                    Background="Transparent"
+                    Stroke="Transparent" StrokeThickness="0">
+                    <Image
+                        x:Name="headerImage"
+                        Background="Transparent"
+                        Aspect="AspectFill"
+                        Margin="0,0,0,-80"/>
+                </Border>
+                <Rectangle
+                    VerticalOptions="End"
+                    HeightRequest="200"
+                    Margin="-1">
+                    <Rectangle.Fill>
+                        <LinearGradientBrush
+                            StartPoint="0,0" EndPoint="0,1">
+                            <GradientStop Offset="0.1" Color="#001c1b15"/>
+                            <GradientStop Offset="1" Color="#ff1c1b15"/>
+                        </LinearGradientBrush>
+                    </Rectangle.Fill>
+                </Rectangle>
+            </Grid>
+
+            <Label
+                Text="{Binding CurrentWonder.Title, Converter={StaticResource LocalizationConverter}}"
+                Style="{StaticResource TitleStyle}"
+                VerticalOptions="End"
+                Margin="20, 0, 20, -15"
+                Padding="5"/>
+
+            <GraphicsView
+                x:Name="headerGraphicsView"
+                Grid.Row="1"
+                Background="Transparent"
+                Margin="20, 10, 20, 70"/>
+
+            <HorizontalStackLayout
+                Grid.Row="1"
+                HorizontalOptions="Center" VerticalOptions="End"
+                Margin="20, 0, 20, 40"
+                Spacing="15">
+                <Label
+                    TextColor="{StaticResource TertiaryColor}"
+                    FontFamily="RalewayRegular">
+                    <Label.Text>
+                        <MultiBinding Converter="{StaticResource TimelineDateConverter}">
+                            <Binding Path="CurrentWonder.StartYr"/>
+                            <Binding Path="CurrentWonder.EndYr"/>
+                        </MultiBinding>
+                    </Label.Text>
+                </Label>
+
+                <Ellipse
+                    Fill="{StaticResource TertiaryBrush}"
+                    HeightRequest="6" WidthRequest="6"
+                    Margin="0, 4, 0, 0"/>
+
+                <Label
+                    Text="{Binding TimelineEra.TitleKey, Converter={StaticResource LocalizationConverter}}"
+                    TextColor="{StaticResource TertiaryColor}"
+                    FontFamily="RalewayRegular"/>
+            </HorizontalStackLayout>
+        </Grid>
+        
+        <CollectionView
+            x:Name="collectionView"
+            ItemsSource="{Binding TimelineEvents}"
+            Scrolled="CollectionViewScrolled">
+            <CollectionView.Header>
+                <Grid
+                    x:Name="collectionHeaderGrid"
+                    Margin="-1"
+                    CompressedLayout.IsHeadless="True">
+
+                    <RoundRectangle
+                        Fill="White"
+                        Stroke="White"
+                        CornerRadius="10, 10, 0, 0"
+                        VerticalOptions="End"
+                        HeightRequest="28"
+                        Margin="0, -1"/>
+                    <RoundRectangle
+                        Fill="#9d9995"
+                        HeightRequest="7" WidthRequest="40"
+                        CornerRadius="4"
+                        Margin="10"
+                        HorizontalOptions="Center" VerticalOptions="End"/>
+                </Grid>
+            </CollectionView.Header>
+            <CollectionView.Footer>
+                <Grid
+                    x:Name="collectionFooterGrid"
+                    Background="White"
+                    Margin="-1"
+                    Padding="20, 0"
+                    RowDefinitions="140, 30, auto, 120">
+                    <Border
+                        Style="{StaticResource RectButtonBorderStyle}"
+                        VerticalOptions="Center">
+                        <simpleCore:ContentButton
+                            Command="{Binding GlobalTimelineCommand}"
+                            Style="{StaticResource RectContentButtonStyle}"
+                            Padding="20">
+                            <Label
+                                Text="{x:Static core:Localization.eventsListButtonOpenGlobal}"
+                                Style="{StaticResource RectButtonLabelStyle}"/>
+                        </simpleCore:ContentButton>
+                    </Border>
+
+                    <controls:HorizontalSeparator
+                        Grid.Row="1"
+                        IconColor="{StaticResource DarkTertiaryColor}"
+                        LineColor="{StaticResource DarkTertiaryColor}"/>
+                    
+                    <controls:CollectibleItemView
+                        Grid.Row="2"
+                        Collectible="{Binding Collectible}"
+                        Command="{Binding CollectibleCommand}"
+                        Position="0"
+                        VisiblePosition="0"/>
+                </Grid>
+            </CollectionView.Footer>
+            <CollectionView.ItemTemplate>
+                <DataTemplate
+                    x:DataType="models:TimelineEvent">
+                    <Grid
+                        Background="White"
+                        Margin="-1">
+                        <controls:EventCard
+                            BindingContext="{Binding .}"
+                            Margin="20, 8"/>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</pages:BaseContentPage>

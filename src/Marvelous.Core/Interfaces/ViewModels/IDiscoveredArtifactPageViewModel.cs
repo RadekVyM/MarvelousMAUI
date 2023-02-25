@@ -1,0 +1,11 @@
+﻿using System.Windows.Input;
+using Marvelous.Core.Models;
+
+namespace Marvelous.Core.Interfaces.ViewModels
+{
+	public interface IDiscoveredArtifactPageViewModel : IBasePageViewModel
+	{
+        ICommand CollectionCommand { get; }
+        Collectible Collectible { get; }
+    }
+}

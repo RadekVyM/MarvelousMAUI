@@ -1,0 +1,289 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:BaseContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:Marvelous.Maui.Views.Pages"
+    xmlns:core="clr-namespace:Marvelous.Core;assembly=Marvelous.Core"
+    xmlns:simpleCore="clr-namespace:SimpleToolkit.Core;assembly=SimpleToolkit.Core"
+    xmlns:controls="clr-namespace:Marvelous.Maui.Views.Controls"
+    xmlns:vm="clr-namespace:Marvelous.Core.Interfaces.ViewModels;assembly=Marvelous.Core"
+    xmlns:models="clr-namespace:Marvelous.Core.Models;assembly=Marvelous.Core"
+
+    x:Class="Marvelous.Maui.Views.Pages.ArtifactsPage"
+    x:DataType="vm:IArtifactsPageViewModel"
+
+    x:Name="page"
+
+    Title="Artifacts">
+
+    <Grid
+        RowDefinitions="auto, 70, 40, *"
+        CompressedLayout.IsHeadless="True">
+
+        <Grid
+            x:Name="appBar"
+            VerticalOptions="Start"
+            HeightRequest="{StaticResource AppBarHeight}"
+            CompressedLayout.IsHeadless="True">
+            <Border
+                x:Name="menuButtonBorder"
+                Style="{StaticResource AppBarButtonBorderStyle}">
+                <Border.StrokeShape>
+                    <Ellipse/>
+                </Border.StrokeShape>
+                <simpleCore:ContentButton
+                    Clicked="MenuBackButtonClicked">
+                    <simpleCore:Icon
+                        Source="common_icons_icon_back.png"
+                        Style="{StaticResource AppBarButtonIconStyle}"/>
+                </simpleCore:ContentButton>
+            </Border>
+
+            <VerticalStackLayout
+                HorizontalOptions="Center" VerticalOptions="Center"
+                Spacing="2">
+                <Label
+                    Text="{x:Static core:Localization.artifactsSearchTitleBrowse}"
+                    TextTransform="Uppercase"
+                    TextColor="White"
+                    FontFamily="RalewayBold"
+                    FontSize="13"
+                    HorizontalOptions="Center"/>
+                <Label
+                    Text="{Binding CurrentWonder.Title, Converter={StaticResource LocalizationConverter}}"
+                    TextTransform="Uppercase"
+                    TextColor="{StaticResource PrimaryColor}"
+                    FontFamily="TenorSans"
+                    FontSize="14"
+                    HorizontalOptions="Center"/>
+            </VerticalStackLayout>
+        </Grid>
+
+        <Grid
+            Grid.Row="1"
+            Background="{StaticResource SecondaryBrush}"
+            IsClippedToBounds="False">
+            <Border
+                HeightRequest="40"
+                Background="White"
+                Margin="20, 0"
+                VerticalOptions="Center"
+                Stroke="Transparent"
+                StrokeThickness="0">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="6"/>
+                </Border.StrokeShape>
+                <Grid
+                    ColumnDefinitions="40, *, 40">
+                    <simpleCore:Icon
+                        Source="common_icons_icon_search.png"
+                        HorizontalOptions="Center" VerticalOptions="Center"
+                        HeightRequest="24" WidthRequest="24"
+                        TintColor="{StaticResource Gray500}"/>
+                    <Entry
+                        x:Name="searchEntry"
+                        Grid.Column="1"
+                        Text="{Binding SearchTerm}"
+                        Keyboard="Url"
+                        Placeholder="{x:Static core:Localization.searchInputHintSearch}"
+                        Focused="SearchEntryFocused" Unfocused="SearchEntryUnfocused"
+                        Completed="SearchEntryCompleted"
+                        TextChanged="SearchEntryTextChanged"/>
+                    <Border
+                        x:Name="resetSearchButtonBorder"
+                        Grid.Column="2"
+                        Background="{StaticResource SecondaryBrush}"
+                        Opacity="0.7"
+                        HeightRequest="28" WidthRequest="28"
+                        IsVisible="false">
+                        <Border.StrokeShape>
+                            <Ellipse/>
+                        </Border.StrokeShape>
+                        <simpleCore:ContentButton
+                            Clicked="ResetSearchContentButtonClicked">
+                            <simpleCore:Icon
+                                Source="common_icons_icon_close.png"
+                                HeightRequest="15" WidthRequest="15"
+                                TintColor="White"
+                                VerticalOptions="Center" HorizontalOptions="Center"/>
+                        </simpleCore:ContentButton>
+                    </Border>
+                </Grid>
+            </Border>
+        </Grid>
+
+        <Label
+            Grid.Row="2"
+            TextColor="{StaticResource PrimaryColor}"
+            VerticalOptions="Center" HorizontalOptions="Center"
+            Margin="0, 0, 0, 3">
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span
+                        FontFamily="RalewayRegular">
+                        <Span.Text>
+                            <MultiBinding StringFormat="{x:Static core:Localization.artifactsSearchLabelFound}">
+                                <Binding Path="AllSearches.Count" />
+                                <Binding Path="Searches.Count" />
+                            </MultiBinding>
+                        </Span.Text>
+                    </Span>
+                    <Span
+                        Text="{x:Static core:Localization.artifactsSearchLabelTimeframe}"
+                        TextDecorations="Underline"
+                        FontFamily="RalewayRegular">
+                        <Span.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TimeframeTapped"/>
+                        </Span.GestureRecognizers>
+                    </Span>
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+
+        <Grid
+            Grid.Row="3"
+            Background="{StaticResource SecondaryBrush}">
+            <CollectionView
+                ItemsSource="{Binding Searches}"
+                VerticalScrollBarVisibility="Never"
+                Margin="20, 0"
+                Scrolled="CollectionViewScrolled">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout
+                        Orientation="Vertical"
+                        Span="2"
+                        HorizontalItemSpacing="20" VerticalItemSpacing="20"/>
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Search">
+                        <Border
+                            Stroke="Transparent"
+                            StrokeThickness="0">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="6"/>
+                            </Border.StrokeShape>
+                            <Image
+                                Background="{StaticResource DarkSecondaryBrush}"
+                                HeightRequest="180"
+                                Source="{Binding ImageUrl, Converter={StaticResource NetMuseumImageConverter}}"
+                                Aspect="AspectFill"/>
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding Source={x:Reference page}, Path=BindingContext.ArtifactCommand}"
+                                    CommandParameter="{Binding Id}"/>
+                            </Border.GestureRecognizers>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+                <CollectionView.EmptyView>
+                    <Grid>
+                        <VerticalStackLayout
+                            HorizontalOptions="Center" VerticalOptions="Center"
+                            Spacing="10">
+                            <simpleCore:Icon
+                                Source="common_calendar.png"
+                                HorizontalOptions="Center"
+                                WidthRequest="30" HeightRequest="30"
+                                TintColor="Gray"/>
+                            <Label
+                                TextColor="Gray">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span
+                                            Text="{x:Static core:Localization.artifactsSearchLabelAdjust}"
+                                            FontFamily="RalewayRegular"/>
+                                        <Span
+                                            Text="{x:Static core:Localization.artifactsSearchLabelTimeframe}"
+                                            FontFamily="RalewayRegular"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                        </VerticalStackLayout>
+                    </Grid>
+                </CollectionView.EmptyView>
+
+                <CollectionView.Header>
+                    <Rectangle
+                        HeightRequest="{OnPlatform Default=20, Android=10}"
+                        CompressedLayout.IsHeadless="True"/>
+                </CollectionView.Header>
+                
+                <CollectionView.Footer>
+                    <Rectangle
+                        x:Name="footerRectangle"
+                        HeightRequest="80"
+                        CompressedLayout.IsHeadless="True"/>
+                </CollectionView.Footer>
+            </CollectionView>
+            
+            <controls:VerticalShadow
+                x:Name="darkShadow"
+                VerticalOptions="Start"
+                HeightRequest="30"
+                Color="{StaticResource SuperDarkSecondaryColor}"
+                TransparentColor="#000a0a08"
+                IsFromTop="True"
+                Offset="0"/>
+        </Grid>
+
+        <controls:PeriodArtifactView
+            x:Name="periodArtifactView"
+            Grid.Row="3"
+            VerticalOptions="End"/>
+
+        <Border
+            x:Name="suggestionBorder"
+            Grid.Row="1" Grid.RowSpan="3"
+            Margin="20, 58, 20, 0"
+            Padding="2"
+            MaximumHeightRequest="200"
+            BackgroundColor="#f3ffffff"
+            Stroke="Transparent"
+            StrokeThickness="0"
+            VerticalOptions="Start"
+            IsVisible="false">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="6"/>
+            </Border.StrokeShape>
+            <CollectionView
+                ItemsSource="{Binding SearchSuggestions}"
+                VerticalOptions="Start"
+                MaximumHeightRequest="200">
+                <CollectionView.Header>
+                    <VerticalStackLayout
+                        Padding="18, 0">
+                        <Label
+                            Text="{x:Static core:Localization.searchInputTitleSuggestions}"
+                            TextTransform="Uppercase"
+                            FontFamily="TenorSans"
+                            Margin="0, 10"/>
+                        <BoxView
+                            HeightRequest="1"
+                            HorizontalOptions="Fill"
+                            Color="{StaticResource Gray400}"/>
+                    </VerticalStackLayout>
+                </CollectionView.Header>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="x:String">
+                        <Grid>
+                            <Label
+                                Text="{Binding .}"
+                                Padding="18, 7"
+                                FontFamily="RalewayRegular"/>
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Tapped="SuggestionTapped"
+                                    CommandParameter="{Binding .}"/>
+                            </Grid.GestureRecognizers>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                <CollectionView.Footer>
+                    <Rectangle HeightRequest="10"/>
+                </CollectionView.Footer>
+            </CollectionView>
+        </Border>
+    </Grid>
+</pages:BaseContentPage>

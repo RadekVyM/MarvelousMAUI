@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<simpleShell:SimpleShell
+    x:Class="Marvelous.Maui.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:Marvelous.Maui.Views.Pages"
+    xmlns:controls="clr-namespace:Marvelous.Maui.Views.Controls"
+    xmlns:simpleShell="clr-namespace:SimpleToolkit.SimpleShell;assembly=SimpleToolkit.SimpleShell"
+    xmlns:simpleCore="clr-namespace:SimpleToolkit.Core;assembly=SimpleToolkit.Core"
+    xmlns:extensions="clr-namespace:Marvelous.Maui.Extensions"
+    xmlns:local="clr-namespace:Marvelous.Maui"
+    xmlns:illustrations="clr-namespace:Marvelous.Maui.Views.Illustrations"
+    xmlns:viewModels="clr-namespace:Marvelous.Core.ViewModels;assembly=Marvelous.Core"
+    
+    x:Name="thisShell">
+
+    <VisualStateManager.VisualStateGroups>
+        <VisualStateGroup x:Name="SimpleShellContentStates">
+            <VisualState x:Name="SimpleShellContentState">
+                <VisualState.Setters>
+                    <Setter TargetName="tabBar" Property="controls:TabBar.IsShown" Value="true"/>
+                    <Setter TargetName="tabBar" Property="controls:TabBar.TabBarStyle" Value="Light"/>
+                </VisualState.Setters>
+            </VisualState>
+            <VisualState x:Name="SimpleShellContentState.MainMenuPage">
+                <VisualState.Setters>
+                    <Setter TargetName="tabBar" Property="controls:TabBar.IsShown" Value="false"/>
+                </VisualState.Setters>
+            </VisualState>
+            <VisualState x:Name="SimpleShellContentState.WonderMainPage">
+                <VisualState.Setters>
+                    <Setter TargetName="tabBar" Property="controls:TabBar.IsShown" Value="true"/>
+                    <Setter TargetName="tabBar" Property="controls:TabBar.TabBarStyle" Value="Light"/>
+                </VisualState.Setters>
+            </VisualState>
+            <VisualState x:Name="SimpleShellContentState.WonderPhotoPage">
+                <VisualState.Setters>
+                    <Setter TargetName="tabBar" Property="controls:TabBar.IsShown" Value="true"/>
+                    <Setter TargetName="tabBar" Property="controls:TabBar.TabBarStyle" Value="Transparent"/>
+                </VisualState.Setters>
+            </VisualState>
+            <VisualState x:Name="SimpleShellContentState.WonderArtifactsPage">
+                <VisualState.Setters>
+                    <Setter TargetName="tabBar" Property="controls:TabBar.IsShown" Value="true"/>
+                    <Setter TargetName="tabBar" Property="controls:TabBar.TabBarStyle" Value="Light"/>
+                </VisualState.Setters>
+            </VisualState>
+            <VisualState x:Name="SimpleShellContentState.WonderHistoryPage">
+                <VisualState.Setters>
+                    <Setter TargetName="tabBar" Property="controls:TabBar.IsShown" Value="true"/>
+                    <Setter TargetName="tabBar" Property="controls:TabBar.TabBarStyle" Value="Light"/>
+                </VisualState.Setters>
+            </VisualState>
+        </VisualStateGroup>
+    </VisualStateManager.VisualStateGroups>
+
+    <Tab>
+        <ShellContent
+            x:Name="mainMenuShellContent"
+            Title="Main Menu"
+            Icon="common_tab_editorial.png"
+            ContentTemplate="{DataTemplate pages:MainMenuPage}"
+            Route="MainMenuPage"/>
+    </Tab>
+
+    <Tab>
+        <ShellContent
+            Title="Home"
+            Icon="common_tab_editorial.png"
+            extensions:ShellProperties.ActiveIcon="common_tab_editorial_active.png"
+            extensions:ShellProperties.PageType="WonderMainPage"
+            ContentTemplate="{DataTemplate pages:WonderMainPage}"
+            Route="WonderMainPage" />
+    </Tab>
+
+    <Tab>
+        <ShellContent
+            Title="Photos"
+            Icon="common_tab_photos.png"
+            extensions:ShellProperties.ActiveIcon="common_tab_photos_active.png"
+            extensions:ShellProperties.PageType="WonderPhotoPage"
+            ContentTemplate="{DataTemplate pages:WonderPhotoPage}"
+            Route="WonderPhotoPage" />
+    </Tab>
+
+    <Tab>
+        <ShellContent
+            Title="Artifacts"
+            Icon="common_tab_artifacts.png"
+            extensions:ShellProperties.ActiveIcon="common_tab_artifacts_active.png"
+            extensions:ShellProperties.PageType="WonderArtifactsPage"
+            ContentTemplate="{DataTemplate pages:WonderArtifactsPage}"
+            Route="WonderArtifactsPage" />
+    </Tab>
+
+    <Tab>
+        <ShellContent
+            Title="History"
+            Icon="common_tab_timeline.png"
+            extensions:ShellProperties.ActiveIcon="common_tab_timeline_active.png"
+            extensions:ShellProperties.PageType="WonderHistoryPage"
+            ContentTemplate="{DataTemplate pages:WonderHistoryPage}"
+            Route="WonderHistoryPage" />
+    </Tab>
+
+    <simpleShell:SimpleShell.RootPageOverlay>
+        <Grid
+            x:Name="rootPageOverlay"
+            x:DataType="viewModels:MainViewModel"
+            InputTransparent="{OnPlatform iOS=True}"
+            CascadeInputTransparent="{OnPlatform iOS=False}"
+            CompressedLayout.IsHeadless="True">
+            <controls:TabBar
+                x:Name="tabBar"
+                VerticalOptions="End"
+                ItemSelected="TabBarItemSelected"
+                WonderClicked="TabBarWonderClicked"
+                CurrentShellItem="{Binding CurrentShellContent, Source={x:Reference thisShell}, Mode=OneWay}"
+                ShellItems="{Binding ShellContents, Source={x:Reference thisShell}, Converter={StaticResource WithoutFirstConverter}}"
+                CurrentWonder="{Binding CurrentWonder}"/>
+        </Grid>
+    </simpleShell:SimpleShell.RootPageOverlay>
+    
+    <simpleShell:SimpleShell.Content>
+        <Grid
+            x:Name="rootGrid"
+            x:DataType="viewModels:MainViewModel"
+            CompressedLayout.IsHeadless="True">
+            <simpleShell:SimpleNavigationHost
+                x:Name="navHost"/>
+            <Rectangle
+                x:Name="statusBarBackground"
+                VerticalOptions="Start"
+                Fill="Black"
+                Opacity="0.3"
+                Margin="-1"/>
+        </Grid>
+    </simpleShell:SimpleShell.Content>
+    
+</simpleShell:SimpleShell>

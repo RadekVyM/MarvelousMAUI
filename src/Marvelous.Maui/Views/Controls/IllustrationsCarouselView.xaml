@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Marvelous.Maui.Views.Controls"
+    xmlns:simpleCore="clr-namespace:SimpleToolkit.Core;assembly=SimpleToolkit.Core"
+    x:Class="Marvelous.Maui.Views.Controls.IllustrationsCarouselView">
+
+    <Grid
+        CompressedLayout.IsHeadless="True">
+        <Grid.GestureRecognizers>
+            <PanGestureRecognizer PanUpdated="PanGestureRecognizerPanUpdated"/>
+        </Grid.GestureRecognizers>
+
+        <Grid x:Name="backgroundContainer">
+        </Grid>
+        
+        <Grid x:Name="illustrationsContainer">
+        </Grid>
+
+        <Grid
+            x:Name="indicatorContainer"
+            CompressedLayout.IsHeadless="True">
+            <controls:IndicatorView
+                x:Name="indicatorView"
+                Color="White"
+                HeightRequest="8"
+                InputTransparent="True"
+                HorizontalOptions="Fill" VerticalOptions="End"
+                Margin="0,0,0,90"/>
+
+            <controls:VerticalPanIndicatorView
+                x:Name="verticalPanIndicatorView"
+                Color="White"
+                WidthRequest="50" HeightRequest="160"
+                InputTransparent="True"
+                HorizontalOptions="Center" VerticalOptions="End"
+                Margin="0,0,0,25"/>
+        </Grid>
+    </Grid>
+</ContentView>

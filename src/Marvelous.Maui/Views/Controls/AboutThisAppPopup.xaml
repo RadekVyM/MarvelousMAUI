@@ -1,0 +1,257 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:core="clr-namespace:Marvelous.Core;assembly=Marvelous.Core"
+    xmlns:simpleCore="clr-namespace:SimpleToolkit.Core;assembly=SimpleToolkit.Core"
+
+    CanBeDismissedByTappingOutsideOfPopup="True"
+
+    Color="Transparent"
+    HorizontalOptions="Center"
+
+    x:Class="Marvelous.Maui.Views.Controls.AboutThisAppPopup">
+
+    <Border
+        Background="{StaticResource TertiaryBrush}"
+        StrokeThickness="0"
+        Stroke="Transparent">
+        <Border.Resources>
+            <Style x:Key="SpanStyle" TargetType="Span">
+                <Setter Property="FontFamily" Value="RalewayRegular"/>
+                <Setter Property="TextColor" Value="{StaticResource SecondaryColor}"/>
+            </Style>
+            <Style x:Key="LinkSpanStyle" TargetType="Span">
+                <Setter Property="FontFamily" Value="RalewayBold"/>
+                <Setter Property="TextColor" Value="{StaticResource PrimaryColor}"/>
+            </Style>
+            <Style x:Key="LabelStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="RalewayRegular"/>
+                <Setter Property="TextColor" Value="{StaticResource SecondaryColor}"/>
+                <Setter Property="LineHeight" Value="1.2"/>
+            </Style>
+            <Style x:Key="TitleLabelStyle" TargetType="Label" BasedOn="{StaticResource LabelStyle}">
+                <Setter Property="FontFamily" Value="RalewayBold"/>
+                <Setter Property="FontSize" Value="17"/>
+            </Style>
+            <Style x:Key="ButtonStyle" TargetType="Button">
+                <Setter Property="FontFamily" Value="RalewayBold"/>
+                <Setter Property="TextColor" Value="{StaticResource PrimaryColor}"/>
+                <Setter Property="TextTransform" Value="Uppercase"/>
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="CornerRadius" Value="3"/>
+                <Setter Property="Padding" Value="10, 5"/>
+                <Setter Property="Margin" Value="-10, -5"/>
+                <Setter Property="HorizontalOptions" Value="End"/>
+                <Setter Property="VerticalOptions" Value="End"/>
+            </Style>
+        </Border.Resources>
+
+        <Border.StrokeShape>
+            <RoundRectangle CornerRadius="4"/>
+        </Border.StrokeShape>
+        <Grid
+            x:Name="rootGrid"
+            Padding="20"
+            RowDefinitions="75, auto, auto, auto, auto, auto, auto, auto"
+            ColumnDefinitions="65, *"
+            RowSpacing="15"
+            CompressedLayout.IsHeadless="True">
+            <Border
+                Padding="10"
+                Background="{StaticResource DarkSecondaryBrush}"
+                StrokeThickness="0"
+                Stroke="Transparent">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="4"/>
+                </Border.StrokeShape>
+                <Image
+                    Source="common_app_logo_plain.png"
+                    Aspect="AspectFit"/>
+            </Border>
+
+            <VerticalStackLayout
+                Grid.Column="1"
+                Spacing="5"
+                Margin="20, 0, 0, 0">
+                <Label
+                    Style="{StaticResource TitleLabelStyle}"
+                    Text="{x:Static core:Localization.appName}"/>
+                <Label
+                    x:Name="versionLabel"
+                    Style="{StaticResource LabelStyle}"
+                    FontFamily="OpenSansRegular"/>
+            </VerticalStackLayout>
+
+            <Label
+                Grid.Row="1" Grid.ColumnSpan="2"
+                Style="{StaticResource LabelStyle}">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span
+                            Text="{x:Static core:Localization.homeMenuAboutMarvelousMaui}"
+                            Style="{StaticResource SpanStyle}"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+            <Label
+                Grid.Row="2" Grid.ColumnSpan="2"
+                Style="{StaticResource LabelStyle}">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span
+                            Text="{x:Static core:Localization.homeMenuAboutByTeam}"
+                            Style="{StaticResource SpanStyle}"/>
+                        <Span
+                            Text="{x:Static core:Localization.homeMenuAboutGskinner}"
+                            Style="{StaticResource LinkSpanStyle}">
+                            <Span.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="GskinnerTapped"/>
+                            </Span.GestureRecognizers>
+                        </Span>
+                        <Span
+                            Text=". "
+                            Style="{StaticResource SpanStyle}"/>
+                        <Span
+                            Text="{x:Static core:Localization.homeMenuAboutLearn}"
+                            Style="{StaticResource SpanStyle}"/>
+                        <Span
+                            Text="{x:Static core:Localization.homeMenuAboutApp}"
+                            Style="{StaticResource LinkSpanStyle}">
+                            <Span.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="WonderousSiteTapped"/>
+                            </Span.GestureRecognizers>
+                        </Span>
+                        <Span
+                            Text="."
+                            Style="{StaticResource SpanStyle}"/>
+                    </FormattedString>
+                </Label.FormattedText>
+                
+                <!-- TODO: Workaround of a bug whit gesture recognizers attached to spans https://github.com/dotnet/maui/pull/12027 -->
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer/>
+                </Label.GestureRecognizers>
+            </Label>
+            
+            <Label
+                Grid.Row="3" Grid.ColumnSpan="2"
+                Style="{StaticResource LabelStyle}">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span
+                            Text="{x:Static core:Localization.homeMenuAboutBuilt}"
+                            Style="{StaticResource SpanStyle}"/>
+                        <Span
+                            Text="{x:Static core:Localization.homeMenuAboutMaui}"
+                            Style="{StaticResource LinkSpanStyle}">
+                            <Span.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="MauiTapped"/>
+                            </Span.GestureRecognizers>
+                        </Span>
+                        <Span
+                            Text=". "
+                            Style="{StaticResource SpanStyle}"/>
+                        <Span
+                            Text="{x:Static core:Localization.homeMenuAboutSource}"
+                            Style="{StaticResource SpanStyle}"/>
+                        <Span
+                            Text="{x:Static core:Localization.homeMenuAboutRepo}"
+                            Style="{StaticResource LinkSpanStyle}">
+                            <Span.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="GitHubTapped"/>
+                            </Span.GestureRecognizers>
+                        </Span>
+                        <Span
+                            Text="."
+                            Style="{StaticResource SpanStyle}"/>
+                    </FormattedString>
+                </Label.FormattedText>
+                
+                <!-- TODO: Workaround of a bug whit gesture recognizers attached to spans https://github.com/dotnet/maui/pull/12027 -->
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer/>
+                </Label.GestureRecognizers>
+            </Label>
+
+            <Label
+                Grid.Row="4" Grid.ColumnSpan="2"
+                Style="{StaticResource LabelStyle}">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span
+                            Text="{x:Static core:Localization.homeMenuAboutVisualAssets}"
+                            Style="{StaticResource SpanStyle}"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+            <Label
+                Grid.Row="5" Grid.ColumnSpan="2"
+                Style="{StaticResource LabelStyle}">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span
+                            Text="{x:Static core:Localization.homeMenuAboutPublic}"
+                            Style="{StaticResource SpanStyle}"/>
+                        <Span
+                            Text="{x:Static core:Localization.homeMenuAboutMet}"
+                            Style="{StaticResource LinkSpanStyle}">
+                            <Span.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="MuseumTapped"/>
+                            </Span.GestureRecognizers>
+                        </Span>
+                        <Span
+                            Text="."
+                            Style="{StaticResource SpanStyle}"/>
+                    </FormattedString>
+                </Label.FormattedText>
+                
+                <!-- TODO: Workaround of a bug whit gesture recognizers attached to spans https://github.com/dotnet/maui/pull/12027 -->
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer/>
+                </Label.GestureRecognizers>
+            </Label>
+            
+            <Label
+                Grid.Row="6" Grid.ColumnSpan="2"
+                Style="{StaticResource LabelStyle}">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span
+                            Text="{x:Static core:Localization.homeMenuAboutPhotography}"
+                            Style="{StaticResource SpanStyle}"/>
+                        <Span
+                            Text="{x:Static core:Localization.homeMenuAboutUnsplash}"
+                            Style="{StaticResource LinkSpanStyle}">
+                            <Span.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="UnsplashTapped"/>
+                            </Span.GestureRecognizers>
+                        </Span>
+                        <Span
+                            Text="."
+                            Style="{StaticResource SpanStyle}"/>
+                    </FormattedString>
+                </Label.FormattedText>
+                
+                <!-- TODO: Workaround of a bug whit gesture recognizers attached to spans https://github.com/dotnet/maui/pull/12027 -->
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer/>
+                </Label.GestureRecognizers>
+            </Label>
+
+            <HorizontalStackLayout
+                Grid.Row="7" Grid.ColumnSpan="2"
+                HorizontalOptions="End"
+                Margin="0, 15, 0, 0">
+                <Button
+                    Text="{x:Static core:Localization.circleButtonsSemanticClose}"
+                    Clicked="CloseButtonClicked"
+                    Style="{StaticResource ButtonStyle}"/>
+            </HorizontalStackLayout>
+        </Grid>
+    </Border>
+</toolkit:Popup>
+

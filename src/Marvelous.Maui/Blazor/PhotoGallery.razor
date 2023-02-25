@@ -1,0 +1,180 @@
+﻿@implements IDisposable
+@using System.ComponentModel
+@using System.Windows.Input
+@using Marvelous.Core.Interfaces.ViewModels
+@using Marvelous.Core.Models
+@using Marvelous.Maui.Converters
+@using Marvelous.Maui.Views.Pages
+@inject IJSRuntime JS
+
+<div class="draggable-grid" data-span="5" data-orientation="vertical" data-cell-size-ratio="3/4"
+     data-max-cell-size="0.7 0.8" draggable="false">
+    <ul>
+        @foreach (var item in items)
+        {
+            <li>
+                <div>
+                    @if (item is UnsplashPhotoViewModel photo)
+                    {
+                        <img src="@photo.UnsplashUrl"
+                             onerror="if (this.src != 'fallback_image.png') this.src = 'fallback_image.png';"
+                             @onclick="() => OnPhotoClicked(photo)"
+                             loading="lazy">
+                    }
+                    else if (item is CollectibleViewModel collectible)
+                    {
+                        var className = collectible.Hiding ? "scale-down" : "shaky-animation";
+
+                        <img src="@collectible.CollectibleIcon"
+                             onerror="if (this.src != 'fallback_image.png') this.src = 'fallback_image.png';"
+                             class="collectible-image @className"
+                             @onclick="() => OnCollectibleClicked(collectible)">
+                    }
+                </div>
+            </li>
+        }
+    </ul>
+</div>
+
+@code {
+    private readonly CollectibleIconTypeToIconConverter collectibleIconTypeToIconConverter = new CollectibleIconTypeToIconConverter();
+    private IList<object> items = new List<object>();
+
+    [Parameter]
+    public IWonderPhotoPageViewModel ViewModel { get; set; }
+
+    public void Dispose()
+    {
+        ViewModel.PropertyChanged -= ViewModelPropertyChanged;
+        ViewModel = null;
+    }
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+
+        if (ViewModel is null)
+            return;
+
+        ViewModel.PropertyChanged += ViewModelPropertyChanged;
+
+        UpdatePhotos();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnAfterRenderAsync(firstRender);
+
+        if (firstRender)
+        {
+            await JS.InvokeVoidAsync("initializeDraggableGrid");
+            await SetCurrentGridIndex((ViewModel?.UnsplashPhotos?.Count / 2) ?? 0);
+        }
+    }
+
+    private async void OnPhotoClicked(UnsplashPhotoViewModel photo)
+    {
+        var index = items.IndexOf(photo);
+        var currentIndex = await JS.InvokeAsync<int>("getDraggableGridCurrentIndex");
+
+        if (index != currentIndex)
+            return;
+
+        if (ViewModel?.UnsplashPhotoDetailCommand?.CanExecute(photo.Url) == true)
+            ViewModel?.UnsplashPhotoDetailCommand?.Execute(photo.Url);
+    }
+
+    private void OnCollectibleClicked(CollectibleViewModel collectible)
+    {
+        if (ViewModel?.CollectibleCommand?.CanExecute(null) == true)
+        {
+            ViewModel?.CollectibleCommand?.Execute(null);
+        }
+    }
+
+    private void ViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
+    {
+        if (e.PropertyName == nameof(IWonderPhotoPageViewModel.UnsplashPhotos) ||
+            e.PropertyName == nameof(IWonderPhotoPageViewModel.Collectible))
+        {
+            UpdatePhotos();
+        }
+        else if (e.PropertyName == nameof(IWonderPhotoPageViewModel.Collectible.CollectibleState))
+        {
+            OnCollectibleStateChanged();
+        }
+    }
+
+    private async void OnCollectibleStateChanged()
+    {
+        var collectible = items.FirstOrDefault(o => o is CollectibleViewModel) as CollectibleViewModel;
+
+        if (collectible is null)
+            return;
+
+        if (ViewModel.Collectible.CollectibleState != CollectibleState.Lost)
+        {
+            collectible.Hiding = true;
+            StateHasChanged();
+
+            await Task.Delay(500);
+
+            var index = GetCollectibleIndex();
+
+            items.RemoveAt(index);
+            items.Insert(index, GetCollectibleViewModel());
+
+            StateHasChanged();
+        }
+    }
+
+    private async void UpdatePhotos()
+    {
+        items = ViewModel.UnsplashPhotos
+            .Select(p => new UnsplashPhotoViewModel(p.Url, UnsplashPhoto.GetSelfHostedUrl(p.Url, UnsplashPhotoSize.Med, 1)))
+            .Cast<object>()
+            .ToList();
+
+        items.Insert(GetCollectibleIndex(), GetCollectibleViewModel());
+
+        StateHasChanged();
+
+        await SetCurrentGridIndex((ViewModel?.UnsplashPhotos?.Count / 2) ?? 0);
+    }
+
+    private int GetCollectibleIndex()
+    {
+        return Marvelous.Maui.WonderViewConfig.GetWonderViewConfig(ViewModel.CurrentWonder).PhotoPageCollectiblePosition switch
+        {
+            0 => 4,
+            1 => 20,
+            2 => 24,
+            _ => 0,
+        };
+    }
+
+    private object GetCollectibleViewModel()
+    {
+        if (ViewModel.Collectible.CollectibleState == CollectibleState.Lost)
+        {
+            var collectibleIcon = collectibleIconTypeToIconConverter
+                .Convert(ViewModel.Collectible.IconType, null, null, System.Globalization.CultureInfo.CurrentCulture)
+                .ToString();
+
+            return new CollectibleViewModel(collectibleIcon);
+        }
+
+        return new UnsplashPhotoViewModel(ViewModel.Collectible.ImageUrl, ViewModel.Collectible.ImageUrlSmall);
+    }
+
+    private async Task SetCurrentGridIndex(int index)
+    {
+        await JS.InvokeVoidAsync("setDraggableGridCurrentIndex", index);
+    }
+
+    record CollectibleViewModel(string CollectibleIcon)
+    {
+        public bool Hiding { get; set; } = false;
+    }
+    record UnsplashPhotoViewModel(string Url, string UnsplashUrl);
+}

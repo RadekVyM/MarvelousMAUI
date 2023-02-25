@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:core="clr-namespace:Marvelous.Core;assembly=Marvelous.Core"
+             xmlns:simpleCore="clr-namespace:SimpleToolkit.Core;assembly=SimpleToolkit.Core"
+             x:Class="Marvelous.Maui.Views.Controls.AppMenu">
+
+    <ContentView.Resources>
+        <Style x:Key="BottomMenuIconStyle" TargetType="simpleCore:Icon">
+            <Setter Property="TintColor" Value="White"/>
+            <Setter Property="VerticalOptions" Value="Center"/>
+            <Setter Property="HeightRequest" Value="20"/>
+            <Setter Property="WidthRequest" Value="20"/>
+            <Setter Property="Margin" Value="0, 2, 0, 0"/>
+        </Style>
+        <Style x:Key="BottomMenuLabelStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="FontFamily" Value="RalewayBold"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Margin" Value="{OnPlatform Default='0, 3, 0, 0', Android=0}"/>
+        </Style>
+        <Style x:Key="BottomMenuHorizontalStackLayoutStyle" TargetType="HorizontalStackLayout">
+            <Setter Property="HorizontalOptions" Value="Center"/>
+            <Setter Property="VerticalOptions" Value="Center"/>
+            <Setter Property="Spacing" Value="10"/>
+            <Setter Property="Padding" Value="15"/>
+        </Style>
+        <Style x:Key="BottomMenuRectangleStyle" TargetType="Rectangle">
+            <Setter Property="HorizontalOptions" Value="Fill"/>
+            <Setter Property="VerticalOptions" Value="Center"/>
+            <Setter Property="HeightRequest" Value="1.8"/>
+            <Setter Property="Fill" Value="#55ffffff"/>
+        </Style>
+    </ContentView.Resources>
+    
+    <Grid
+        CompressedLayout.IsHeadless="True">
+        <BoxView Color="{StaticResource SecondaryColor}" Opacity="0.9" InputTransparent="False">
+            <BoxView.GestureRecognizers>
+                <PanGestureRecognizer/>
+            </BoxView.GestureRecognizers>
+        </BoxView>
+
+        <Grid
+            x:Name="rootContentGrid"
+            RowDefinitions="auto, *, auto"
+            Padding="25, 20"
+            CompressedLayout.IsHeadless="True">
+            <simpleCore:ContentButton
+                Background="Transparent"
+                HorizontalOptions="Start" VerticalOptions="Start"
+                WidthRequest="40" HeightRequest="40"
+                Clicked="CloseButtonClicked">
+                <simpleCore:Icon
+                    VerticalOptions="Center" HorizontalOptions="Center"
+                    WidthRequest="30" HeightRequest="30"
+                    Source="common_icons_icon_close.png"
+                    TintColor="White"/>
+            </simpleCore:ContentButton>
+
+            <AbsoluteLayout
+                x:Name="wondersAbsoluteLayout"
+                Grid.Row="1"
+                SizeChanged="WondersGridContainerSizeChanged"
+                CompressedLayout.IsHeadless="True">
+                <Image
+                    x:Name="compassImage"
+                    Source="common_compass_full.png"
+                    Margin="15"/>
+            </AbsoluteLayout>
+
+            <VerticalStackLayout
+                x:Name="buttonsStackLayout"
+                Grid.Row="2"
+                Margin="0,15,0,15"
+                CompressedLayout.IsHeadless="True">
+                <simpleCore:ContentButton
+                    x:Name="timelineButton"
+                    Command="{Binding GlobalTimelineCommand}">
+                    <HorizontalStackLayout Style="{StaticResource BottomMenuHorizontalStackLayoutStyle}">
+                        <simpleCore:Icon
+                            Source="common_icons_icon_timeline.png"
+                            Style="{StaticResource BottomMenuIconStyle}"/>
+                        <Label
+                            Text="{x:Static core:Localization.homeMenuButtonExplore}"
+                            Style="{StaticResource BottomMenuLabelStyle}"/>
+                    </HorizontalStackLayout>
+                </simpleCore:ContentButton>
+
+                <Rectangle Style="{StaticResource BottomMenuRectangleStyle}"/>
+
+                <simpleCore:ContentButton
+                    x:Name="collectionButton"
+                    Command="{Binding CollectionCommand}">
+                    <HorizontalStackLayout Style="{StaticResource BottomMenuHorizontalStackLayoutStyle}">
+                        <simpleCore:Icon
+                            Source="common_icons_icon_collection.png"
+                            Style="{StaticResource BottomMenuIconStyle}"/>
+                        <Label
+                            Text="{x:Static core:Localization.homeMenuButtonView}"
+                            Style="{StaticResource BottomMenuLabelStyle}"/>
+                    </HorizontalStackLayout>
+                </simpleCore:ContentButton>
+
+                <Rectangle Style="{StaticResource BottomMenuRectangleStyle}"/>
+
+                <simpleCore:ContentButton
+                    x:Name="aboutThisAppButton">
+                    <HorizontalStackLayout Style="{StaticResource BottomMenuHorizontalStackLayoutStyle}">
+                        <simpleCore:Icon
+                            Source="common_icons_icon_info.png"
+                            Style="{StaticResource BottomMenuIconStyle}"/>
+                        <Label
+                            Text="{x:Static core:Localization.homeMenuButtonAbout}"
+                            Style="{StaticResource BottomMenuLabelStyle}"/>
+                    </HorizontalStackLayout>
+                </simpleCore:ContentButton>
+            </VerticalStackLayout>
+        </Grid>
+    </Grid>
+</ContentView>

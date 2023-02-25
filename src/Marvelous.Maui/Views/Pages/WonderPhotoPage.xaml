@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:BaseContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:Marvelous.Maui.Views.Pages"
+    xmlns:b="clr-namespace:Microsoft.AspNetCore.Components.WebView.Maui;assembly=Microsoft.AspNetCore.Components.WebView.Maui"
+    xmlns:local="clr-namespace:Marvelous.Maui"
+    xmlns:controls="clr-namespace:Marvelous.Maui.Views.Controls"
+    
+    x:Class="Marvelous.Maui.Views.Pages.WonderPhotoPage"
+    Title="Photos"
+    
+    Background="Black">
+
+    <Grid
+        CompressedLayout.IsHeadless="True">
+        <ActivityIndicator
+            IsRunning="True"
+            HorizontalOptions="Center" VerticalOptions="Center"
+            Color="{StaticResource PrimaryColor}"/>
+        <controls:DelayedView
+            x:Name="delayed"
+            x:TypeArguments="controls:PhotoGrid"
+            Delay="250"/>
+    </Grid>
+</pages:BaseContentPage>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:Marvelous.Core.Models;assembly=Marvelous.Core"
+             x:Class="Marvelous.Maui.Views.Controls.EventCard"
+             
+             x:DataType="models:TimelineEvent"
+             
+             Background="{StaticResource TertiaryBrush}">
+
+    <Grid
+        ColumnDefinitions="70, 3, *"
+        VerticalOptions="Start"
+        Margin="16" ColumnSpacing="12"
+        CompressedLayout.IsHeadless="True">
+        <VerticalStackLayout
+            VerticalOptions="Center"
+            CompressedLayout.IsHeadless="True">
+            <Label
+                Text="{Binding Year, Converter={StaticResource AbsConverter}}"
+                FontFamily="TenorSans" FontSize="20"/>
+            <Label
+                Text="{Binding Year, Converter={StaticResource YearToCeConverter}}"
+                FontFamily="RalewayRegular" FontSize="15"/>
+        </VerticalStackLayout>
+
+        <Rectangle
+            Grid.Column="1"
+            Fill="{StaticResource SecondaryBrush}"
+            VerticalOptions="Center" HorizontalOptions="Center"
+            WidthRequest="2.5" HeightRequest="50"/>
+
+        <Label
+            Grid.Column="2"
+            Text="{Binding DescriptionKey, Converter={StaticResource LocalizationConverter}}"
+            VerticalOptions="Center"
+            FontFamily="RalewayRegular" FontSize="16"/>
+    </Grid>
+</ContentView>

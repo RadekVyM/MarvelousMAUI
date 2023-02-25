@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:Marvelous.Maui.Views.Pages"
+    xmlns:core="clr-namespace:Marvelous.Core;assembly=Marvelous.Core"
+    xmlns:models="clr-namespace:Marvelous.Core.Models;assembly=Marvelous.Core"
+    xmlns:localModels="clr-namespace:Marvelous.Maui.Models"
+    xmlns:vm="clr-namespace:Marvelous.Core.Interfaces.ViewModels;assembly=Marvelous.Core"
+    xmlns:simpleCore="clr-namespace:SimpleToolkit.Core;assembly=SimpleToolkit.Core"
+    xmlns:controls="clr-namespace:Marvelous.Maui.Views.Controls"
+
+    x:Class="Marvelous.Maui.Views.Controls.CollectibleListItemView">
+
+    <Grid
+        HorizontalOptions="FillAndExpand"
+        Background="{StaticResource DarkSecondaryBrush}"
+        HeightRequest="200">
+
+        <simpleCore:Icon
+            x:Name="icon"
+            TintColor="{StaticResource SecondaryColor}"
+            Margin="20"/>
+
+        <simpleCore:ContentButton
+            x:Name="button"
+            Clicked="ButtonClicked">
+            <Image
+                x:Name="image"
+                Aspect="AspectFill"/>
+        </simpleCore:ContentButton>
+
+        <Rectangle
+            x:Name="rectangle"
+            InputTransparent="True"
+            Stroke="{StaticResource PrimaryBrush}"
+            StrokeThickness="3"/>
+    </Grid>
+</ContentView>
+

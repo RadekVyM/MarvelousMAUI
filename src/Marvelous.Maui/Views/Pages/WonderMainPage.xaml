@@ -1,0 +1,431 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:BaseContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:simpleCore="clr-namespace:SimpleToolkit.Core;assembly=SimpleToolkit.Core"
+    xmlns:pages="clr-namespace:Marvelous.Maui.Views.Pages"
+    xmlns:controls="clr-namespace:Marvelous.Maui.Views.Controls"
+    xmlns:viewModels="clr-namespace:Marvelous.Core.Interfaces.ViewModels;assembly=Marvelous.Core"
+    xmlns:mauiModels="clr-namespace:Marvelous.Maui.Models"
+    xmlns:local="clr-namespace:Marvelous.Maui"
+    x:Class="Marvelous.Maui.Views.Pages.WonderMainPage"
+    
+    x:DataType="viewModels:IWonderMainPageViewModel"
+    
+    Title="WonderMainPage">
+
+    <pages:BaseContentPage.Resources>
+        <Style x:Key="ParagraphLabel" TargetType="Label">
+            <Setter Property="FontFamily" Value="RalewayRegular"/>
+            <Setter Property="Padding" Value="20, 10"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="LineHeight" Value="1.5"/>
+        </Style>
+
+        <DataTemplate x:Key="ParagraphLabelDataTemplate">
+            <Label
+                Text="{Binding .}"
+                Style="{StaticResource ParagraphLabel}"/>
+        </DataTemplate>
+
+        <local:WonderSectionTemplateSelector
+            x:Key="WonderSectionTemplateSelector">
+            <local:WonderSectionTemplateSelector.FactsHistoryWonderSectionTemplate>
+                <DataTemplate
+                    x:DataType="mauiModels:FactsHistoryWonderSectionViewModel">
+                    <ContentView>
+                        <VerticalStackLayout
+                            Background="{StaticResource TertiaryColor}"
+                            Margin="{Binding Margin}"
+                            Padding="0,0,0,100"
+                            SizeChanged="FactsHistoryVerticalStackLayoutSizeChanged">
+                            <controls:CollectibleItemView
+                                Collectible="{Binding Source={RelativeSource AncestorType={x:Type viewModels:IWonderMainPageViewModel}}, Path=Collectible}"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:IWonderMainPageViewModel}}, Path=CollectibleCommand}"
+                                Position="0"
+                                VisiblePosition="{Binding VisibleCollectiblePosition}"/>
+
+                            <VerticalStackLayout
+                                BindableLayout.ItemsSource="{Binding HistoryInfo1, Converter={StaticResource LocalizationSplitParagraphsConverter}}"
+                                BindableLayout.ItemTemplate="{StaticResource ParagraphLabelDataTemplate}"
+                                SizeChanged="FirstHistoryInfoStackLayoutSizeChanged"/>
+
+                            <controls:WindowImageView
+                                HeightRequest="660"
+                                Padding="0, 60"
+                                VerticalDelta="{Binding VerticalDelta}"
+                                TopText="{Binding PullQuote1Top, Converter={StaticResource LocalizationConverter}}"
+                                BottomText="{Binding PullQuote1Bottom, Converter={StaticResource LocalizationConverter}}"
+                                ImageSource="{Binding WonderType, Converter={StaticResource WonderMainPagePhotoConverter}, ConverterParameter='photo_2.jpg'}"/>
+                            
+                            <controls:CollectibleItemView
+                                Collectible="{Binding Source={RelativeSource AncestorType={x:Type viewModels:IWonderMainPageViewModel}}, Path=Collectible}"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:IWonderMainPageViewModel}}, Path=CollectibleCommand}"
+                                Position="1"
+                                VisiblePosition="{Binding VisibleCollectiblePosition}"/>
+
+                            <controls:InfoText
+                                Text="{Binding Callout1, Converter={StaticResource LocalizationConverter}}"
+                                Margin="20, 0, 20, 10"/>
+
+                            <VerticalStackLayout
+                                BindableLayout.ItemsSource="{Binding HistoryInfo2, Converter={StaticResource LocalizationSplitParagraphsConverter}}"
+                                BindableLayout.ItemTemplate="{StaticResource ParagraphLabelDataTemplate}"/>
+                        </VerticalStackLayout>
+                    </ContentView>
+                </DataTemplate>
+            </local:WonderSectionTemplateSelector.FactsHistoryWonderSectionTemplate>
+            <local:WonderSectionTemplateSelector.ConstructionWonderSectionTemplate>
+                <DataTemplate
+                    x:DataType="mauiModels:ConstructionWonderSectionViewModel">
+                    <VerticalStackLayout
+                        Background="{StaticResource TertiaryColor}"
+                        Margin="0, 0, 0, -1"
+                        Padding="0,0,0,100">
+                        <VerticalStackLayout
+                            SizeChanged="ConstructionVerticalStackLayoutSizeChanged"
+                            CompressedLayout.IsHeadless="True">
+                            <controls:HorizontalSeparator
+                                IconColor="{StaticResource CreamyGray}"
+                                LineColor="{StaticResource CreamyGray}"
+                                Collapsed="{Binding CollapsedSeparator}"
+                                Margin="20, 0, 20, 100"/>
+
+                            <VerticalStackLayout
+                                BindableLayout.ItemsSource="{Binding ConstructionInfo1, Converter={StaticResource LocalizationSplitParagraphsConverter}}"
+                                BindableLayout.ItemTemplate="{StaticResource ParagraphLabelDataTemplate}"/>
+                            
+                            <controls:CollectibleItemView
+                                Collectible="{Binding Source={RelativeSource AncestorType={x:Type viewModels:IWonderMainPageViewModel}}, Path=Collectible}"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:IWonderMainPageViewModel}}, Path=CollectibleCommand}"
+                                Position="2"
+                                VisiblePosition="{Binding VisibleCollectiblePosition}"/>
+
+                            <simpleCore:ContentButton
+                                Margin="0, 40, 0, 8"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:IWonderMainPageViewModel}}, Path=PlayVideoCommand}"
+                                CommandParameter="{Binding VideoId}"
+                                Background="Black">
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroupList>
+                                        <VisualStateGroup>
+                                            <VisualState x:Name="Normal"/>
+                                            <VisualState x:Name="Pressed">
+                                                <VisualState.Setters>
+                                                    <Setter TargetName="playButtonContainer" Property="View.Opacity" Value="0.85"/>
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateGroupList>
+                                </VisualStateManager.VisualStateGroups>
+                                <Grid
+                                    CompressedLayout.IsHeadless="True">
+                                    <Image
+                                        Source="{Binding VideoId, Converter={StaticResource YouTubeThumbnailConverter}}"
+                                        Aspect="AspectFill"
+                                        HeightRequest="300"/>
+
+                                    <Grid
+                                        x:Name="playButtonContainer"
+                                        HorizontalOptions="Center"
+                                        VerticalOptions="Center"
+                                        HeightRequest="60" WidthRequest="60"
+                                        CompressedLayout.IsHeadless="True">
+                                        <Ellipse
+                                            Fill="Black"
+                                            Opacity="0.6"/>
+
+                                        <ContentView
+                                            HorizontalOptions="Center" VerticalOptions="Center"
+                                            HeightRequest="20" WidthRequest="20"
+                                            Margin="5,0,0,0"
+                                            CompressedLayout.IsHeadless="True">
+                                            <Polygon
+                                                Fill="White"
+                                                Aspect="Uniform"
+                                                Points="2 0, 20 10, 2 20"/>
+                                        </ContentView>
+                                    </Grid>
+                                </Grid>
+                            </simpleCore:ContentButton>
+
+                            <Label
+                                Text="{Binding VideoCaption, Converter={StaticResource LocalizationConverter}}"
+                                FontFamily="RalewayItalic"
+                                FontSize="12"
+                                Margin="20, 0"/>
+
+                            <controls:InfoText
+                                Text="{Binding Callout2, Converter={StaticResource LocalizationConverter}}"
+                                Margin="20, 40, 20, 10"/>
+
+                            <VerticalStackLayout
+                                BindableLayout.ItemsSource="{Binding ConstructionInfo2, Converter={StaticResource LocalizationSplitParagraphsConverter}}"
+                                BindableLayout.ItemTemplate="{StaticResource ParagraphLabelDataTemplate}"/>
+                        </VerticalStackLayout>
+
+                        <controls:UImagesView
+                            LeftImageSource="{Binding WonderType, Converter={StaticResource WonderMainPagePhotoConverter}, ConverterParameter='photo_4.jpg'}"
+                            RightImageSource="{Binding WonderType, Converter={StaticResource WonderMainPagePhotoConverter}, ConverterParameter='photo_3.jpg'}"
+                            VerticalDelta="{Binding VerticalDelta}"
+                            Margin="20, 50, 20, 0"
+                            HeightRequest="360"/>
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </local:WonderSectionTemplateSelector.ConstructionWonderSectionTemplate>
+            <local:WonderSectionTemplateSelector.LocationWonderSectionTemplate>
+                <DataTemplate
+                    x:DataType="mauiModels:LocationWonderSectionViewModel">
+                    <VerticalStackLayout
+                        Background="{StaticResource TertiaryColor}"
+                        Margin="0, 0, 0, -1">
+                        <controls:HorizontalSeparator
+                            IconColor="{StaticResource CreamyGray}"
+                            LineColor="{StaticResource CreamyGray}"
+                            Collapsed="{Binding CollapsedSeparator}"
+                            Margin="20, 0, 20, 100"/>
+                        
+                        <VerticalStackLayout
+                            BindableLayout.ItemsSource="{Binding LocationInfo1, Converter={StaticResource LocalizationSplitParagraphsConverter}}"
+                            BindableLayout.ItemTemplate="{StaticResource ParagraphLabelDataTemplate}"/>
+
+                        <Label
+                            Text="“"
+                            FontSize="85"
+                            FontFamily="CinzelDecorativeBold"
+                            HorizontalTextAlignment="Center"
+                            TextColor="{StaticResource PrimaryColor}"
+                            Margin="20, 40, 20, -40"/>
+
+                        <Label
+                            Text="{Binding PullQuote2, Converter={StaticResource LocalizationConverter}}"
+                            FontSize="23"
+                            LineHeight="1.2"
+                            FontFamily="CinzelDecorativeRegular"
+                            HorizontalTextAlignment="Center"
+                            Margin="28, 0, 28, 35"/>
+
+                        <Label
+                            Text="{Binding PullQuote2Author, Converter={StaticResource LocalizationConverter}, StringFormat='- {0}'}"
+                            FontSize="15"
+                            TextTransform="Uppercase"
+                            TextColor="{StaticResource PrimaryColor}"
+                            HorizontalTextAlignment="Center"
+                            Margin="20, 0, 20, 40"/>
+                        
+                        <VerticalStackLayout
+                            BindableLayout.ItemsSource="{Binding LocationInfo2, Converter={StaticResource LocalizationSplitParagraphsConverter}}"
+                            BindableLayout.ItemTemplate="{StaticResource ParagraphLabelDataTemplate}"/>
+
+                        <Grid
+                            HeightRequest="250"
+                            IsClippedToBounds="True"
+                            Margin="0, 20, 0, 5">
+                            <!-- <controls:OpenStreetMapView
+                                LatLngParameters="{Binding LatLngParameters}"
+                                InputTransparent="True"/> -->
+
+                            <!-- https://www.google.com/maps/d/edit?mid=1-v7BBiPvzPMbgtJuo5hVccoDIFvG6rg&ll=26.776524959258957%2C78.04211890065208&z=6&hl=en -->
+                            <Image
+                                Source="{Binding MapImage}"
+                                Aspect="AspectFill"
+                                InputTransparent="True"/>
+                            
+                            <Image
+                                Source="google_logo.png"
+                                Aspect="AspectFit"
+                                HorizontalOptions="Start" VerticalOptions="End"
+                                HeightRequest="22" WidthRequest="70"
+                                Margin="10"
+                                InputTransparent="True"/>
+
+                            <Image
+                                Source="common_location_pin.png"
+                                HorizontalOptions="Center" VerticalOptions="Center"
+                                HeightRequest="40" WidthRequest="40"
+                                Margin="0, 0, 0, 30"
+                                InputTransparent="True"/>
+
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Tapped="MapTapped"/>
+                            </Grid.GestureRecognizers>
+                        </Grid>
+
+                        <Label
+                            Text="{Binding MapCaption, Converter={StaticResource LocalizationConverter}}"
+                            FontFamily="RalewayItalic"
+                            FontSize="12"
+                            HorizontalTextAlignment="Center"
+                            Margin="20, 0"/>
+
+                        <!--
+                            TODO: On Android there is a bug that causes wrong values being returned in e.VerticalOffset when CollectionView is scrolled completely to the bottom
+                            and I click on this collectible
+                            Because of that collectible has to have static height
+                        -->
+                        <ContentView
+                            HeightRequest="160"
+                            CompressedLayout.IsHeadless="True">
+                            <controls:CollectibleItemView
+                                Collectible="{Binding Source={RelativeSource AncestorType={x:Type viewModels:IWonderMainPageViewModel}}, Path=Collectible}"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:IWonderMainPageViewModel}}, Path=CollectibleCommand}"
+                                Position="3"
+                                VisiblePosition="{Binding VisibleCollectiblePosition}"/>
+                        </ContentView>
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </local:WonderSectionTemplateSelector.LocationWonderSectionTemplate>
+        </local:WonderSectionTemplateSelector>
+    </pages:BaseContentPage.Resources>
+    
+    <Grid
+        x:Name="rootContainer"
+        CompressedLayout.IsHeadless="True">
+        <Grid
+            x:Name="headerIllustrationContainer"
+            VerticalOptions="Start"
+            InputTransparent="True"
+            Padding="0, 0, 0, 10"
+            CompressedLayout.IsHeadless="True">
+        </Grid>
+
+        <CollectionView
+            x:Name="collectionView"
+            ItemTemplate="{StaticResource WonderSectionTemplateSelector}"
+            Scrolled="CollectionViewScrolled"
+            Background="Transparent">
+
+            <CollectionView.Header>
+                <ContentView x:Name="collectionViewHeader"/>
+            </CollectionView.Header>
+
+            <CollectionView.Footer>
+                <Grid
+                    x:Name="collectionViewFooterContainer"
+                    Background="{StaticResource TertiaryColor}"
+                    Margin="-1"/>
+            </CollectionView.Footer>
+        </CollectionView>
+
+        <Grid
+            x:Name="headerImageContainer"
+            VerticalOptions="Start"
+            IsClippedToBounds="True"
+            InputTransparent="True"
+            CascadeInputTransparent="True"
+            SizeChanged="HeaderImageContainerSizeChanged">
+            <Image
+                x:Name="headerImage"
+                Source="{Binding CurrentWonder.Type, Converter={StaticResource WonderMainPagePhotoConverter}, ConverterParameter='photo_1.jpg'}"
+                Aspect="AspectFill"
+                InputTransparent="True"/>
+            <Rectangle
+                x:Name="headerImageOverlay"
+                Margin="-1"/>
+        </Grid>
+
+        <Grid
+            x:Name="headerSectionTitleContainer"
+            VerticalOptions="Start"
+            InputTransparent="True"
+            HeightRequest="100"
+            ZIndex="2">
+            <controls:WonderSectionTitleView
+                x:Name="wonderSectionTitleView"
+                InputTransparent="True"/>
+        </Grid>
+
+        <Grid
+            x:Name="headerTitleContainer"
+            RowDefinitions="40, 135, 30, 28, 40"
+            RowSpacing="18"
+            Padding="20, 0"
+            VerticalOptions="Start"
+            SizeChanged="HeaderTitleContainerSizeChanged"
+            InputTransparent="True"
+            CompressedLayout.IsHeadless="True">
+            <Grid
+                x:Name="headerTitleTopSeparatorContainer"
+                Grid.Row="0"
+                ColumnDefinitions="*, auto, *"
+                ColumnSpacing="15"
+                HeightRequest="40"
+                CompressedLayout.IsHeadless="True">
+                <Grid.Resources>
+                    <Style TargetType="Rectangle">
+                        <Setter Property="HeightRequest" Value="2"/>
+                        <Setter Property="VerticalOptions" Value="Center"/>
+                    </Style>
+                </Grid.Resources>
+                
+                <Rectangle/>
+                <Label
+                    Grid.Column="1"
+                    Text="{Binding CurrentWonder.SubTitle, Converter={StaticResource LocalizationConverter}}"
+                    TextColor="White"
+                    FontFamily="TenorSans"
+                    FontSize="14"
+                    TextTransform="Uppercase"
+                    HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                    Margin="0, 0, 0, 0"/>
+                    <!-- Sizing of this label is weird. Text wraps even if there si enough space when FontSize is set to 13 -->
+                <Rectangle
+                    Grid.Column="2"/>
+            </Grid>
+
+            <Label
+                x:Name="illustrationTitle"
+                Grid.Row="1"
+                Text="{Binding CurrentWonder.Title, Converter={StaticResource LocalizationConverter}}"
+                Margin="0, -10"
+                VerticalOptions="Center" VerticalTextAlignment="Center"
+                HeightRequest="135"
+                Style="{StaticResource TitleStyle}"/>
+
+            <Label
+                Grid.Row="2"
+                Text="{Binding CurrentWonder.RegionTitle, Converter={StaticResource LocalizationConverter}}"
+                TextColor="White"
+                FontFamily="TenorSans"
+                FontSize="16"
+                TextTransform="Uppercase"
+                HorizontalTextAlignment="Center"/>
+
+            <controls:HorizontalSeparator
+                x:Name="headerTitleBottomSeparator"
+                Grid.Row="3"
+                IconColor="White"/>
+
+            <Label
+                Grid.Row="4"
+                TextColor="White"
+                FontFamily="RalewayBold"
+                VerticalOptions="Start"
+                HorizontalTextAlignment="Center">
+                <Label.Text>
+                    <MultiBinding Converter="{StaticResource TimelineDateConverter}">
+                        <Binding Path="CurrentWonder.StartYr"/>
+                        <Binding Path="CurrentWonder.EndYr"/>
+                    </MultiBinding>
+                </Label.Text>
+            </Label>
+        </Grid>
+
+        <Border
+            x:Name="menuButtonBorder"
+            ZIndex="3"
+            Style="{StaticResource AppBarButtonBorderStyle}">
+            <Border.StrokeShape>
+                <Ellipse/>
+            </Border.StrokeShape>
+            <simpleCore:ContentButton
+                Clicked="MenuButtonClicked">
+                <simpleCore:Icon
+                    Source="common_icons_icon_north.png"
+                    Style="{StaticResource AppBarButtonIconStyle}"
+                    HeightRequest="25" WidthRequest="25"/>
+            </simpleCore:ContentButton>
+        </Border>
+    </Grid>
+</pages:BaseContentPage>

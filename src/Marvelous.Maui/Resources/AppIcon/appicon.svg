@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="456"
+   height="456"
+   viewBox="0 0 456 456"
+   version="1.1"
+   id="svg4"
+   sodipodi:docname="appicon.svg"
+   inkscape:version="1.2.2 (b0a84865, 2022-12-01)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs8">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient1003">
+      <stop
+         style="stop-color:#252621;stop-opacity:1;"
+         offset="0"
+         id="stop999" />
+      <stop
+         style="stop-color:#1c1b15;stop-opacity:1;"
+         offset="1"
+         id="stop1001" />
+    </linearGradient>
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient1003"
+       id="radialGradient1005"
+       cx="228"
+       cy="228"
+       fx="228"
+       fy="228"
+       r="228"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.3906989,0,0,1.384571,-171.98571,-167.51024)" />
+  </defs>
+  <sodipodi:namedview
+     id="namedview6"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="1.35994"
+     inkscape:cx="338.61788"
+     inkscape:cy="233.46618"
+     inkscape:window-width="1920"
+     inkscape:window-height="1027"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg4" />
+  <rect
+     x="-171.98572"
+     y="-167.51025"
+     width="634.15869"
+     height="631.36432"
+     fill="#512BD4"
+     id="rect2"
+     style="mix-blend-mode:multiply;fill:url(#radialGradient1005);fill-opacity:1;stroke-width:1.38763" />
+</svg>

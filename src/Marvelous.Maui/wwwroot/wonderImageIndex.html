@@ -1,0 +1,166 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <title></title>
+    <base href="/" />
+
+    <link rel="stylesheet" href="./draggableGrid.css">
+
+    <style>
+        body, app {
+            background: black;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        div.draggable-grid > ul > li > div {
+            display: flex;
+            position: relative;
+            width: 100%;
+            height: 100%;
+            padding: 0.75em;
+            border-radius: 0.5em;
+            justify-content: stretch;
+            align-items: stretch;
+        }
+
+        div.draggable-grid > ul > li img {
+            position: relative;
+            object-position: center;
+            -webkit-touch-callout: none;
+        }
+
+        div.draggable-grid > ul > li img:not(.collectible-image) {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            border-radius: 0.5em;
+            background: #111111;
+        }
+
+        div.draggable-grid > ul > li img.collectible-image {
+            object-fit: contain;
+            width: 40%;
+            height: 40%;
+            margin: auto;
+            transform: scale(1) rotate(0deg);
+        }
+
+        div.draggable-grid > ul > li img.shaky-animation {
+            animation-name: collectible-image-shaky-animation;
+            animation-duration: 5s;
+            animation-iteration-count: infinite;
+            animation-timing-function: ease-in-out;
+        }
+
+        div.draggable-grid > ul > li img.scale-down {
+            animation-name: collectible-image-scale-down-animation;
+            animation-duration: 0.5s;
+            animation-iteration-count: 1;
+            animation-timing-function: ease-in;
+            animation-fill-mode: forwards;
+        }
+
+        div.draggable-grid > ul > li img.collectible-image:active:hover {
+            opacity: 0.7;
+        }
+
+        div.draggable-grid {
+            height: 100vh;
+        }
+
+        @keyframes collectible-image-scale-down-animation {
+            0% {
+                transform: scale(1);
+            }
+
+            100% {
+                transform: scale(0);
+            }
+        }
+
+        @keyframes collectible-image-shaky-animation {
+            50% {
+                transform: rotate(0deg);
+            }
+
+            55% {
+                transform: scale(1);
+            }
+
+            60% {
+                transform: rotate(15deg);
+            }
+
+            65% {
+                transform: scale(1.1) rotate(-10deg);
+            }
+
+            70% {
+                transform: scale(1.1) rotate(10deg);
+            }
+
+            75% {
+                transform: scale(1.1) rotate(-10deg);
+            }
+
+            80% {
+                transform: scale(1.1) rotate(10deg);
+            }
+
+            85% {
+                transform: scale(1.1) rotate(-15deg);
+            }
+
+            100% {
+                transform: scale(1) rotate(0deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <app></app>
+
+    <script src="_framework/blazor.webview.js" autostart="false"></script>
+    <script src="./DraggableGrid.js"></script>
+
+    <script>
+        window.initializeDraggableGrid = () => {
+            const draggableGridDivs = document.body.querySelectorAll("div.draggable-grid");
+
+            for (const div of draggableGridDivs) {
+                const grid = DraggableGrid.initDraggableGridFor(div);
+
+                grid.configuration.changingItemTransition = (li, v) => {
+                    if (li && li.style)
+                        li.style.opacity = 0.2 + (v * 0.8);
+                };
+            }
+        };
+
+        window.setDraggableGridCurrentIndex = (index) => {
+            const grid = DraggableGrid.getDraggableGridFor(document.body.querySelector("div.draggable-grid"));
+
+            if (grid)
+                grid.currentItemIndex = index;
+        };
+
+
+        window.getDraggableGridCurrentIndex = () => {
+            const grid = DraggableGrid.getDraggableGridFor(document.body.querySelector("div.draggable-grid"));
+
+            return grid ? grid.currentItemIndex : -1;
+        };
+    </script>
+</body>
+</html>

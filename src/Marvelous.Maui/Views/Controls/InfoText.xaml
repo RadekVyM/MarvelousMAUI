@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Marvelous.Maui.Views.Controls.InfoText"
+    
+    CompressedLayout.IsHeadless="True">
+
+    <Grid
+        ColumnDefinitions="20, *"
+        CompressedLayout.IsHeadless="True">
+
+        <Rectangle
+            Fill="{StaticResource PrimaryBrush}"
+            WidthRequest="1.6"
+            HorizontalOptions="Start"/>
+
+        <Label
+            x:Name="label"
+            Grid.Column="1"
+            FontFamily="RalewayBoldItalic"
+            FontSize="16"
+            LineHeight="1.2"
+            VerticalOptions="Center"
+            Margin="0, 4"/>
+    </Grid>
+</ContentView>

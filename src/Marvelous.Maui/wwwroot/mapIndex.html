@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <title></title>
+    <base href="/" />
+
+    <style>
+        body, app {
+            background: black;
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+            touch-action: none;
+        }
+    </style>
+</head>
+<body>
+    <app></app>
+
+    <script src="_framework/blazor.webview.js" autostart="false"></script>
+
+    <script>
+        window.addEventListener('resize', (event) => {
+            const frame = document.body.querySelector('iframe');
+
+            frame.setAttribute('width', event.target.innerWidth);
+            frame.setAttribute('height', event.target.innerHeight);
+        });
+    </script>
+</body>
+</html>

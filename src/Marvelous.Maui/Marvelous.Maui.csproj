@@ -1,0 +1,446 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+	<PropertyGroup>
+		<TargetFrameworks>net7.0-android;net7.0-ios;net7.0-maccatalyst</TargetFrameworks>
+		<!--<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks>-->
+		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
+		<!-- <TargetFrameworks>$(TargetFrameworks);net6.0-tizen</TargetFrameworks> -->
+		<OutputType>Exe</OutputType>
+		<RootNamespace>Marvelous.Maui</RootNamespace>
+		<UseMaui>true</UseMaui>
+		<SingleProject>true</SingleProject>
+		<ImplicitUsings>enable</ImplicitUsings>
+
+		<!--<EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>-->
+		
+		<!-- Display name -->
+		<ApplicationTitle>Marvelous .NET MAUI</ApplicationTitle>
+
+		<!-- App Identifier -->
+		<ApplicationId>com.radekvym.marvelous.maui</ApplicationId>
+		<ApplicationIdGuid>5EE086C4-2F0D-41F3-B5DB-DEB4451E04E9</ApplicationIdGuid>
+		
+		<!-- Versions -->
+		<ApplicationDisplayVersion>1.0.0</ApplicationDisplayVersion>
+		<ApplicationVersion>1</ApplicationVersion>
+
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">14.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-android|AnyCPU'">
+	  <PublishTrimmed>True</PublishTrimmed>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-ios|AnyCPU'">
+	  <CreatePackage>false</CreatePackage>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <MauiSplashScreen Remove="Resources\AppIcon\appicon.svg" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<Folder Include="Repositories\" />
+	</ItemGroup>
+
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0-android'">
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg_android.svg" Color="#252621" />
+	</ItemGroup>
+	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0-ios'">
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg_ios.svg" Color="#252621" />
+	</ItemGroup>
+	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0-maccatalyst'">
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg_ios.svg" Color="#252621" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<!-- App Icon -->
+		<!--<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg2.svg" Color="#252621" />-->
+
+		<!-- Splash Screen -->
+		<MauiSplashScreen Include="Resources\Splash\marvelous_maui_splash.svg" Color="#252621" BaseSize="128,128" />
+
+		<!-- Images -->
+		<MauiImage Include="Resources\Images\*svg" />
+		<MauiImage Include="Resources\Images\*png" />
+		<MauiImage Include="Resources\Images\*jpg" />
+		<MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
+
+		<!-- Custom Fonts -->
+		<MauiFont Include="Resources\Fonts\*" />	
+
+		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
+		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+
+		<MauiImage Update="Resources\Images\chichen_itza_chichen.png" BaseSize="1089,328" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\chichen_itza_flattened.jpg" BaseSize="278,602" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\chichen_itza_foreground_left.png" BaseSize="491,468" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\chichen_itza_foreground_right.png" BaseSize="317,301" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\chichen_itza_photo_1.jpg" BaseSize="667,764" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\chichen_itza_photo_2.jpg" BaseSize="320,618" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\chichen_itza_photo_3.jpg" BaseSize="267,453" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\chichen_itza_photo_4.jpg" BaseSize="178,276" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\chichen_itza_sun.png" BaseSize="161,279" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\chichen_itza_top_left.png" BaseSize="428,456" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\chichen_itza_top_right.png" BaseSize="362,452" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<!--<MauiImage Update="Resources\Images\chichen_itza_wonder_button.png" BaseSize="62,62" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />-->
+		<MauiImage Update="Resources\Images\christ_the_redeemer_flattened.jpg" BaseSize="278,602" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\christ_the_redeemer_foreground_left.png" BaseSize="639,506" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\christ_the_redeemer_foreground_right.png" BaseSize="639,478" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\christ_the_redeemer_photo_1.jpg" BaseSize="667,764" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\christ_the_redeemer_photo_2.jpg" BaseSize="320,618" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\christ_the_redeemer_photo_3.jpg" BaseSize="267,453" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\christ_the_redeemer_photo_4.jpg" BaseSize="178,276" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\christ_the_redeemer_redeemer.png" BaseSize="854,749" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\christ_the_redeemer_sun.png" BaseSize="133,136" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<!--<MauiImage Update="Resources\Images\christ_the_redeemer_wonder_button.png" BaseSize="62,62" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />-->
+		<MauiImage Update="Resources\Images\collectibles_jewelry.png" BaseSize="167,167" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\collectibles_picture.png" BaseSize="167,167" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\collectibles_scroll.png" BaseSize="167,167" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\collectibles_statue.png" BaseSize="167,167" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\collectibles_textile.png" BaseSize="167,167" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\collectibles_vase.png" BaseSize="167,167" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\colosseum_colosseum.png" BaseSize="649,438" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\colosseum_flattened.jpg" BaseSize="278,602" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\colosseum_foreground_left.png" BaseSize="262,507" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\colosseum_foreground_right.png" BaseSize="294,525" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\colosseum_photo_1.jpg" BaseSize="667,764" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\colosseum_photo_2.jpg" BaseSize="320,618" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\colosseum_photo_3.jpg" BaseSize="267,453" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\colosseum_photo_4.jpg" BaseSize="178,276" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\colosseum_sun.png" BaseSize="210,209" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<!--<MauiImage Update="Resources\Images\colosseum_wonder_button.png" BaseSize="62,62" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />-->
+		<MauiImage Update="Resources\Images\common_adjust_search.png" BaseSize="107,107" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\common_app_logo.png" BaseSize="409,413" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\common_app_logo_plain.png" BaseSize="106,142" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\common_arrow_indicator.png" BaseSize="15,8" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\common_cloud_white.png" BaseSize="154,31" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\common_construction.png" BaseSize="53,53" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\common_geography.png" BaseSize="53,53" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\common_history.png" BaseSize="53,53" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\common_icons_icon_back.png" BaseSize="24,24" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\common_icons_icon_close.png" BaseSize="24,24" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\common_icons_icon_close_large.png" BaseSize="40,40" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\common_icons_icon_collection.png" BaseSize="24,24" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\common_icons_icon_download.png" BaseSize="24,24" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\common_icons_icon_expand.png" BaseSize="24,24" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\common_icons_icon_fullscreen.png" BaseSize="24,24" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\common_icons_icon_fullscreen_exit.png" BaseSize="24,24" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\common_icons_icon_info.png" BaseSize="24,24" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\common_icons_icon_menu.png" BaseSize="40,40" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\common_icons_icon_next_large.png" BaseSize="40,40" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\common_icons_icon_north.png" BaseSize="24,24" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\common_icons_icon_prev.png" BaseSize="24,24" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\common_icons_icon_reset_location.png" BaseSize="24,24" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\common_icons_icon_search.png" BaseSize="24,24" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\common_icons_icon_share_android.png" BaseSize="24,24" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\common_icons_icon_share_ios.png" BaseSize="24,24" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\common_icons_icon_timeline.png" BaseSize="24,24" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\common_icons_icon_wallpaper.png" BaseSize="24,24" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\common_icons_icon_zoom_in.png" BaseSize="24,24" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\common_icons_icon_zoom_out.png" BaseSize="24,24" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\common_intro_camel.jpg" BaseSize="633,440" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\common_intro_mask_1.png" BaseSize="420,420" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\common_intro_mask_2.png" BaseSize="417,417" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\common_intro_mask_3.png" BaseSize="417,417" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\common_intro_petra.jpg" BaseSize="440,722" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\common_intro_statue.jpg" BaseSize="440,567" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\common_location_pin.png" BaseSize="88,88" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\common_particle_21x23.png" BaseSize="152,13" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\common_ribbon_end.png" BaseSize="95,80" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\common_search_map.png" BaseSize="107,107" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\common_tab_artifacts.png" BaseSize="40,40" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\common_tab_artifacts_active.png" BaseSize="40,40" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\common_tab_editorial.png" BaseSize="40,40" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\common_tab_editorial_active.png" BaseSize="40,40" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\common_tab_photos.png" BaseSize="40,40" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\common_tab_photos_active.png" BaseSize="40,40" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\common_tab_timeline.png" BaseSize="40,40" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\common_tab_timeline_active.png" BaseSize="40,40" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\common_texture_roller_2_white.png" BaseSize="578,780" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\common_texture_speckles_white.png" BaseSize="545,778" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\great_wall_of_china_flattened.jpg" BaseSize="278,602" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\great_wall_of_china_foreground_left.png" BaseSize="394,448" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\great_wall_of_china_foreground_right.png" BaseSize="313,351" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\great_wall_of_china_great_wall.png" BaseSize="547,508" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\great_wall_of_china_photo_1.jpg" BaseSize="667,764" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\great_wall_of_china_photo_2.jpg" BaseSize="320,618" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\great_wall_of_china_photo_3.jpg" BaseSize="267,453" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\great_wall_of_china_photo_4.jpg" BaseSize="178,276" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\great_wall_of_china_sun.png" BaseSize="157,156" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<!--<MauiImage Update="Resources\Images\great_wall_of_china_wonder_button.png" BaseSize="62,62" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />-->
+		<MauiImage Update="Resources\Images\machu_picchu_flattened.jpg" BaseSize="278,602" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\machu_picchu_foreground_back.png" BaseSize="688,452" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\machu_picchu_foreground_front.png" BaseSize="688,579" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\machu_picchu_machu_picchu.png" BaseSize="953,544" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\machu_picchu_photo_1.jpg" BaseSize="667,764" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\machu_picchu_photo_2.jpg" BaseSize="320,618" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\machu_picchu_photo_3.jpg" BaseSize="267,453" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\machu_picchu_photo_4.jpg" BaseSize="178,276" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\machu_picchu_sun.png" BaseSize="139,140" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<!--<MauiImage Update="Resources\Images\machu_picchu_wonder_button.png" BaseSize="62,62" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />-->
+		<MauiImage Update="Resources\Images\petra_candles.png" BaseSize="338,33" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\petra_flattened.jpg" BaseSize="278,602" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\petra_foreground_left.png" BaseSize="272,891" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\petra_foreground_right.png" BaseSize="300,907" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\petra_moon.png" BaseSize="124,123" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\petra_petra.png" BaseSize="853,598" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\petra_photo_1.jpg" BaseSize="667,764" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\petra_photo_2.jpg" BaseSize="320,618" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\petra_photo_3.jpg" BaseSize="267,453" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\petra_photo_4.jpg" BaseSize="178,276" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<!--<MauiImage Update="Resources\Images\petra_wonder_button.png" BaseSize="62,62" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />-->
+		<MauiImage Update="Resources\Images\pyramids_flattened.jpg" BaseSize="278,602" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\pyramids_foreground_back.png" BaseSize="637,252" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\pyramids_foreground_front.png" BaseSize="637,512" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\pyramids_moon.png" BaseSize="117,117" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\pyramids_photo_1.jpg" BaseSize="667,764" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\pyramids_photo_2.jpg" BaseSize="320,618" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\pyramids_photo_3.jpg" BaseSize="267,453" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\pyramids_photo_4.jpg" BaseSize="178,276" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\pyramids_pyramids.png" BaseSize="808,402" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<!--<MauiImage Update="Resources\Images\pyramids_wonder_button.png" BaseSize="62,62" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />-->
+		<MauiImage Update="Resources\Images\taj_mahal_flattened.jpg" BaseSize="278,602" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\taj_mahal_foreground_left.png" BaseSize="378,576" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\taj_mahal_foreground_right.png" BaseSize="417,559" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\taj_mahal_photo_1.jpg" BaseSize="667,764" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\taj_mahal_photo_2.jpg" BaseSize="320,618" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\taj_mahal_photo_3.jpg" BaseSize="267,453" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\taj_mahal_photo_4.jpg" BaseSize="178,276" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\taj_mahal_pool.png" BaseSize="1153,489" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\taj_mahal_sun.png" BaseSize="211,211" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\taj_mahal_taj_mahal.png" BaseSize="811,487" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<!--<MauiImage Update="Resources\Images\taj_mahal_wonder_button.png" BaseSize="62,62" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />-->
+		<MauiImage Update="Resources\Images\common_compass_full.png" BaseSize="128,128" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+
+		<MauiImage Update="Resources\Images\machu_picchu_map.jpg" BaseSize="592,425" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\great_wall_map.jpg" BaseSize="592,425" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\christ_redeemer_map.jpg" BaseSize="592,425" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\taj_mahal_map.jpg" BaseSize="592,425" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\petra_map.jpg" BaseSize="592,425" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\pyramids_giza_map.jpg" BaseSize="592,425" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\chichen_itza_map.jpg" BaseSize="592,425" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		<MauiImage Update="Resources\Images\colosseum_map.jpg" BaseSize="592,425" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+		
+		<MauiImage Update="Resources\Images\google_logo.png" BaseSize="163,56" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Remove="Resources\Images\machu_picchu_map.jpg" />
+		<None Remove="Resources\Images\great_wall_map.jpg" />
+		<None Remove="Resources\Images\christ_redeemer_map.jpg" />
+		<None Remove="Resources\Images\taj_mahal_map.jpg" />
+		<None Remove="Resources\Images\petra_map.jpg" />
+		<None Remove="Resources\Images\pyramids_giza_map.jpg" />
+		<None Remove="Resources\Images\chichen_itza_map.jpg" />
+		<None Remove="Resources\Images\colosseum_map.jpg" />
+		<None Remove="Resources\Images\google_logo.png" />
+		<None Remove="B612Mono-Regular.ttf" />
+		<None Remove="Resources\Fonts\B612Mono-Regular.ttf" />
+		<None Remove="Resources\Fonts\CinzelDecorative-Black.ttf" />
+		<None Remove="Resources\Fonts\CinzelDecorative-Bold.ttf" />
+		<None Remove="Resources\Fonts\CinzelDecorative-Regular.ttf" />
+		<None Remove="Resources\Fonts\OpenSans-Regular.ttf" />
+		<None Remove="Resources\Fonts\OpenSans-Semibold.ttf" />
+		<None Remove="Resources\Fonts\Raleway-Bold.ttf" />
+		<None Remove="Resources\Fonts\Raleway-BoldItalic.ttf" />
+		<None Remove="Resources\Fonts\Raleway-ExtraBold.ttf" />
+		<None Remove="Resources\Fonts\Raleway-ExtraBoldItalic.ttf" />
+		<None Remove="Resources\Fonts\Raleway-Italic.ttf" />
+		<None Remove="Resources\Fonts\Raleway-Medium.ttf" />
+		<None Remove="Resources\Fonts\Raleway-MediumItalic.ttf" />
+		<None Remove="Resources\Fonts\Raleway-Regular.ttf" />
+		<None Remove="Resources\Fonts\TenorSans-Regular.ttf" />
+		<None Remove="Resources\Fonts\YesevaOne-Regular.ttf" />
+		<None Remove="Resources\Images\chichen_itza_chichen.png" />
+		<None Remove="Resources\Images\chichen_itza_flattened.jpg" />
+		<None Remove="Resources\Images\chichen_itza_foreground_left.png" />
+		<None Remove="Resources\Images\chichen_itza_foreground_right.png" />
+		<None Remove="Resources\Images\chichen_itza_photo_1.jpg" />
+		<None Remove="Resources\Images\chichen_itza_photo_2.jpg" />
+		<None Remove="Resources\Images\chichen_itza_photo_3.jpg" />
+		<None Remove="Resources\Images\chichen_itza_photo_4.jpg" />
+		<None Remove="Resources\Images\chichen_itza_sun.png" />
+		<None Remove="Resources\Images\chichen_itza_top_left.png" />
+		<None Remove="Resources\Images\chichen_itza_top_right.png" />
+		<None Remove="Resources\Images\chichen_itza_wonder_button.png" />
+		<None Remove="Resources\Images\christ_the_redeemer_flattened.jpg" />
+		<None Remove="Resources\Images\christ_the_redeemer_foreground_left.png" />
+		<None Remove="Resources\Images\christ_the_redeemer_foreground_right.png" />
+		<None Remove="Resources\Images\christ_the_redeemer_photo_1.jpg" />
+		<None Remove="Resources\Images\christ_the_redeemer_photo_2.jpg" />
+		<None Remove="Resources\Images\christ_the_redeemer_photo_3.jpg" />
+		<None Remove="Resources\Images\christ_the_redeemer_photo_4.jpg" />
+		<None Remove="Resources\Images\christ_the_redeemer_redeemer.png" />
+		<None Remove="Resources\Images\christ_the_redeemer_sun.png" />
+		<None Remove="Resources\Images\christ_the_redeemer_wonder_button.png" />
+		<None Remove="Resources\Images\collectibles_jewelry.png" />
+		<None Remove="Resources\Images\collectibles_picture.png" />
+		<None Remove="Resources\Images\collectibles_scroll.png" />
+		<None Remove="Resources\Images\collectibles_statue.png" />
+		<None Remove="Resources\Images\collectibles_textile.png" />
+		<None Remove="Resources\Images\collectibles_vase.png" />
+		<None Remove="Resources\Images\colosseum_colosseum.png" />
+		<None Remove="Resources\Images\colosseum_flattened.jpg" />
+		<None Remove="Resources\Images\colosseum_foreground_left.png" />
+		<None Remove="Resources\Images\colosseum_foreground_right.png" />
+		<None Remove="Resources\Images\colosseum_photo_1.jpg" />
+		<None Remove="Resources\Images\colosseum_photo_2.jpg" />
+		<None Remove="Resources\Images\colosseum_photo_3.jpg" />
+		<None Remove="Resources\Images\colosseum_photo_4.jpg" />
+		<None Remove="Resources\Images\colosseum_sun.png" />
+		<None Remove="Resources\Images\colosseum_wonder_button.png" />
+		<None Remove="Resources\Images\common_adjust_search.png" />
+		<None Remove="Resources\Images\common_app_logo.png" />
+		<None Remove="Resources\Images\common_app_logo_plain.png" />
+		<None Remove="Resources\Images\common_arrow_indicator.png" />
+		<None Remove="Resources\Images\common_cloud_white.png" />
+		<None Remove="Resources\Images\common_cloud_white.svg" />
+		<None Remove="Resources\Images\common_compass_full.png" />
+		<None Remove="Resources\Images\common_compass_simple.svg" />
+		<None Remove="Resources\Images\common_construction.png" />
+		<None Remove="Resources\Images\common_geography.png" />
+		<None Remove="Resources\Images\common_history.png" />
+		<None Remove="Resources\Images\common_icons_icon_back.png" />
+		<None Remove="Resources\Images\common_icons_icon_close.png" />
+		<None Remove="Resources\Images\common_icons_icon_close_large.png" />
+		<None Remove="Resources\Images\common_icons_icon_collection.png" />
+		<None Remove="Resources\Images\common_icons_icon_download.png" />
+		<None Remove="Resources\Images\common_icons_icon_expand.png" />
+		<None Remove="Resources\Images\common_icons_icon_fullscreen.png" />
+		<None Remove="Resources\Images\common_icons_icon_fullscreen_exit.png" />
+		<None Remove="Resources\Images\common_icons_icon_info.png" />
+		<None Remove="Resources\Images\common_icons_icon_menu.png" />
+		<None Remove="Resources\Images\common_icons_icon_next_large.png" />
+		<None Remove="Resources\Images\common_icons_icon_north.png" />
+		<None Remove="Resources\Images\common_icons_icon_prev.png" />
+		<None Remove="Resources\Images\common_icons_icon_reset_location.png" />
+		<None Remove="Resources\Images\common_icons_icon_search.png" />
+		<None Remove="Resources\Images\common_icons_icon_share_android.png" />
+		<None Remove="Resources\Images\common_icons_icon_share_ios.png" />
+		<None Remove="Resources\Images\common_icons_icon_timeline.png" />
+		<None Remove="Resources\Images\common_icons_icon_wallpaper.png" />
+		<None Remove="Resources\Images\common_icons_icon_zoom_in.png" />
+		<None Remove="Resources\Images\common_icons_icon_zoom_out.png" />
+		<None Remove="Resources\Images\common_intro_camel.jpg" />
+		<None Remove="Resources\Images\common_intro_mask_1.png" />
+		<None Remove="Resources\Images\common_intro_mask_2.png" />
+		<None Remove="Resources\Images\common_intro_mask_3.png" />
+		<None Remove="Resources\Images\common_intro_petra.jpg" />
+		<None Remove="Resources\Images\common_intro_statue.jpg" />
+		<None Remove="Resources\Images\common_location_pin.png" />
+		<None Remove="Resources\Images\common_particle_21x23.png" />
+		<None Remove="Resources\Images\common_ribbon_end.png" />
+		<None Remove="Resources\Images\common_search_map.png" />
+		<None Remove="Resources\Images\common_tab_artifacts.png" />
+		<None Remove="Resources\Images\common_tab_artifacts_active.png" />
+		<None Remove="Resources\Images\common_tab_bubble.png" />
+		<None Remove="Resources\Images\common_tab_bubble_bar.png" />
+		<None Remove="Resources\Images\common_tab_editorial.png" />
+		<None Remove="Resources\Images\common_tab_editorial_active.png" />
+		<None Remove="Resources\Images\common_tab_photos.png" />
+		<None Remove="Resources\Images\common_tab_photos_active.png" />
+		<None Remove="Resources\Images\common_tab_timeline.png" />
+		<None Remove="Resources\Images\common_tab_timeline_active.png" />
+		<None Remove="Resources\Images\common_texture_roller_1_black.png" />
+		<None Remove="Resources\Images\common_texture_roller_1_white.png" />
+		<None Remove="Resources\Images\common_texture_roller_2_black.png" />
+		<None Remove="Resources\Images\common_texture_roller_2_white.png" />
+		<None Remove="Resources\Images\common_texture_speckles_white.png" />
+		<None Remove="Resources\Images\great_wall_of_china_flattened.jpg" />
+		<None Remove="Resources\Images\great_wall_of_china_foreground_left.png" />
+		<None Remove="Resources\Images\great_wall_of_china_foreground_right.png" />
+		<None Remove="Resources\Images\great_wall_of_china_great_wall.png" />
+		<None Remove="Resources\Images\great_wall_of_china_photo_1.jpg" />
+		<None Remove="Resources\Images\great_wall_of_china_photo_2.jpg" />
+		<None Remove="Resources\Images\great_wall_of_china_photo_3.jpg" />
+		<None Remove="Resources\Images\great_wall_of_china_photo_4.jpg" />
+		<None Remove="Resources\Images\great_wall_of_china_sun.png" />
+		<None Remove="Resources\Images\great_wall_of_china_wonder_button.png" />
+		<None Remove="Resources\Images\machu_picchu_flattened.jpg" />
+		<None Remove="Resources\Images\machu_picchu_foreground_back.png" />
+		<None Remove="Resources\Images\machu_picchu_foreground_front.png" />
+		<None Remove="Resources\Images\machu_picchu_machu_picchu.png" />
+		<None Remove="Resources\Images\machu_picchu_photo_1.jpg" />
+		<None Remove="Resources\Images\machu_picchu_photo_2.jpg" />
+		<None Remove="Resources\Images\machu_picchu_photo_3.jpg" />
+		<None Remove="Resources\Images\machu_picchu_photo_4.jpg" />
+		<None Remove="Resources\Images\machu_picchu_sun.png" />
+		<None Remove="Resources\Images\machu_picchu_wonder_button.png" />
+		<None Remove="Resources\Images\petra_candles.png" />
+		<None Remove="Resources\Images\petra_flattened.jpg" />
+		<None Remove="Resources\Images\petra_foreground_left.png" />
+		<None Remove="Resources\Images\petra_foreground_right.png" />
+		<None Remove="Resources\Images\petra_moon.png" />
+		<None Remove="Resources\Images\petra_petra.png" />
+		<None Remove="Resources\Images\petra_photo_1.jpg" />
+		<None Remove="Resources\Images\petra_photo_2.jpg" />
+		<None Remove="Resources\Images\petra_photo_3.jpg" />
+		<None Remove="Resources\Images\petra_photo_4.jpg" />
+		<None Remove="Resources\Images\petra_wonder_button.png" />
+		<None Remove="Resources\Images\pyramids_flattened.jpg" />
+		<None Remove="Resources\Images\pyramids_foreground_back.png" />
+		<None Remove="Resources\Images\pyramids_foreground_front.png" />
+		<None Remove="Resources\Images\pyramids_moon.png" />
+		<None Remove="Resources\Images\pyramids_photo_1.jpg" />
+		<None Remove="Resources\Images\pyramids_photo_2.jpg" />
+		<None Remove="Resources\Images\pyramids_photo_3.jpg" />
+		<None Remove="Resources\Images\pyramids_photo_4.jpg" />
+		<None Remove="Resources\Images\pyramids_pyramids.png" />
+		<None Remove="Resources\Images\pyramids_wonder_button.png" />
+		<None Remove="Resources\Images\taj_mahal_flattened.jpg" />
+		<None Remove="Resources\Images\taj_mahal_foreground_left.png" />
+		<None Remove="Resources\Images\taj_mahal_foreground_right.png" />
+		<None Remove="Resources\Images\taj_mahal_photo_1.jpg" />
+		<None Remove="Resources\Images\taj_mahal_photo_2.jpg" />
+		<None Remove="Resources\Images\taj_mahal_photo_3.jpg" />
+		<None Remove="Resources\Images\taj_mahal_photo_4.jpg" />
+		<None Remove="Resources\Images\taj_mahal_pool.png" />
+		<None Remove="Resources\Images\taj_mahal_sun.png" />
+		<None Remove="Resources\Images\taj_mahal_taj_mahal.png" />
+		<None Remove="Resources\Images\taj_mahal_wonder_button.png" />
+		<None Remove="CommunityToolkit.Maui.MediaElement" />
+		<None Remove="CommunityToolkit.Maui" />
+		<None Remove="Repositories\" />
+		<None Remove="Resources\Splash\common_app_logo.png" />
+		<None Remove="Resources\AppIcon\appiconfg.svg" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Include="Resources\Embedded\B612Mono-Regular.ttf" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Marvelous.Core\Marvelous.Core.csproj" />
+	  <ProjectReference Include="..\Marvelous.Data\Marvelous.Data.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="SimpleToolkit.Core" Version="2.0.3" />
+	  <PackageReference Include="SimpleToolkit.SimpleShell" Version="2.0.1" />
+	  <PackageReference Include="CommunityToolkit.Maui" Version="4.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Views\Controls\CollectionPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Controls\CollectibleItemView.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Controls\ConfirmCollectionResetPopup.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Pages\DiscoveredArtifactPage.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Controls\CollectibleListItemView.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
+	</ItemGroup>
+</Project>

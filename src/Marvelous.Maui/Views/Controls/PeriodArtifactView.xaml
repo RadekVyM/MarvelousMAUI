@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Grid
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:simpleCore="clr-namespace:SimpleToolkit.Core;assembly=SimpleToolkit.Core"
+    xmlns:core="clr-namespace:Marvelous.Core;assembly=Marvelous.Core"
+    xmlns:vm="clr-namespace:Marvelous.Core.Interfaces.ViewModels;assembly=Marvelous.Core"
+
+    x:Class="Marvelous.Maui.Views.Controls.PeriodArtifactView"
+    x:DataType="vm:IArtifactsPageViewModel"
+
+    InputTransparent="True"
+    CascadeInputTransparent="False">
+
+    <Grid
+        x:Name="largeGrid"
+        CompressedLayout.IsHeadless="True"
+        InputTransparent="False">
+        <GraphicsView
+            x:Name="backgroundGraphicsView"
+            IsEnabled="True"
+            InputTransparent="False"
+            CancelInteraction="CancelInteraction"
+            DragInteraction="DragInteraction"
+            StartInteraction="StartInteraction"
+            EndInteraction="EndInteraction"/>
+        
+        <HorizontalStackLayout
+            x:Name="largeYearsStackLayout"
+            InputTransparent="True"
+            HorizontalOptions="Center" VerticalOptions="Start"
+            Margin="15"
+            Spacing="5">
+            <HorizontalStackLayout.Resources>
+                <Style x:Key="YearLabelStyle" TargetType="Label">
+                    <Setter Property="TextColor" Value="{StaticResource TertiaryColor}"/>
+                    <Setter Property="FontFamily" Value="TenorSans"/>
+                    <Setter Property="FontSize" Value="18"/>
+                </Style>
+                <Style x:Key="LabelStyle" TargetType="Label">
+                    <Setter Property="TextColor" Value="Gray"/>
+                    <Setter Property="FontFamily" Value="RalewayRegular"/>
+                    <Setter Property="VerticalOptions" Value="Start"/>
+                    <Setter Property="VerticalTextAlignment" Value="Start"/>
+                    <Setter Property="Margin" Value="{OnPlatform Default=0, Android='0, -3, 0, 0'}"/>
+                </Style>
+            </HorizontalStackLayout.Resources>
+
+            <Label
+                Text="{Binding FromYear, Converter={StaticResource AbsConverter}}"
+                Style="{StaticResource YearLabelStyle}"/>
+            <Label
+                Text="{Binding FromYear, Converter={StaticResource YearToCeConverter}}"
+                Style="{StaticResource LabelStyle}"/>
+            <Label
+                Text="–"
+                Style="{StaticResource LabelStyle}"/>
+            <Label
+                Text="{Binding ToYear, Converter={StaticResource AbsConverter}}"
+                Style="{StaticResource YearLabelStyle}"/>
+            <Label
+                Text="{Binding ToYear, Converter={StaticResource YearToCeConverter}}"
+                Style="{StaticResource LabelStyle}"/>
+        </HorizontalStackLayout>
+
+        <simpleCore:Icon
+            x:Name="closeIcon"
+            InputTransparent="True"
+            Source="common_icons_icon_close.png"
+            TintColor="{StaticResource TertiaryColor}"
+            Margin="30, 15"
+            HeightRequest="19" WidthRequest="19"
+            HorizontalOptions="End" VerticalOptions="Start"/>
+    </Grid>
+
+    <HorizontalStackLayout
+        x:Name="smallYearsStackLayout"
+        InputTransparent="True"
+        VerticalOptions="Center" HorizontalOptions="Center"
+        Spacing="10"
+        Padding="15"
+        Background="Transparent">
+        <Label
+            x:Name="smallYearsLabel"
+            FontFamily="TenorSans"
+            InputTransparent="True"
+            TextColor="{StaticResource TertiaryColor}"
+            Margin="0, 2, 0, 0">
+            <Label.Text>
+                <MultiBinding StringFormat="{}{0} {1} - {2} {3}">
+                    <Binding Path="FromYear" Converter="{StaticResource AbsConverter}"/>
+                    <Binding Path="FromYear" Converter="{StaticResource YearToCeConverter}"/>
+                    <Binding Path="ToYear" Converter="{StaticResource AbsConverter}"/>
+                    <Binding Path="ToYear" Converter="{StaticResource YearToCeConverter}"/>
+                </MultiBinding>
+            </Label.Text>
+        </Label>
+        <simpleCore:Icon
+            x:Name="calendarIcon"
+            InputTransparent="True"
+            Source="common_calendar.png"
+            TintColor="{StaticResource PrimaryColor}"
+            HeightRequest="19" WidthRequest="19"
+            VerticalOptions="Center"/>
+    </HorizontalStackLayout>
+</Grid>

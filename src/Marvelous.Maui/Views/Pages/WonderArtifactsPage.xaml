@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:BaseContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:Marvelous.Maui.Views.Pages"
+    xmlns:core="clr-namespace:Marvelous.Core;assembly=Marvelous.Core"
+    xmlns:controls="clr-namespace:Marvelous.Maui.Views.Controls"
+    xmlns:vm="clr-namespace:Marvelous.Core.Interfaces.ViewModels;assembly=Marvelous.Core"
+    xmlns:models="clr-namespace:Marvelous.Maui.Models;assembly=Marvelous.Maui"
+    xmlns:simpleCore="clr-namespace:SimpleToolkit.Core;assembly=SimpleToolkit.Core"
+    x:Class="Marvelous.Maui.Views.Pages.WonderArtifactsPage"
+    Title="WonderArtifactsPage"
+    
+    x:DataType="vm:IWonderArtifactsPageViewModel">
+
+    <Grid
+        x:Name="rootGrid"
+        CompressedLayout.IsHeadless="True"
+        RowDefinitions="auto, *, 50, 95">
+        <Image
+            Grid.RowSpan="4"
+            Source="{Binding CurrentArtifact.ImageSmall}"
+            Aspect="AspectFill"/>
+
+        <Rectangle
+            Grid.RowSpan="4"
+            Fill="#aa000000"
+            Margin="-1"/>
+
+        <RoundRectangle
+            x:Name="roundRectangle"
+            Grid.Row="1" Grid.RowSpan="3"
+            Fill="#daffffff"
+            Margin="-1, 120, -1, -1"/>
+
+        <Label
+            x:Name="titleLabel"
+            Padding="6"
+            Text="{x:Static core:Localization.artifactsTitleArtifacts}"
+            HorizontalOptions="Center" VerticalOptions="End"
+            TextColor="White"
+            FontFamily="RalewayBold"
+            FontSize="15"
+            TextTransform="Uppercase"/>
+
+        <Grid
+            Grid.Row="1"
+            RowDefinitions="120, 20"
+            VerticalOptions="End"
+            RowSpacing="15"
+            Margin="20, 0">
+            <Label
+                Text="{Binding CurrentArtifact.Title}"
+                FontFamily="TenorSans"
+                FontSize="30"
+                HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                MaxLines="2" LineBreakMode="WordWrap"/>
+            <Label
+                Grid.Row="1"
+                Text="{Binding CurrentArtifact.Date}"
+                FontFamily="TenorSans"
+                HorizontalOptions="Center"/>
+        </Grid>
+
+        <CarouselView
+            x:Name="carouselView"
+            Grid.Row="1"
+            ItemsSource="{Binding CurrentWonderArtifacts, Converter={StaticResource ArtifactCarouselItemsConverter}}"
+            PropertyChanged="CarouselViewPropertyChanged"
+            Position="{Binding CurrentArtifactIndex, Mode=TwoWay}"
+            Scrolled="CarouselViewScrolled"
+            HorizontalScrollBarVisibility="Never" VerticalScrollBarVisibility="Never"
+            PeekAreaInsets="90, 0">
+            <CarouselView.ItemTemplate>
+                <DataTemplate
+                    x:DataType="models:ArtifactCarouselItemViewModel">
+                    <controls:ArtifactCoverFlowItem
+                        ImageScale="{Binding ImageScale}"
+                        IsImageScaleAnimated="{Binding IsImageScaleAnimated}">
+                        <controls:ArtifactCoverFlowItem.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Command="{Binding Source={RelativeSource Mode=FindAncestorBindingContext, AncestorType={x:Type vm:IWonderArtifactsPageViewModel}}, Path=ArtifactCommand}"
+                                CommandParameter="{Binding Position}"/>
+                        </controls:ArtifactCoverFlowItem.GestureRecognizers>
+                    </controls:ArtifactCoverFlowItem>
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+
+        <controls:IndicatorView
+            Grid.Row="2"
+            VerticalOptions="Center"
+            Count="{Binding CurrentWonderArtifacts.Count}"
+            CurrentIndex="{Binding CurrentArtifactIndex}"
+            HeightRequest="6"
+            Margin="0, 0, 0, 10"
+            Color="{StaticResource PrimaryColor}"/>
+
+        <Border
+            Grid.Row="3"
+            Style="{StaticResource RectButtonBorderStyle}"
+            Margin="20, 0"
+            VerticalOptions="Start">
+            <simpleCore:ContentButton
+                Command="{Binding BrowseArtifactsCommand}"
+                Style="{StaticResource RectContentButtonStyle}">
+                <HorizontalStackLayout
+                    HorizontalOptions="Center"
+                    Spacing="10">
+                    <Label
+                        Text="{x:Static core:Localization.artifactsButtonBrowse}"
+                        Style="{StaticResource RectButtonLabelStyle}"/>
+                    <simpleCore:Icon
+                        Source="common_icons_icon_search.png"
+                        TintColor="White"
+                        HeightRequest="20" WidthRequest="20"
+                        Margin="0, 0, 0, -2"/>
+                </HorizontalStackLayout>
+            </simpleCore:ContentButton>
+        </Border>
+    </Grid>
+</pages:BaseContentPage>

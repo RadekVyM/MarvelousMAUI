@@ -1,0 +1,1367 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="appName" xml:space="preserve">
+    <value>Marvelous .NET MAUI</value>
+  </data>
+  <data name="localeSwapButton" xml:space="preserve">
+    <value>简体中文</value>
+  </data>
+  <data name="animatedArrowSemanticSwipe" xml:space="preserve">
+    <value>Explore details about {title}.</value>
+  </data>
+  <data name="appBarTitleFactsHistory" xml:space="preserve">
+    <value>Facts and History</value>
+  </data>
+  <data name="appBarTitleConstruction" xml:space="preserve">
+    <value>Construction</value>
+  </data>
+  <data name="appBarTitleLocation" xml:space="preserve">
+    <value>Location Info</value>
+  </data>
+  <data name="bottomScrubberSemanticScrubber" xml:space="preserve">
+    <value>scrubber</value>
+  </data>
+  <data name="bottomScrubberSemanticTimeline" xml:space="preserve">
+    <value>Timeline Scrubber, drag horizontally to navigate the timeline.</value>
+  </data>
+  <data name="collectionLabelDiscovered" xml:space="preserve">
+    <value>{0}% discovered</value>
+  </data>
+  <data name="collectionLabelCount" xml:space="preserve">
+    <value>{0} of {1}</value>
+  </data>
+  <data name="collectionButtonReset" xml:space="preserve">
+    <value>Reset Collection</value>
+  </data>
+  <data name="eventsListButtonOpenGlobal" xml:space="preserve">
+    <value>Open global timeline</value>
+  </data>
+  <data name="newlyDiscoveredSemanticNew" xml:space="preserve">
+    <value>{0} new item{1} to explore. Scroll to new item</value>
+  </data>
+  <data name="newlyDiscoveredLabelNew" xml:space="preserve">
+    <value>{0} new item{1} to explore</value>
+  </data>
+  <data name="resultsPopupEnglishContent" xml:space="preserve">
+    <value>This content is provided by the Metropolitan Museum of Art Collection API, and is only available in English.</value>
+  </data>
+  <data name="resultsSemanticDismiss" xml:space="preserve">
+    <value>dismiss message</value>
+  </data>
+  <data name="scrollingContentSemanticYoutube" xml:space="preserve">
+    <value>Youtube thumbnail</value>
+  </data>
+  <data name="scrollingContentSemanticOpen" xml:space="preserve">
+    <value>Open fullscreen maps view</value>
+  </data>
+  <data name="searchInputTitleSuggestions" xml:space="preserve">
+    <value>Suggestions</value>
+  </data>
+  <data name="searchInputHintSearch" xml:space="preserve">
+    <value>Search (ex. type or material)</value>
+  </data>
+  <data name="searchInputSemanticClear" xml:space="preserve">
+    <value>clear search</value>
+  </data>
+  <data name="timelineSemanticDate" xml:space="preserve">
+    <value>{0} to {1}</value>
+  </data>
+  <data name="titleLabelDate" xml:space="preserve">
+    <value>{0} to {1}</value>
+  </data>
+  <data name="appModalsButtonOk" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="appModalsButtonCancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="appPageDefaultTitlePage" xml:space="preserve">
+    <value>page</value>
+  </data>
+  <data name="appPageSemanticSwipe" xml:space="preserve">
+    <value>{pageTitle} {count} of {total}.</value>
+  </data>
+  <data name="artifactsTitleArtifacts" xml:space="preserve">
+    <value>ARTIFACTS</value>
+  </data>
+  <data name="semanticsPrevious" xml:space="preserve">
+    <value>Previous {title}</value>
+  </data>
+  <data name="semanticsNext" xml:space="preserve">
+    <value>Next {title}</value>
+  </data>
+  <data name="artifactsSemanticsPrevious" xml:space="preserve">
+    <value>Previous artifact</value>
+  </data>
+  <data name="artifactsSemanticsNext" xml:space="preserve">
+    <value>Next artifact</value>
+  </data>
+  <data name="artifactsSemanticArtifact" xml:space="preserve">
+    <value>Artifact</value>
+  </data>
+  <data name="artifactsButtonBrowse" xml:space="preserve">
+    <value>Browse all artifacts</value>
+  </data>
+  <data name="artifactDetailsLabelDate" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="artifactDetailsLabelPeriod" xml:space="preserve">
+    <value>Period</value>
+  </data>
+  <data name="artifactDetailsLabelGeography" xml:space="preserve">
+    <value>Geography</value>
+  </data>
+  <data name="artifactDetailsLabelMedium" xml:space="preserve">
+    <value>Medium</value>
+  </data>
+  <data name="artifactDetailsLabelDimension" xml:space="preserve">
+    <value>Dimension</value>
+  </data>
+  <data name="artifactDetailsLabelClassification" xml:space="preserve">
+    <value>Classification</value>
+  </data>
+  <data name="artifactDetailsSemanticThumbnail" xml:space="preserve">
+    <value>thumbnail image</value>
+  </data>
+  <data name="artifactDetailsErrorNotFound" xml:space="preserve">
+    <value>Unable to find info for artifact {artifactId} </value>
+  </data>
+  <data name="artifactsSearchTitleBrowse" xml:space="preserve">
+    <value>Browse Artifacts</value>
+  </data>
+  <data name="artifactsSearchLabelNotFound" xml:space="preserve">
+    <value>No artifacts found</value>
+  </data>
+  <data name="artifactsSearchButtonToggle" xml:space="preserve">
+    <value>Toggle Timeframe</value>
+  </data>
+  <data name="artifactsSearchSemanticTimeframe" xml:space="preserve">
+    <value>timeframe</value>
+  </data>
+  <data name="artifactsSearchLabelFound" xml:space="preserve">
+    <value>{0} artifacts found, {1} in </value>
+  </data>
+  <data name="artifactsSearchLabelAdjust" xml:space="preserve">
+    <value>Adjust your </value>
+  </data>
+  <data name="artifactsSearchLabelSearch" xml:space="preserve">
+    <value>search terms</value>
+  </data>
+  <data name="artifactsSearchLabelTimeframe" xml:space="preserve">
+    <value>timeframe</value>
+  </data>
+  <data name="circleButtonsSemanticClose" xml:space="preserve">
+    <value>close</value>
+  </data>
+  <data name="circleButtonsSemanticBack" xml:space="preserve">
+    <value>back</value>
+  </data>
+  <data name="collectibleFoundTitleArtifactDiscovered" xml:space="preserve">
+    <value>Artifact Discovered</value>
+  </data>
+  <data name="collectibleFoundButtonViewCollection" xml:space="preserve">
+    <value>view in my collection</value>
+  </data>
+  <data name="collectibleItemSemanticCollectible" xml:space="preserve">
+    <value>collectible item</value>
+  </data>
+  <data name="collectionTitleCollection" xml:space="preserve">
+    <value>Collection</value>
+  </data>
+  <data name="collectionPopupResetConfirm" xml:space="preserve">
+    <value>Are you sure you want to reset your collection?</value>
+  </data>
+  <data name="eightWaySemanticSwipeDetector" xml:space="preserve">
+    <value>eight-way swipe detector</value>
+  </data>
+  <data name="expandingTimeSelectorSemanticSelector" xml:space="preserve">
+    <value>time range selector</value>
+  </data>
+  <data name="fullscreenImageViewerSemanticFull" xml:space="preserve">
+    <value>full screen image, no description available</value>
+  </data>
+  <data name="homeMenuButtonExplore" xml:space="preserve">
+    <value>Explore the timeline</value>
+  </data>
+  <data name="homeMenuButtonView" xml:space="preserve">
+    <value>View your collection</value>
+  </data>
+  <data name="homeMenuButtonAbout" xml:space="preserve">
+    <value>About this app</value>
+  </data>
+  <data name="homeMenuAboutMarvelousMaui" xml:space="preserve">
+    <value>Marvelous .NET MAUI is a clone of the Wonderous app which is a visual showcase of eight wonders of the world. </value>
+  </data>
+  <data name="homeMenuAboutWonderousOriginal" xml:space="preserve">
+    <value>Wonderous app</value>
+  </data>
+  <data name="homeMenuAboutVisualAssets" xml:space="preserve">
+    <value>Visual assets are copyrighted and used with permission from Google.</value>
+  </data>
+  <data name="homeMenuAboutByTeam" xml:space="preserve">
+    <value>The original app is made by the team at </value>
+  </data>
+  <data name="homeMenuAboutBuilt" xml:space="preserve">
+    <value>This clone has been built with </value>
+  </data>
+  <data name="homeMenuAboutMaui" xml:space="preserve">
+    <value>.NET MAUI</value>
+  </data>
+  <data name="homeMenuAboutLearn" xml:space="preserve">
+    <value>Learn more about the original app at </value>
+  </data>
+  <data name="homeMenuAboutSource" xml:space="preserve">
+    <value>To see its source code, please visit the </value>
+  </data>
+  <data name="homeMenuAboutRepo" xml:space="preserve">
+    <value>Marvelous .NET MAUI github repo</value>
+  </data>
+  <data name="homeMenuAboutFlutter" xml:space="preserve">
+    <value>Flutter</value>
+  </data>
+  <data name="homeMenuAboutGskinner" xml:space="preserve">
+    <value>gskinner</value>
+  </data>
+  <data name="homeMenuAboutApp" xml:space="preserve">
+    <value>wonderous.app</value>
+  </data>
+  <data name="homeMenuAboutPublic" xml:space="preserve">
+    <value>Public-domain artworks from </value>
+  </data>
+  <data name="homeMenuAboutMet" xml:space="preserve">
+    <value>The Metropolitan Museum of Art, New York</value>
+  </data>
+  <data name="homeMenuAboutPhotography" xml:space="preserve">
+    <value>Photography from </value>
+  </data>
+  <data name="homeMenuAboutUnsplash" xml:space="preserve">
+    <value>Unsplash</value>
+  </data>
+  <data name="introTitleJourney" xml:space="preserve">
+    <value>Journey to the past</value>
+  </data>
+  <data name="introDescriptionNavigate" xml:space="preserve">
+    <value>Navigate the intersection of time, art, and culture.</value>
+  </data>
+  <data name="introTitleExplore" xml:space="preserve">
+    <value>Explore places</value>
+  </data>
+  <data name="introDescriptionUncover" xml:space="preserve">
+    <value>Uncover remarkable human-made structures from around the world.</value>
+  </data>
+  <data name="introTitleDiscover" xml:space="preserve">
+    <value>Discover artifacts</value>
+  </data>
+  <data name="introDescriptionLearn" xml:space="preserve">
+    <value>Learn about cultures throughout time by examining things they left behind.</value>
+  </data>
+  <data name="introSemanticNavigate" xml:space="preserve">
+    <value>Navigate</value>
+  </data>
+  <data name="introSemanticSwipeLeft" xml:space="preserve">
+    <value>Swipe left to continue</value>
+  </data>
+  <data name="introSemanticEnterApp" xml:space="preserve">
+    <value>Enter the app</value>
+  </data>
+  <data name="introSemanticWonderous" xml:space="preserve">
+    <value>Wonderous</value>
+  </data>
+  <data name="labelledToggleSemanticToggle" xml:space="preserve">
+    <value>toggle</value>
+  </data>
+  <data name="photoGallerySemanticCollectible" xml:space="preserve">
+    <value>collectible!</value>
+  </data>
+  <data name="photoGallerySemanticFocus" xml:space="preserve">
+    <value>Photo {photoIndex} of {photoTotal}. Tap to focus.</value>
+  </data>
+  <data name="photoGallerySemanticFullscreen" xml:space="preserve">
+    <value>Photo {photoIndex} of {photoTotal}. Tap to open fullscreen view.</value>
+  </data>
+  <data name="eraPrehistory" xml:space="preserve">
+    <value>Prehistory</value>
+  </data>
+  <data name="eraClassical" xml:space="preserve">
+    <value>Classical Era</value>
+  </data>
+  <data name="eraEarlyModern" xml:space="preserve">
+    <value>Early Modern Era</value>
+  </data>
+  <data name="eraModern" xml:space="preserve">
+    <value>Modern Era</value>
+  </data>
+  <data name="yearBCE" xml:space="preserve">
+    <value>BCE</value>
+  </data>
+  <data name="yearCE" xml:space="preserve">
+    <value>CE</value>
+  </data>
+  <data name="yearFormat" xml:space="preserve">
+    <value>{date} {era}</value>
+  </data>
+  <data name="year" xml:space="preserve">
+    <value>Year</value>
+  </data>
+  <data name="timelineLabelConstruction" xml:space="preserve">
+    <value>Construction of {0} begins.</value>
+  </data>
+  <data name="timelineTitleGlobalTimeline" xml:space="preserve">
+    <value>Global Timeline</value>
+  </data>
+  <data name="wallpaperModalSave" xml:space="preserve">
+    <value>Save this poster to your photo gallery?</value>
+  </data>
+  <data name="wallpaperModalSaving" xml:space="preserve">
+    <value>Saving Image. Please wait...</value>
+  </data>
+  <data name="wallpaperModalSaveComplete" xml:space="preserve">
+    <value>Save complete!</value>
+  </data>
+  <data name="wallpaperSemanticSharePhoto" xml:space="preserve">
+    <value>share photo</value>
+  </data>
+  <data name="wallpaperSemanticTakePhoto" xml:space="preserve">
+    <value>take photo</value>
+  </data>
+  <data name="wallpaperCheckboxShowTitle" xml:space="preserve">
+    <value>Show Title</value>
+  </data>
+  <data name="wonderDetailsTabLabelInformation" xml:space="preserve">
+    <value>information and history</value>
+  </data>
+  <data name="wonderDetailsTabLabelImages" xml:space="preserve">
+    <value>photo gallery</value>
+  </data>
+  <data name="wonderDetailsTabLabelArtifacts" xml:space="preserve">
+    <value>artifacts</value>
+  </data>
+  <data name="wonderDetailsTabLabelEvents" xml:space="preserve">
+    <value>events</value>
+  </data>
+  <data name="wonderDetailsTabSemanticBack" xml:space="preserve">
+    <value>back to wonder selection</value>
+  </data>
+  <data name="homeSemanticOpenMain" xml:space="preserve">
+    <value>Open main menu</value>
+  </data>
+  <data name="homeSemanticWonder" xml:space="preserve">
+    <value>wonder</value>
+  </data>
+  <data name="chichenItzaTitle" xml:space="preserve">
+    <value>Chichen Itza</value>
+  </data>
+  <data name="chichenItzaSubTitle" xml:space="preserve">
+    <value>The Great Mayan City</value>
+  </data>
+  <data name="chichenItzaRegionTitle" xml:space="preserve">
+    <value>Yucatan, Mexico</value>
+  </data>
+  <data name="chichenItzaArtifactCulture" xml:space="preserve">
+    <value>Maya</value>
+  </data>
+  <data name="chichenItzaArtifactGeolocation" xml:space="preserve">
+    <value>North and Central America</value>
+  </data>
+  <data name="chichenItzaPullQuote1Top" xml:space="preserve">
+    <value>The Beauty Between</value>
+  </data>
+  <data name="chichenItzaPullQuote1Bottom" xml:space="preserve">
+    <value>the Heavens and the Underworld</value>
+  </data>
+  <data name="chichenItzaPullQuote2" xml:space="preserve">
+    <value>The Maya and Toltec vision of the world and the universe is revealed in their stone monuments and artistic works.</value>
+  </data>
+  <data name="chichenItzaPullQuote2Author" xml:space="preserve">
+    <value>UNESCO</value>
+  </data>
+  <data name="chichenItzaCallout1" xml:space="preserve">
+    <value>The site exhibits a multitude of architectural styles, reminiscent of styles seen in central Mexico and of the Puuc and Chenes styles of the Northern Maya lowlands.</value>
+  </data>
+  <data name="chichenItzaCallout2" xml:space="preserve">
+    <value>The city comprised an area of at least 1.9 sq miles (5 sq km) of densely clustered architecture.</value>
+  </data>
+  <data name="chichenItzaVideoCaption" xml:space="preserve">
+    <value>“Ancient Maya 101 | National Geographic.” Youtube, uploaded by National Geographic.</value>
+  </data>
+  <data name="chichenItzaMapCaption" xml:space="preserve">
+    <value>Map showing location of Chichen Itza in Yucatán State, Mexico.</value>
+  </data>
+  <data name="chichenItzaHistoryInfo1" xml:space="preserve">
+    <value>Chichen Itza was a powerful regional capital controlling north and central Yucatán. The earliest hieroglyphic date discovered at Chichen Itza is equivalent to 832 CE, while the last known date was recorded in the Osario temple in 998 CE.
+Dominating the North Platform of Chichen Itza is the famous Temple of Kukulcán. The temple was identified by the first Spaniards to see it, as El Castillo ("the castle"), and it regularly is referred to as such. The temple was identified by the first Spaniards to see it, as El Castillo ("the castle"), and it regularly is referred to as such.</value>
+  </data>
+  <data name="chichenItzaHistoryInfo2" xml:space="preserve">
+    <value>The city was thought to have the most diverse population in the Maya world, a factor that could have contributed to this architectural variety.</value>
+  </data>
+  <data name="chichenItzaConstructionInfo1" xml:space="preserve">
+    <value>The structures of Chichen Itza were built from precisely chiseled limestone blocks that fit together perfectly without the mortar. Many of these stone buildings were originally painted in red, green, blue and purple colors depending on the availability of the pigments.
+The stepped pyramid El Castillo stands about 98 feet (30 m) high and consists of a series of nine square terraces, each approximately 8.4 feet (2.57 m) high, with a 20 foot (6 m) high temple upon the summit.</value>
+  </data>
+  <data name="chichenItzaConstructionInfo2" xml:space="preserve">
+    <value>It was built upon broken terrain, which was artificially leveled to support structures such as the Castillo pyramid. Important buildings within the center were connected by a dense network of paved roads called sacbeob.</value>
+  </data>
+  <data name="chichenItzaLocationInfo1" xml:space="preserve">
+    <value>Chichen Itza is located in the eastern portion of Yucatán state in Mexico. Nearby, four large sinkholes, called cenotes, could have provided plentiful water year round at Chichen, making it attractive for settlement.</value>
+  </data>
+  <data name="chichenItzaLocationInfo2" xml:space="preserve">
+    <value>Of these cenotes, the "Cenote Sagrado" or Sacred Cenote, was used for the sacrifice of precious objects and human beings as a form of worship to the Maya rain god Chaac.</value>
+  </data>
+  <data name="chichenItza600ce" xml:space="preserve">
+    <value>Chichen Itza rises to regional prominence toward the end of the Early Classic period</value>
+  </data>
+  <data name="chichenItza832ce" xml:space="preserve">
+    <value>The earliest hieroglyphic date discovered at Chichen Itza</value>
+  </data>
+  <data name="chichenItza998ce" xml:space="preserve">
+    <value>Last known date recorded in the Osario temple</value>
+  </data>
+  <data name="chichenItza1100ce" xml:space="preserve">
+    <value>Chichen Itza declines as a regional center</value>
+  </data>
+  <data name="chichenItza1527ce" xml:space="preserve">
+    <value>Invaded by Spanish Conquistador Francisco de Montejo</value>
+  </data>
+  <data name="chichenItza1535ce" xml:space="preserve">
+    <value>All Spanish are driven from the Yucatán Peninsula</value>
+  </data>
+  <data name="chichenItzaCollectible1Title" xml:space="preserve">
+    <value>Pendant</value>
+  </data>
+  <data name="chichenItzaCollectible1Icon" xml:space="preserve">
+    <value>jewelry</value>
+  </data>
+  <data name="chichenItzaCollectible2Title" xml:space="preserve">
+    <value>Bird Ornament</value>
+  </data>
+  <data name="chichenItzaCollectible2Icon" xml:space="preserve">
+    <value>jewelry</value>
+  </data>
+  <data name="chichenItzaCollectible3Title" xml:space="preserve">
+    <value>La Prison, à Chichen-Itza</value>
+  </data>
+  <data name="chichenItzaCollectible3Icon" xml:space="preserve">
+    <value>picture</value>
+  </data>
+  <data name="christRedeemerTitle" xml:space="preserve">
+    <value>Christ the Redeemer</value>
+  </data>
+  <data name="christRedeemerSubTitle" xml:space="preserve">
+    <value>A symbol of peace</value>
+  </data>
+  <data name="christRedeemerRegionTitle" xml:space="preserve">
+    <value>Rio de Janeiro, Brazil</value>
+  </data>
+  <data name="christRedeemerArtifactGeolocation" xml:space="preserve">
+    <value>Brazil</value>
+  </data>
+  <data name="christRedeemerPullQuote1Top" xml:space="preserve">
+    <value>A Perfect Union Between</value>
+  </data>
+  <data name="christRedeemerPullQuote1Bottom" xml:space="preserve">
+    <value>Nature and Architecture</value>
+  </data>
+  <data name="christRedeemerPullQuote2" xml:space="preserve">
+    <value>The statue looms large on the landscape, but it hides as much as it reveals about the diverse religious life of Brazilians.</value>
+  </data>
+  <data name="christRedeemerPullQuote2Author" xml:space="preserve">
+    <value>Thomas Tweed</value>
+  </data>
+  <data name="christRedeemerCallout1" xml:space="preserve">
+    <value>The statue of Christ the Redeemer with open arms, a symbol of peace, was chosen.</value>
+  </data>
+  <data name="christRedeemerCallout2" xml:space="preserve">
+    <value>Construction took nine years, from 1922 to 1931, and cost the equivalent of US$250,000 (equivalent to $3,600,000 in 2020) and the monument opened on October 12, 1931.</value>
+  </data>
+  <data name="christRedeemerVideoCaption" xml:space="preserve">
+    <value>“The Majestic Statue of Christ the Redeemer - Seven Wonders of the Modern World - See U in History.” Youtube, uploaded by See U in History / Mythology.</value>
+  </data>
+  <data name="christRedeemerMapCaption" xml:space="preserve">
+    <value>Map showing location of Christ the Redeemer in Rio de Janeiro, Brazil.</value>
+  </data>
+  <data name="christRedeemerHistoryInfo1" xml:space="preserve">
+    <value>The placement of a Christian monument on Mount Corcovado was first suggested in the mid-1850s to honor Princess Isabel, regent of Brazil and the daughter of Emperor Pedro II, but the project was not approved.
+In 1889 the country became a republic, and owing to the separation of church and state the proposed statue was dismissed.</value>
+  </data>
+  <data name="christRedeemerHistoryInfo2" xml:space="preserve">
+    <value>The Catholic Circle of Rio made a second proposal for a landmark statue on the mountain in 1920. The group organized an event called Semana do Monumento ("Monument Week") to attract donations and collect signatures to support the building of the statue. The organization was motivated by what they perceived as "Godlessness" in the society.
+The designs considered for the "Statue of the Christ" included a representation of the Christian cross, a statue of Jesus with a globe in his hands, and a pedestal symbolizing the world.</value>
+  </data>
+  <data name="christRedeemerConstructionInfo1" xml:space="preserve">
+    <value>Artist Carlos Oswald and local engineer Heitor da Silva Costa designed the statue. French sculptor Paul Landowski created the work. In 1922, Landowski commissioned fellow Parisian Romanian sculptor Gheorghe Leonida, who studied sculpture at the Fine Arts Conservatory in Bucharest and in Italy.</value>
+  </data>
+  <data name="christRedeemerConstructionInfo2" xml:space="preserve">
+    <value>A group of engineers and technicians studied Landowski's submissions and felt building the structure of reinforced concrete instead of steel was more suitable for the cross-shaped statue. The concrete making up the base was supplied from Limhamn, Sweden. The outer layers are soapstone, chosen for its enduring qualities and ease of use.</value>
+  </data>
+  <data name="christRedeemerLocationInfo1" xml:space="preserve">
+    <value>Corcovado, which means "hunchback" in Portuguese, is a mountain in central Rio de Janeiro, Brazil. It is a 2,329 foot (710 m) granite peak located in the Tijuca Forest, a national park.</value>
+  </data>
+  <data name="christRedeemerLocationInfo2" xml:space="preserve">
+    <value>Corcovado hill lies just west of the city center but is wholly within the city limits and visible from great distances.</value>
+  </data>
+  <data name="christRedeemer1850ce" xml:space="preserve">
+    <value>Plans for the statue were first proposed by Pedro Maria Boss upon Mount Corcovado. This was never approved, however.</value>
+  </data>
+  <data name="christRedeemer1921ce" xml:space="preserve">
+    <value>A new plan was proposed by the Roman Catholic archdiocese, and after the citizens of Rio de Janeiro petitioned the president, it was finally approved.</value>
+  </data>
+  <data name="christRedeemer1922ce" xml:space="preserve">
+    <value>The foundation of the statue was ceremoniously laid out to commemorate Brazil’s independence from Portugal.</value>
+  </data>
+  <data name="christRedeemer1926ce" xml:space="preserve">
+    <value>Construction officially began after the initial design was chosen via a competition and amended by Brazilian artists and engineers.</value>
+  </data>
+  <data name="christRedeemer1931ce" xml:space="preserve">
+    <value>Construction of the statue was completed, standing 98’ tall with a 92’ wide arm span.</value>
+  </data>
+  <data name="christRedeemer2006ce" xml:space="preserve">
+    <value>A chapel was consecrated at the statue’s base to Our Lady of Aparecida to mark the statue’s 75th anniversary.</value>
+  </data>
+  <data name="christRedeemerCollectible1Title" xml:space="preserve">
+    <value>Engraved Horn</value>
+  </data>
+  <data name="christRedeemerCollectible1Icon" xml:space="preserve">
+    <value>statue</value>
+  </data>
+  <data name="christRedeemerCollectible2Title" xml:space="preserve">
+    <value>Fixed fan</value>
+  </data>
+  <data name="christRedeemerCollectible2Icon" xml:space="preserve">
+    <value>jewelry</value>
+  </data>
+  <data name="christRedeemerCollectible3Title" xml:space="preserve">
+    <value>Handkerchiefs (one of two)</value>
+  </data>
+  <data name="christRedeemerCollectible3Icon" xml:space="preserve">
+    <value>textile</value>
+  </data>
+  <data name="colosseumTitle" xml:space="preserve">
+    <value>Colosseum</value>
+  </data>
+  <data name="colosseumSubTitle" xml:space="preserve">
+    <value>The icon of Rome</value>
+  </data>
+  <data name="colosseumRegionTitle" xml:space="preserve">
+    <value>Rome, Italy</value>
+  </data>
+  <data name="colosseumArtifactCulture" xml:space="preserve">
+    <value>Roman</value>
+  </data>
+  <data name="colosseumArtifactGeolocation" xml:space="preserve">
+    <value>Roman Empire</value>
+  </data>
+  <data name="colosseumPullQuote1Top" xml:space="preserve">
+    <value>Still the Largest Standing</value>
+  </data>
+  <data name="colosseumPullQuote1Bottom" xml:space="preserve">
+    <value>Amphitheater in the World Today</value>
+  </data>
+  <data name="colosseumPullQuote2" xml:space="preserve">
+    <value>When falls the Coliseum, Rome shall fall; And when Rome falls - the World.</value>
+  </data>
+  <data name="colosseumPullQuote2Author" xml:space="preserve">
+    <value>Lord Byron</value>
+  </data>
+  <data name="colosseumCallout1" xml:space="preserve">
+    <value>It was used for gladiatorial contests and public spectacles including animal hunts, executions, reenactments of famous battles, and dramas based on Roman mythology, and mock sea battles.</value>
+  </data>
+  <data name="colosseumCallout2" xml:space="preserve">
+    <value>It is the largest ancient amphitheater ever built, and is still the largest standing amphitheater in the world today, despite its age.</value>
+  </data>
+  <data name="colosseumVideoCaption" xml:space="preserve">
+    <value>“Ancient Rome 101 | National Geographic.” Youtube, uploaded by National Geographic.</value>
+  </data>
+  <data name="colosseumMapCaption" xml:space="preserve">
+    <value>Map showing location of Colosseum in Rome, Italy,</value>
+  </data>
+  <data name="colosseumHistoryInfo1" xml:space="preserve">
+    <value>The Colosseum is an oval amphitheater in the center of the city of Rome, Italy. Unlike Roman theaters that were built into hillsides, the Colosseum is an entirely free-standing structure.</value>
+  </data>
+  <data name="colosseumHistoryInfo2" xml:space="preserve">
+    <value>The building ceased to be used for entertainment in the early medieval era. By the late 6th century a small chapel had been built into the structure of the amphitheater, and the arena was converted into a cemetery. 
+The numerous vaulted spaces in the arcades under the seating were converted into housing and workshops, and are recorded as still being rented out as late as the 12th century.</value>
+  </data>
+  <data name="colosseumConstructionInfo1" xml:space="preserve">
+    <value>Construction began under the emperor Vespasian (r. 69-79 CE) in 72 and was completed in 80 CE under his successor and heir, Titus (r. 79-81). Further modifications were made during the reign of Domitian (r. 81-96).
+The Colosseum is built of travertine limestone, tuff (volcanic rock), and brick-faced concrete. The outer wall is estimated to have required over 3.5 million cubic feet of travertine stone which were set without mortar; they were held together by 300 tons of iron clamps.</value>
+  </data>
+  <data name="colosseumConstructionInfo2" xml:space="preserve">
+    <value>It could hold an estimated 50,000 to 80,000 spectators at various points in its history, having an average audience of some 65,000.</value>
+  </data>
+  <data name="colosseumLocationInfo1" xml:space="preserve">
+    <value>Following the Great Fire of Rome in 64 CE, Emperor Nero seized much of the destroyed area to build his grandiose Domus Aurea ("Golden House"). A severe embarrassment to Nero's successors, parts of this extravagant palace and grounds, encompassing 1 sq mile, were filled with earth and built over.</value>
+  </data>
+  <data name="colosseumLocationInfo2" xml:space="preserve">
+    <value>On the site of the lake, in the middle of the palace grounds, Emperor Vespasian would build the Colosseum as part of a Roman resurgence.</value>
+  </data>
+  <data name="colosseum70ce" xml:space="preserve">
+    <value>Colosseum construction was started during the Vespasian reign overtop what used to be a private lake for the previous four emperors. This was done in an attempt to revitalize Rome from their tyrannical reign.</value>
+  </data>
+  <data name="colosseum82ce" xml:space="preserve">
+    <value>The uppermost floor was built, and the structure was officially completed by Domitian.</value>
+  </data>
+  <data name="colosseum1140ce" xml:space="preserve">
+    <value>The arena was repurposed as a fortress for the Frangipane and Annibaldi families. It was also at one point used as a church.</value>
+  </data>
+  <data name="colosseum1490ce" xml:space="preserve">
+    <value>Pope Alexander VI permitted the site to be used as a quarry, for both storing and salvaging building materials.</value>
+  </data>
+  <data name="colosseum1829ce" xml:space="preserve">
+    <value>Preservation of the colosseum officially began, after more than a millennia of dilapidation and vandalism. Pope Pius VIII was notably devoted to this project.</value>
+  </data>
+  <data name="colosseum1990ce" xml:space="preserve">
+    <value>A restoration project was undertaken to ensure the colosseum remained a major tourist attraction for Rome. It currently stands as one of the greatest sources of tourism revenue in Italy.</value>
+  </data>
+  <data name="colosseumCollectible1Title" xml:space="preserve">
+    <value>Glass hexagonal amphoriskos</value>
+  </data>
+  <data name="colosseumCollectible1Icon" xml:space="preserve">
+    <value>vase</value>
+  </data>
+  <data name="colosseumCollectible2Title" xml:space="preserve">
+    <value>Bronze plaque of Mithras slaying the bull</value>
+  </data>
+  <data name="colosseumCollectible2Icon" xml:space="preserve">
+    <value>statue</value>
+  </data>
+  <data name="colosseumCollectible3Title" xml:space="preserve">
+    <value>Interno del Colosseo</value>
+  </data>
+  <data name="colosseumCollectible3Icon" xml:space="preserve">
+    <value>picture</value>
+  </data>
+  <data name="greatWallTitle" xml:space="preserve">
+    <value>The Great Wall</value>
+  </data>
+  <data name="greatWallSubTitle" xml:space="preserve">
+    <value>Longest structure on Earth</value>
+  </data>
+  <data name="greatWallRegionTitle" xml:space="preserve">
+    <value>China</value>
+  </data>
+  <data name="greatWallArtifactCulture" xml:space="preserve">
+    <value>Chinese</value>
+  </data>
+  <data name="greatWallArtifactGeolocation" xml:space="preserve">
+    <value>China</value>
+  </data>
+  <data name="greatWallPullQuote1Top" xml:space="preserve">
+    <value>The Longest Man-Made</value>
+  </data>
+  <data name="greatWallPullQuote1Bottom" xml:space="preserve">
+    <value>Structure in the World</value>
+  </data>
+  <data name="greatWallPullQuote2" xml:space="preserve">
+    <value>Its historic and strategic importance is matched only by its architectural significance.</value>
+  </data>
+  <data name="greatWallPullQuote2Author" xml:space="preserve">
+    <value>UNESCO</value>
+  </data>
+  <data name="greatWallCallout1" xml:space="preserve">
+    <value>The best-known sections of the wall were built by the Ming dynasty (1368-1644).</value>
+  </data>
+  <data name="greatWallCallout2" xml:space="preserve">
+    <value>During the Ming dynasty, however, bricks were heavily used in many areas of the wall, as were materials such as tiles, lime, and stone.</value>
+  </data>
+  <data name="greatWallVideoCaption" xml:space="preserve">
+    <value>“See China’s Iconic Great Wall From Above | National Geographic.” Youtube, uploaded by National Geographic.</value>
+  </data>
+  <data name="greatWallMapCaption" xml:space="preserve">
+    <value>Map showing location of Great Wall of China in northern China.</value>
+  </data>
+  <data name="greatWallHistoryInfo1" xml:space="preserve">
+    <value>The Great Wall of China is a series of fortifications that were built across the historical northern borders of ancient Chinese states and Imperial China as protection against various nomadic groups from the Eurasian Steppe. The total length of all sections ever built is over 13,000 miles.</value>
+  </data>
+  <data name="greatWallHistoryInfo2" xml:space="preserve">
+    <value>Several walls were built from as early as the 7th century BCE, with selective stretches later joined together by Qin Shi Huang (220-206  BCE), the first emperor of China. Little of the Qin wall remains. 
+Later on, many successive dynasties built and maintained multiple stretches of border walls.</value>
+  </data>
+  <data name="greatWallConstructionInfo1" xml:space="preserve">
+    <value>Transporting the large quantity of materials required for construction was difficult, so builders always tried to use local resources. Stones from the mountains were used over mountain ranges, while rammed earth was used for construction in the plains. Most of the ancient walls have eroded away over the centuries.</value>
+  </data>
+  <data name="greatWallConstructionInfo2" xml:space="preserve">
+    <value>Stones cut into rectangular shapes were used for the foundation, inner and outer brims, and gateways of the wall. 
+Under the rule of the Qing dynasty, China's borders extended beyond the walls and Mongolia was annexed into the empire, so construction was discontinued.</value>
+  </data>
+  <data name="greatWallLocationInfo1" xml:space="preserve">
+    <value>The frontier walls built by different dynasties have multiple courses. Collectively, they stretch from Liaodong in the east to Lop Lake in the west, from the present-day Sino-Russian border in the north to Tao River in the south; along an arc that roughly delineates the edge of the Mongolian steppe.</value>
+  </data>
+  <data name="greatWallLocationInfo2" xml:space="preserve">
+    <value>Apart from defense, other purposes of the Great Wall have included border controls, allowing the imposition of duties on goods transported along the Silk Road, regulation or encouragement of trade and the control of immigration and emigration.</value>
+  </data>
+  <data name="greatWall700bce" xml:space="preserve">
+    <value>First landmark of the Great Wall began originally as a square wall surrounding the state of Chu. Over the years, additional walls would be built and added to it to expand and connect territory.</value>
+  </data>
+  <data name="greatWall214bce" xml:space="preserve">
+    <value>The first Qin Emperor unifies China and links the wall of the surrounding states of Qin, Yan, and Zhao into the Great Wall of China, taking 10 years to build with hundreds of thousands of laborers.</value>
+  </data>
+  <data name="greatWall121bce" xml:space="preserve">
+    <value>A 20-year construction project was started by the Han emperor to build east and west sections of the wall, including beacons, towers, and castles. Not just for defense, but also to control trade routes like the Silk Road.</value>
+  </data>
+  <data name="greatWall556ce" xml:space="preserve">
+    <value>The Bei Qi kingdom also launched several construction projects, utilizing over 1.8 million workers to repair and extend sections of the wall, adding to its length and even building a second inner wall around Shanxi.</value>
+  </data>
+  <data name="greatWall618ce" xml:space="preserve">
+    <value>The Great Wall was repaired during the Sui Dynasty and used to defend against Tujue attacks. Before and after the Sui Dynasty, the wall saw very little use and fell into disrepair.</value>
+  </data>
+  <data name="greatWall1487ce" xml:space="preserve">
+    <value>Hongzhi Emperor split the walls into north and south lines, eventually shaping it into how it is today. Since then, it has gradually fallen into disrepair and remains mostly unused.</value>
+  </data>
+  <data name="greatWallCollectible1Title" xml:space="preserve">
+    <value>Biographies of Lian Po and Lin Xiangru</value>
+  </data>
+  <data name="greatWallCollectible1Icon" xml:space="preserve">
+    <value>scroll</value>
+  </data>
+  <data name="greatWallCollectible2Title" xml:space="preserve">
+    <value>Jar with Dragon</value>
+  </data>
+  <data name="greatWallCollectible2Icon" xml:space="preserve">
+    <value>vase</value>
+  </data>
+  <data name="greatWallCollectible3Title" xml:space="preserve">
+    <value>Panel with Peonies and Butterfly</value>
+  </data>
+  <data name="greatWallCollectible3Icon" xml:space="preserve">
+    <value>textile</value>
+  </data>
+  <data name="machuPicchuTitle" xml:space="preserve">
+    <value>Machu Picchu</value>
+  </data>
+  <data name="machuPicchuSubTitle" xml:space="preserve">
+    <value>Citadel of the Inca</value>
+  </data>
+  <data name="machuPicchuRegionTitle" xml:space="preserve">
+    <value>Cusco Region, Peru</value>
+  </data>
+  <data name="machuPicchuArtifactCulture" xml:space="preserve">
+    <value>Inca</value>
+  </data>
+  <data name="machuPicchuArtifactGeolocation" xml:space="preserve">
+    <value>South America</value>
+  </data>
+  <data name="machuPicchuPullQuote1Top" xml:space="preserve">
+    <value>Few Romances Can Ever Surpass</value>
+  </data>
+  <data name="machuPicchuPullQuote1Bottom" xml:space="preserve">
+    <value>That of the Granite Citadel</value>
+  </data>
+  <data name="machuPicchuPullQuote1Author" xml:space="preserve">
+    <value>Hiram Bingham</value>
+  </data>
+  <data name="machuPicchuPullQuote2" xml:space="preserve">
+    <value>In the variety of its charms and the power of its spell, I know of no other place in the world which can compare with it.</value>
+  </data>
+  <data name="machuPicchuPullQuote2Author" xml:space="preserve">
+    <value>Hiram Bingham</value>
+  </data>
+  <data name="machuPicchuCallout1" xml:space="preserve">
+    <value>During its use as a royal estate, it is estimated that about 750 people lived there, with most serving as support staff who lived there permanently.</value>
+  </data>
+  <data name="machuPicchuCallout2" xml:space="preserve">
+    <value>The Incas were masters of this technique, called ashlar, in which blocks of stone are cut to fit together tightly without mortar.</value>
+  </data>
+  <data name="machuPicchuVideoCaption" xml:space="preserve">
+    <value>“Machu Picchu 101 | National Geographic.” Youtube, uploaded by National Geographic.</value>
+  </data>
+  <data name="machuPicchuMapCaption" xml:space="preserve">
+    <value>Map showing location of Machu Picchu in the Eastern Cordillera of southern Peru.</value>
+  </data>
+  <data name="machuPicchuHistoryInfo1" xml:space="preserve">
+    <value>Machu Picchu is a 15th-century Inca citadel located in the Eastern Cordillera of southern Peru on a 2,430-meter (7,970 ft) mountain ridge. Construction appears to date from two great Inca rulers, Pachacutec Inca Yupanqui (1438–1471 CE) and Túpac Inca Yupanqui (1472–1493 CE).</value>
+  </data>
+  <data name="machuPicchuHistoryInfo2" xml:space="preserve">
+    <value>There is a consensus among archeologists that Pachacutec ordered the construction of the royal estate for his use as a retreat, most likely after a successful military campaign.
+Rather it was used for 80 years before being abandoned, seemingly because of the Spanish conquests in other parts of the Inca Empire.</value>
+  </data>
+  <data name="machuPicchuConstructionInfo1" xml:space="preserve">
+    <value>The central buildings use the classical Inca architectural style of polished dry-stone walls of regular shape. 
+Inca walls have many stabilizing features: doors and windows are trapezoidal, narrowing from bottom to top; corners usually are rounded; inside corners often incline slightly into the rooms, and outside corners were often tied together by "L"-shaped blocks.</value>
+  </data>
+  <data name="machuPicchuConstructionInfo2" xml:space="preserve">
+    <value>This precision construction method made the structures at Machu Picchu resistant to seismic activity.
+The site itself may have been intentionally built on fault lines to afford better drainage and a ready supply of fractured stone.</value>
+  </data>
+  <data name="machuPicchuLocationInfo1" xml:space="preserve">
+    <value>Machu Picchu is situated above a bow of the Urubamba River, which surrounds the site on three sides, where cliffs drop vertically for 1,480 feet (450 m) to the river at their base. The location of the city was a military secret, and its deep precipices and steep mountains provided natural defenses.</value>
+  </data>
+  <data name="machuPicchuLocationInfo2" xml:space="preserve">
+    <value>The Inca Bridge, an Inca grass rope bridge, across the Urubamba River in the Pongo de Mainique, provided a secret entrance for the Inca army. Another Inca bridge was built to the west of Machu Picchu, the tree-trunk bridge, at a location where a gap occurs in the cliff that measures 20 feet (6 m).</value>
+  </data>
+  <data name="machuPicchu1438ce" xml:space="preserve">
+    <value>Speculated to be built and occupied by Inca ruler Pachacuti Inca Yupanqui.</value>
+  </data>
+  <data name="machuPicchu1572ce" xml:space="preserve">
+    <value>The last Inca rulers used the site as a bastion to rebel against Spanish rule until they were ultimately wiped out.</value>
+  </data>
+  <data name="machuPicchu1867ce" xml:space="preserve">
+    <value>Speculated to have been originally discovered by German explorer Augusto Berns, but his findings were never effectively publicized.</value>
+  </data>
+  <data name="machuPicchu1911ce" xml:space="preserve">
+    <value>Introduced to the world by Hiram Bingham of Yale University, who was led there by locals after disclosing he was searching for Vilcabamba, the ’lost city of the Incas’.</value>
+  </data>
+  <data name="machuPicchu1964ce" xml:space="preserve">
+    <value>Surrounding sites were excavated thoroughly by Gene Savoy, who found a much more suitable candidate for Vilcabamba in the ruin known as Espíritu Pampa.</value>
+  </data>
+  <data name="machuPicchu1997ce" xml:space="preserve">
+    <value>Since its rediscovery, growing numbers of tourists have visited the Machu Picchu each year, with numbers exceeding 1.4 million in 2017.</value>
+  </data>
+  <data name="machuPicchuCollectible1Title" xml:space="preserve">
+    <value>Eight-Pointed Star Tunic</value>
+  </data>
+  <data name="machuPicchuCollectible1Icon" xml:space="preserve">
+    <value>textile</value>
+  </data>
+  <data name="machuPicchuCollectible2Title" xml:space="preserve">
+    <value>Camelid figurine</value>
+  </data>
+  <data name="machuPicchuCollectible2Icon" xml:space="preserve">
+    <value>statue</value>
+  </data>
+  <data name="machuPicchuCollectible3Title" xml:space="preserve">
+    <value>Double Bowl</value>
+  </data>
+  <data name="machuPicchuCollectible3Icon" xml:space="preserve">
+    <value>vase</value>
+  </data>
+  <data name="petraTitle" xml:space="preserve">
+    <value>Petra</value>
+  </data>
+  <data name="petraSubTitle" xml:space="preserve">
+    <value>The Lost City</value>
+  </data>
+  <data name="petraRegionTitle" xml:space="preserve">
+    <value>Ma’an, Jordan</value>
+  </data>
+  <data name="petraArtifactCulture" xml:space="preserve">
+    <value>Nabataean</value>
+  </data>
+  <data name="petraArtifactGeolocation" xml:space="preserve">
+    <value>Levant</value>
+  </data>
+  <data name="petraPullQuote1Top" xml:space="preserve">
+    <value>A Rose-Red City</value>
+  </data>
+  <data name="petraPullQuote1Bottom" xml:space="preserve">
+    <value>Half as Old as Time</value>
+  </data>
+  <data name="petraPullQuote1Author" xml:space="preserve">
+    <value>John William Burgon</value>
+  </data>
+  <data name="petraPullQuote2" xml:space="preserve">
+    <value>Petra is a brilliant display of man’s artistry in turning barren rock into a majestic wonder.</value>
+  </data>
+  <data name="petraPullQuote2Author" xml:space="preserve">
+    <value>Edward Dawson</value>
+  </data>
+  <data name="petraCallout1" xml:space="preserve">
+    <value>They were particularly skillful in harvesting rainwater, agriculture and stone carving.</value>
+  </data>
+  <data name="petraCallout2" xml:space="preserve">
+    <value>Perhaps a more prominent resemblance to Hellenistic style in Petra comes with its Treasury.</value>
+  </data>
+  <data name="petraVideoCaption" xml:space="preserve">
+    <value>“Stunning Stone Monuments of Petra | National Geographic.” Youtube, uploaded by National Geographic.</value>
+  </data>
+  <data name="petraMapCaption" xml:space="preserve">
+    <value>Map showing location of Petra in Ma’an Governorate, Jordan.</value>
+  </data>
+  <data name="petraHistoryInfo1" xml:space="preserve">
+    <value>The area around Petra has been inhabited from as early as 7000  BCE, and the Nabataeans might have settled in what would become the capital city of their kingdom as early as the 4th century BCE.
+The trading business gained the Nabataeans considerable revenue and Petra became the focus of their wealth. The Nabataeans were accustomed to living in the barren deserts, unlike their enemies, and were able to repel attacks by taking advantage of the area's mountainous terrain.</value>
+  </data>
+  <data name="petraHistoryInfo2" xml:space="preserve">
+    <value>Petra flourished in the 1st century CE, when its famous Al-Khazneh structure - believed to be the mausoleum of Nabataean king Aretas IV - was constructed, and its population peaked at an estimated 20,000 inhabitants.
+Access to the city is through a 3/4 mile-long (1.2 km) gorge called the Siq, which leads directly to the Khazneh.</value>
+  </data>
+  <data name="petraConstructionInfo1" xml:space="preserve">
+    <value>Famous for its rock-cut architecture and water conduit system, Petra is also called the "Red Rose City" because of the color of the stone from which it is carved.
+Another thing Petra is known for is its Hellenistic (“Greek”) architecture. These influences can be seen in many of the facades at Petra and are a reflection of the cultures that the Nabataens traded with.</value>
+  </data>
+  <data name="petraConstructionInfo2" xml:space="preserve">
+    <value>The facade of the Treasury features a broken pediment with a central tholos (“dome”) inside, and two obelisks appear to form into the rock of Petra at the top. Near the bottom of the Treasury we see twin Greek Gods: Pollux, Castor, and Dioscuri, who protect travelers on their journeys. 
+Near the top of the Treasury, two victories are seen standing on each side of a female figure on the tholos. This female figure is believed to be the Isis-Tyche, Isis being the Egyptian Goddess and Tyche being the Greek Goddess of good fortune.</value>
+  </data>
+  <data name="petraLocationInfo1" xml:space="preserve">
+    <value>Petra is located in southern Jordan. It is adjacent to the mountain of Jabal Al-Madbah, in a basin surrounded by mountains forming the eastern flank of the Arabah valley running from the Dead Sea to the Gulf of Aqaba.</value>
+  </data>
+  <data name="petraLocationInfo2" xml:space="preserve">
+    <value>The area around Petra has been inhabited from as early as 7000 BC, and the Nabataeans might have settled in what would become the capital city of their kingdom as early as the 4th century BC.
+Archaeological work has only discovered evidence of Nabataean presence dating back to the second century BC, by which time Petra had become their capital. The Nabataeans were nomadic Arabs who invested in Petra's proximity to the incense trade routes by establishing it as a major regional trading hub.</value>
+  </data>
+  <data name="petra1200bce" xml:space="preserve">
+    <value>First Edomites occupied the area and established a foothold.</value>
+  </data>
+  <data name="petra106bce" xml:space="preserve">
+    <value>Became part of the Roman province Arabia</value>
+  </data>
+  <data name="petra551ce" xml:space="preserve">
+    <value>After being damaged by earthquakes, habitation of the city all but ceased.</value>
+  </data>
+  <data name="petra1812ce" xml:space="preserve">
+    <value>Rediscovered by the Swiss traveler Johann Ludwig Burckhardt.</value>
+  </data>
+  <data name="petra1958ce" xml:space="preserve">
+    <value>Excavations led on the site by the British School of Archaeology and the American Center of Oriental Research.</value>
+  </data>
+  <data name="petra1989ce" xml:space="preserve">
+    <value>Appeared in the film Indiana Jones and The Last Crusade.</value>
+  </data>
+  <data name="petraCollectible1Title" xml:space="preserve">
+    <value>Camel and riders</value>
+  </data>
+  <data name="petraCollectible1Icon" xml:space="preserve">
+    <value>statue</value>
+  </data>
+  <data name="petraCollectible2Title" xml:space="preserve">
+    <value>Vessel</value>
+  </data>
+  <data name="petraCollectible2Icon" xml:space="preserve">
+    <value>vase</value>
+  </data>
+  <data name="petraCollectible3Title" xml:space="preserve">
+    <value>Open bowl</value>
+  </data>
+  <data name="petraCollectible3Icon" xml:space="preserve">
+    <value>vase</value>
+  </data>
+  <data name="pyramidsGizaTitle" xml:space="preserve">
+    <value>Pyramids of Giza</value>
+  </data>
+  <data name="pyramidsGizaSubTitle" xml:space="preserve">
+    <value>The ancient wonder</value>
+  </data>
+  <data name="pyramidsGizaRegionTitle" xml:space="preserve">
+    <value>Cairo, Egypt</value>
+  </data>
+  <data name="pyramidsGizaArtifactCulture" xml:space="preserve">
+    <value>Egyptian</value>
+  </data>
+  <data name="pyramidsGizaArtifactGeolocation" xml:space="preserve">
+    <value>Egypt</value>
+  </data>
+  <data name="pyramidsGizaPullQuote1Top" xml:space="preserve">
+    <value>The Tallest Structures on Earth</value>
+  </data>
+  <data name="pyramidsGizaPullQuote1Bottom" xml:space="preserve">
+    <value>Until the Advent of Modern Skyscrapers</value>
+  </data>
+  <data name="pyramidsGizaPullQuote2" xml:space="preserve">
+    <value>From the heights of these pyramids, forty centuries look down on us.</value>
+  </data>
+  <data name="pyramidsGizaPullQuote2Author" xml:space="preserve">
+    <value>Napoleon Bonaparte</value>
+  </data>
+  <data name="pyramidsGizaCallout1" xml:space="preserve">
+    <value>It is theorized the pyramid not only served as a tomb for the pharaoh, but also as a storage pit for various items he would need in the afterlife.</value>
+  </data>
+  <data name="pyramidsGizaCallout2" xml:space="preserve">
+    <value>The Great Pyramid consists of an estimated 2.3 million blocks. Approximately 5.5 million tonnes of limestone, 8,000 tonnes of granite, and 500,000 tonnes of mortar were used in the construction.</value>
+  </data>
+  <data name="pyramidsGizaVideoCaption" xml:space="preserve">
+    <value>“The Great Pyramids of Giza | Egypt’s Ancient Mysteries | National Geographic UK.” Youtube, uploaded by National Geographic UK.</value>
+  </data>
+  <data name="pyramidsGizaMapCaption" xml:space="preserve">
+    <value>Map showing location of Giza Pyramids in Greater Cairo, Egypt.</value>
+  </data>
+  <data name="pyramidsGizaHistoryInfo1" xml:space="preserve">
+    <value>The Giza pyramid complex, also called the Giza necropolis, is the site on the Giza Plateau in Greater Cairo, Egypt that includes the Great Pyramid of Giza, the Pyramid of Khafre, and the Pyramid of Menkaure, along with their associated pyramid complexes and the Great Sphinx of Giza. All were built during the Fourth Dynasty of the Old Kingdom of Ancient Egypt, between 2600 and 2500 BCE.</value>
+  </data>
+  <data name="pyramidsGizaHistoryInfo2" xml:space="preserve">
+    <value>The pyramids of Giza and others are thought to have been constructed to house the remains of the deceased pharaohs who ruled over Ancient Egypt. A portion of the pharaoh's spirit called his ka was believed to remain with his corpse. Proper care of the remains was necessary in order for the former Pharaoh to perform his new duties as king of the dead.</value>
+  </data>
+  <data name="pyramidsGizaConstructionInfo1" xml:space="preserve">
+    <value>Most construction theories are based on the idea that the pyramids were built by moving huge stones from a quarry and dragging and lifting them into place. In building the pyramids, the architects might have developed their techniques over time.
+They would select a site on a relatively flat area of bedrock — not sand — which provided a stable foundation. After carefully surveying the site and laying down the first level of stones, they constructed the pyramids in horizontal levels, one on top of the other.</value>
+  </data>
+  <data name="pyramidsGizaConstructionInfo2" xml:space="preserve">
+    <value>For the Great Pyramid, most of the stone for the interior seems to have been quarried immediately to the south of the construction site. The smooth exterior of the pyramid was made of a fine grade of white limestone that was quarried across the Nile.
+To ensure that the pyramid remained symmetrical, the exterior casing stones all had to be equal in height and width. Workers might have marked all the blocks to indicate the angle of the pyramid wall and trimmed the surfaces carefully so that the blocks fit together. During construction, the outer surface of the stone was smooth limestone; excess stone has eroded as time has passed.</value>
+  </data>
+  <data name="pyramidsGizaLocationInfo1" xml:space="preserve">
+    <value>The site is at the edges of the Western Desert, approximately 5.6 miles (9 km) west of the Nile River in the city of Giza, and about 8 miles (13 km) southwest of the city center of Cairo.</value>
+  </data>
+  <data name="pyramidsGizaLocationInfo2" xml:space="preserve">
+    <value>Currently, the pyramids are located in the northwestern side of the Western Desert, and it is considered to be one of the best recognizable and the most visited tourist attractions of the planet.</value>
+  </data>
+  <data name="pyramidsGiza2575bce" xml:space="preserve">
+    <value>Construction of the 3 pyramids began for three kings of the 4th dynasty; Khufu, Khafre, and Menkaure.</value>
+  </data>
+  <data name="pyramidsGiza2465bce" xml:space="preserve">
+    <value>Construction began on the smaller surrounding structures called Mastabas for royalty of the 5th and 6th dynasties.</value>
+  </data>
+  <data name="pyramidsGiza443bce" xml:space="preserve">
+    <value>Greek Author Herodotus speculated that the pyramids were built in the span of 20 years with over 100,000 slave labourers. This assumption would last for over 1500 years</value>
+  </data>
+  <data name="pyramidsGiza1925ce" xml:space="preserve">
+    <value>Tomb of Queen Hetepheres was discovered, containing furniture and jewelry. One of the last remaining treasure-filled tombs after many years of looting and plundering.</value>
+  </data>
+  <data name="pyramidsGiza1979ce" xml:space="preserve">
+    <value>Designated a UNESCO World Heritage Site to prevent any more unauthorized plundering and vandalism.</value>
+  </data>
+  <data name="pyramidsGiza1990ce" xml:space="preserve">
+    <value>Discovery of labouror’s districts suggest that the workers building the pyramids were not slaves, and an ingenious building method proved a relatively small work-force was required to build such immense structures.</value>
+  </data>
+  <data name="pyramidsGizaCollectible1Title" xml:space="preserve">
+    <value>Two papyrus fragments</value>
+  </data>
+  <data name="pyramidsGizaCollectible1Icon" xml:space="preserve">
+    <value>scroll</value>
+  </data>
+  <data name="pyramidsGizaCollectible2Title" xml:space="preserve">
+    <value>Fragmentary Face of King Khafre</value>
+  </data>
+  <data name="pyramidsGizaCollectible2Icon" xml:space="preserve">
+    <value>statue</value>
+  </data>
+  <data name="pyramidsGizaCollectible3Title" xml:space="preserve">
+    <value>Jewelry Elements</value>
+  </data>
+  <data name="pyramidsGizaCollectible3Icon" xml:space="preserve">
+    <value>jewelry</value>
+  </data>
+  <data name="tajMahalTitle" xml:space="preserve">
+    <value>Taj Mahal</value>
+  </data>
+  <data name="tajMahalSubTitle" xml:space="preserve">
+    <value>Heaven on Earth</value>
+  </data>
+  <data name="tajMahalRegionTitle" xml:space="preserve">
+    <value>Agra, India</value>
+  </data>
+  <data name="tajMahalArtifactCulture" xml:space="preserve">
+    <value>Mughal</value>
+  </data>
+  <data name="tajMahalArtifactGeolocation" xml:space="preserve">
+    <value>India</value>
+  </data>
+  <data name="tajMahalPullQuote1Top" xml:space="preserve">
+    <value>Not just a Monument,</value>
+  </data>
+  <data name="tajMahalPullQuote1Bottom" xml:space="preserve">
+    <value>but a Symbol of Love.</value>
+  </data>
+  <data name="tajMahalPullQuote1Author" xml:space="preserve">
+    <value>Suman Pokhrel</value>
+  </data>
+  <data name="tajMahalPullQuote2" xml:space="preserve">
+    <value>The Taj Mahal rises above the banks of the river like a solitary tear suspended on the cheek of time.</value>
+  </data>
+  <data name="tajMahalPullQuote2Author" xml:space="preserve">
+    <value>Rabindranath Tagore</value>
+  </data>
+  <data name="tajMahalCallout1" xml:space="preserve">
+    <value>The Taj Mahal is distinguished as the finest example of Mughal architecture, a blend of Indian, Persian, and Islamic styles.</value>
+  </data>
+  <data name="tajMahalCallout2" xml:space="preserve">
+    <value>It took the efforts of 22,000 laborers, painters, embroidery artists and stonecutters to shape the Taj Mahal.</value>
+  </data>
+  <data name="tajMahalVideoCaption" xml:space="preserve">
+    <value>“India’s Taj Mahal Is an Enduring Monument to Love | National Geographic.” Youtube, uploaded by National Geographic.</value>
+  </data>
+  <data name="tajMahalMapCaption" xml:space="preserve">
+    <value>Map showing location of Taj Mahal in Uttar Pradesh, India.</value>
+  </data>
+  <data name="tajMahalHistoryInfo1" xml:space="preserve">
+    <value>The Taj Mahal is an ivory-white marble mausoleum on the right bank of the river Yamuna in the Indian city of Agra. It was commissioned in 1632 CE by the Mughal emperor Shah Jahan (r. 1628-1658) to house the tomb of his favorite wife, Mumtaz Mahal; it also houses the tomb of Shah Jahan himself.</value>
+  </data>
+  <data name="tajMahalHistoryInfo2" xml:space="preserve">
+    <value>The tomb is the centerpiece of a 42-acre (17-hectare) complex, which include twin mosque buildings (placed symmetrically on either side of the mausoleum), a guest house, and is set in formal gardens bounded on three sides by walls.</value>
+  </data>
+  <data name="tajMahalConstructionInfo1" xml:space="preserve">
+    <value>The Taj Mahal was constructed using materials from all over India and Asia. It is believed over 1,000 elephants were used to transport building materials.
+The translucent white marble was brought from Rajasthan, the jasper from Punjab, jade and crystal from China. The turquoise was from Tibet and the lapis from Afghanistan, while the sapphire came from Sri Lanka. In all, twenty-eight types of precious and semi-precious stones were inlaid into the white marble.</value>
+  </data>
+  <data name="tajMahalConstructionInfo2" xml:space="preserve">
+    <value>An area of roughly 3 acres was excavated, filled with dirt to reduce seepage, and leveled at 160 ft above riverbank. In the tomb area, wells were dug and filled with stone and rubble to form the footings of the tomb.
+The plinth and tomb took roughly 12 years to complete. The remaining parts of the complex took an additional 10 years.</value>
+  </data>
+  <data name="tajMahalLocationInfo1" xml:space="preserve">
+    <value>India's most famed building, it is situated in the eastern part of the city on the southern bank of the Yamuna River, nearly 1 mile east of the Agra Fort, also on the right bank of the Yamuna.</value>
+  </data>
+  <data name="tajMahalLocationInfo2" xml:space="preserve">
+    <value>The Taj Mahal is built on a parcel of land to the south of the walled city of Agra. Shah Jahan presented Maharaja Jai Singh with a large palace in the center of Agra in exchange for the land.</value>
+  </data>
+  <data name="tajMahal1631ce" xml:space="preserve">
+    <value>Built by Mughal Emperor Shah Jahān to immortalize his deceased wife.</value>
+  </data>
+  <data name="tajMahal1647ce" xml:space="preserve">
+    <value>Construction completed. The project involved over 20,000 workers and spanned 42 acres.</value>
+  </data>
+  <data name="tajMahal1658ce" xml:space="preserve">
+    <value>There were plans for a second mausoleum for his own remains, but Shah Jahān was imprisoned by his son for the rest of his life in Agra Fort, and this never came to pass.</value>
+  </data>
+  <data name="tajMahal1901ce" xml:space="preserve">
+    <value>Lord Curzon and the British Viceroy of India carried out a major restoration to the monument after over 350 years of decay and corrosion due to factory pollution and exhaust.</value>
+  </data>
+  <data name="tajMahal1984ce" xml:space="preserve">
+    <value>To protect the structure from Sikh militants and some Hindu nationalist groups, night viewing was banned to tourists. This ban would last 20 years.</value>
+  </data>
+  <data name="tajMahal1998ce" xml:space="preserve">
+    <value>Restoration and research program put into action to help preserve the monument.</value>
+  </data>
+  <data name="tajMahalCollectible1Title" xml:space="preserve">
+    <value>Dagger with Scabbard</value>
+  </data>
+  <data name="tajMahalCollectible1Icon" xml:space="preserve">
+    <value>jewelry</value>
+  </data>
+  <data name="tajMahalCollectible2Title" xml:space="preserve">
+    <value>The House of Bijapur</value>
+  </data>
+  <data name="tajMahalCollectible2Icon" xml:space="preserve">
+    <value>picture</value>
+  </data>
+  <data name="tajMahalCollectible3Title" xml:space="preserve">
+    <value>Panel of Nasta'liq Calligraphy</value>
+  </data>
+  <data name="tajMahalCollectible3Icon" xml:space="preserve">
+    <value>scroll</value>
+  </data>
+  <data name="timelineEvent2900bce" xml:space="preserve">
+    <value>First known use of papyrus by Egyptians</value>
+  </data>
+  <data name="timelineEvent2700bce" xml:space="preserve">
+    <value>The Old Kingdom begins in Egypt</value>
+  </data>
+  <data name="timelineEvent2600bce" xml:space="preserve">
+    <value>Emergence of Mayan culture in the Yucatán Peninsula</value>
+  </data>
+  <data name="timelineEvent2560bce" xml:space="preserve">
+    <value>King Khufu completes the Great Pyramid of Giza</value>
+  </data>
+  <data name="timelineEvent2500bce" xml:space="preserve">
+    <value>The mammoth goes extinct</value>
+  </data>
+  <data name="timelineEvent2200bce" xml:space="preserve">
+    <value>Completion of Stonehenge</value>
+  </data>
+  <data name="timelineEvent2000bce" xml:space="preserve">
+    <value>Domestication of the horse</value>
+  </data>
+  <data name="timelineEvent1800bce" xml:space="preserve">
+    <value>Alphabetic writing emerges</value>
+  </data>
+  <data name="timelineEvent890bce" xml:space="preserve">
+    <value>Home writes the Iliad and the Odyssey</value>
+  </data>
+  <data name="timelineEvent776bce" xml:space="preserve">
+    <value>First recorded Ancient Olympic Games</value>
+  </data>
+  <data name="timelineEvent753bce" xml:space="preserve">
+    <value>Founding of Rome</value>
+  </data>
+  <data name="timelineEvent447bce" xml:space="preserve">
+    <value>Building of the Parthenon at Athens started</value>
+  </data>
+  <data name="timelineEvent427bce" xml:space="preserve">
+    <value>Birth of Greek Philosopher Plato</value>
+  </data>
+  <data name="timelineEvent322bce" xml:space="preserve">
+    <value>Death of Aristotle (61), the first genuine scientist</value>
+  </data>
+  <data name="timelineEvent200bce" xml:space="preserve">
+    <value>Paper is invented in the Han Dynasty</value>
+  </data>
+  <data name="timelineEvent44bce" xml:space="preserve">
+    <value>Death of Julius Caesar; beginning of the Roman Empire</value>
+  </data>
+  <data name="timelineEvent4bce" xml:space="preserve">
+    <value>Birth of Jesus Christ</value>
+  </data>
+  <data name="timelineEvent43ce" xml:space="preserve">
+    <value>The Roman Empire enters Great Britain for the first time</value>
+  </data>
+  <data name="timelineEvent79ce" xml:space="preserve">
+    <value>Destruction of Pompeii by the volcano Vesuvius</value>
+  </data>
+  <data name="timelineEvent455ce" xml:space="preserve">
+    <value>End of the Roman Empire</value>
+  </data>
+  <data name="timelineEvent500ce" xml:space="preserve">
+    <value>Tikal becomes the first great Maya city</value>
+  </data>
+  <data name="timelineEvent632ce" xml:space="preserve">
+    <value>Death of Muhammad (61), founder of Islam</value>
+  </data>
+  <data name="timelineEvent793ce" xml:space="preserve">
+    <value>The Vikings first invade Britain</value>
+  </data>
+  <data name="timelineEvent800ce" xml:space="preserve">
+    <value>Gunpowder is invented in China</value>
+  </data>
+  <data name="timelineEvent1001ce" xml:space="preserve">
+    <value>Leif Erikson settles during the winter in present-day eastern Canada</value>
+  </data>
+  <data name="timelineEvent1077ce" xml:space="preserve">
+    <value>The Construction of the Tower of London begins</value>
+  </data>
+  <data name="timelineEvent1117ce" xml:space="preserve">
+    <value>The University of Oxford is founded</value>
+  </data>
+  <data name="timelineEvent1199ce" xml:space="preserve">
+    <value>Europeans first use compasses</value>
+  </data>
+  <data name="timelineEvent1227ce" xml:space="preserve">
+    <value>Death of Genghis Khan (65)</value>
+  </data>
+  <data name="timelineEvent1337ce" xml:space="preserve">
+    <value>The Hundred Years' War begins as England and France struggle for dominance.</value>
+  </data>
+  <data name="timelineEvent1347ce" xml:space="preserve">
+    <value>The first of many concurrences of the Black Death plague, believed to have wiped out as many as 50% of Europe's population by its end</value>
+  </data>
+  <data name="timelineEvent1428ce" xml:space="preserve">
+    <value>Birth of the Aztec Empire in Mexico</value>
+  </data>
+  <data name="timelineEvent1439ce" xml:space="preserve">
+    <value>Johannes Gutenberg invents the printing press</value>
+  </data>
+  <data name="timelineEvent1492ce" xml:space="preserve">
+    <value>Christopher Columbus reaches the New World</value>
+  </data>
+  <data name="timelineEvent1760ce" xml:space="preserve">
+    <value>The industrial revolution begins</value>
+  </data>
+  <data name="timelineEvent1763ce" xml:space="preserve">
+    <value>Development of the Watt steam engine</value>
+  </data>
+  <data name="timelineEvent1783ce" xml:space="preserve">
+    <value>End of the American War of Independence from the British Empire</value>
+  </data>
+  <data name="timelineEvent1789ce" xml:space="preserve">
+    <value>The French Revolution begins</value>
+  </data>
+  <data name="timelineEvent1914ce" xml:space="preserve">
+    <value>World War I</value>
+  </data>
+  <data name="timelineEvent1929ce" xml:space="preserve">
+    <value>Black Tuesday signals the beginning of the Great Depression</value>
+  </data>
+  <data name="timelineEvent1939ce" xml:space="preserve">
+    <value>World War II</value>
+  </data>
+  <data name="timelineEvent1957ce" xml:space="preserve">
+    <value>launch of Sputnik 1 by the Soviet Union</value>
+  </data>
+  <data name="timelineEvent1969ce" xml:space="preserve">
+    <value>Apollo 11 mission lands on the moon</value>
+  </data>
+</root>

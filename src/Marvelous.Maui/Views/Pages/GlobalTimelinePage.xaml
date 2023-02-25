@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:BaseContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:Marvelous.Maui.Views.Pages"
+    xmlns:simpleCore="clr-namespace:SimpleToolkit.Core;assembly=SimpleToolkit.Core"
+    xmlns:controls="clr-namespace:Marvelous.Maui.Views.Controls"
+    xmlns:core="clr-namespace:Marvelous.Core;assembly=Marvelous.Core"
+    x:Class="Marvelous.Maui.Views.Pages.GlobalTimelinePage"
+    Title="GlobalTimelinePage">
+
+    <Grid
+        RowDefinitions="auto, *, 45, 75"
+        Margin="0, 0, 0, 20"
+        CompressedLayout.IsHeadless="True">
+        <Grid
+            x:Name="appBar"
+            VerticalOptions="Start"
+            HeightRequest="{StaticResource AppBarHeight}"
+            CompressedLayout.IsHeadless="True">
+            <Border
+                x:Name="menuButtonBorder"
+                Style="{StaticResource AppBarButtonBorderStyle}">
+                <Border.StrokeShape>
+                    <Ellipse/>
+                </Border.StrokeShape>
+                <simpleCore:ContentButton
+                    Clicked="MenuBackButtonClicked">
+                    <simpleCore:Icon
+                        Source="common_icons_icon_back.png"
+                        Style="{StaticResource AppBarButtonIconStyle}"/>
+                </simpleCore:ContentButton>
+            </Border>
+
+            <Label
+                Text="{x:Static core:Localization.timelineTitleGlobalTimeline}"
+                Style="{StaticResource AppBarTitleLabelStyle}"/>
+        </Grid>
+
+        <Grid
+            x:Name="collectionViewGrid"
+            Grid.Row="1"
+            IsClippedToBounds="True">
+            <GraphicsView
+                x:Name="graphicsView"
+                Background="Transparent"
+                InputTransparent="True"/>
+
+            <AbsoluteLayout
+                x:Name="imagesAbsoluteLayout"
+                InputTransparent="True"
+                Background="Transparent"
+                CompressedLayout.IsHeadless="True"/>
+
+            <CollectionView
+                x:Name="collectionView"
+                Scrolled="CollectionViewScrolled">
+                <CollectionView.Header>
+                    <ContentView x:Name="headerSpacer"/>
+                </CollectionView.Header>
+
+                <CollectionView.Footer>
+                    <ContentView x:Name="footerSpacer"/>
+                </CollectionView.Footer>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <ContentView
+                            CompressedLayout.IsHeadless="True">
+                            <Label
+                                Text="{Binding .}"
+                                FontSize="14" FontFamily="RalewayRegular"
+                                TextColor="White"
+                                HeightRequest="60" WidthRequest="50"
+                                Margin="20, 0, 0, 0"
+                                Padding="0, 0, 0, 7"
+                                HorizontalOptions="Start"
+                                HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                        </ContentView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Line
+                x:Name="horizontalLine"
+                InputTransparent="True"
+                HorizontalOptions="Fill" VerticalOptions="Center"
+                HeightRequest="4"
+                Y1="2" Y2="2"
+                Stroke="{StaticResource TertiaryColor}" StrokeThickness="1"
+                StrokeDashArray="4,4" StrokeDashOffset="4"/>
+
+            <HorizontalStackLayout
+                InputTransparent="True"
+                VerticalOptions="Center" HorizontalOptions="End"
+                HeightRequest="40"
+                Margin="0,0,8,40"
+                Spacing="12"
+                CompressedLayout.IsHeadless="True">
+                <HorizontalStackLayout.Resources>
+                    <Style TargetType="Label">
+                        <Setter Property="TextColor" Value="White"/>
+                        <Setter Property="VerticalOptions" Value="Center"/>
+                    </Style>
+                </HorizontalStackLayout.Resources>
+                <Label
+                    x:Name="yearLabel"
+                    HorizontalOptions="End" HorizontalTextAlignment="End"
+                    WidthRequest="150"
+                    FontFamily="TenorSans" FontSize="26"/>
+                <Label
+                    x:Name="secondYearLabel"
+                    Grid.Column="1"
+                    FontSize="16" FontFamily="RalewayRegular"
+                    Margin="0,0,0,3"/>
+            </HorizontalStackLayout>
+
+            <Rectangle
+                InputTransparent="True"
+                VerticalOptions="End"
+                HeightRequest="80"
+                Margin="-1">
+                <Rectangle.Fill>
+                    <LinearGradientBrush
+                        StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Offset="0" Color="#001c1b15"/>
+                        <GradientStop Offset="1" Color="#ff1c1b15"/>
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+
+            <Rectangle
+                InputTransparent="True"
+                VerticalOptions="Start"
+                HeightRequest="80"
+                Margin="-1">
+                <Rectangle.Fill>
+                    <LinearGradientBrush
+                        StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Offset="0" Color="#ff1c1b15"/>
+                        <GradientStop Offset="1" Color="#001c1b15"/>
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+
+            <controls:EventCard
+                x:Name="eventCard"
+                VerticalOptions="Start"
+                Margin="20"
+                InputTransparent="True"/>
+        </Grid>
+
+        <Label
+            x:Name="timelineEraLabel"
+            Grid.Row="2"
+            TextColor="White"
+            FontFamily="RalewayRegular" FontSize="17"
+            HorizontalTextAlignment="Center"
+            VerticalTextAlignment="Center"/>
+
+        <controls:GlobalTimelineSlider
+            x:Name="globalTimelineSlider"
+            Grid.Row="3"/>
+    </Grid>
+</pages:BaseContentPage>
