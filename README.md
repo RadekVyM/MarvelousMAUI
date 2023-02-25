@@ -44,13 +44,14 @@ Here are some resources to learn more about the app and the amazing team that cr
 
 ## Features
 
-Wonderous .NET MAUI has highly expressive user interface, tailored to the mobile form factor, and does not conform to a stock design system. Only the .NET MAUI APIs and a few community libraries are used to achieve this level of expressiveness:
+Marvelous .NET MAUI has highly expressive user interface, tailored to the mobile form factor, and does not conform to a stock design system. Only the .NET MAUI APIs and a few community libraries are used to achieve this level of expressiveness:
 
 - [.NET MAUI Community Toolkit](https://github.com/CommunityToolkit/Maui) - collection of common elements for development with .NET MAUI that developers tend to replicate across multiple apps
 - [SimpleToolkit](https://github.com/RadekVyM/SimpleToolkit) - library of helpers and simple, easily customizable controls
 - [Draggable Grid](https://github.com/RadekVyM/Draggable-Grid-JS) - JavaScript control that allows you to arrange items of an unordered list into a grid and to move between them by dragging
 
 ### Remarkable carousel view
+
 Unique, custom-built carousel view which lets you to switch between all eight wonders of the world.
 
 <p align="center">
@@ -60,6 +61,7 @@ Unique, custom-built carousel view which lets you to switch between all eight wo
 </p>
 
 ### Unique scroll patterns
+
 Unique scroll patterns and effects as you move through various pages.
 
 <p align="center">
@@ -69,6 +71,7 @@ Unique scroll patterns and effects as you move through various pages.
 </p>
 
 ### Custom controls
+
 Tailored buttons, icons and other controls that match the Wonderous design system. Some of them are just compositions of existing .NET MAUI controls, and some are (almost completely) drawn using .NET MAUI cross-platform drawing APIs, such as a slider to select the period of the currently displayed artifacts.
 
 <p align="center">
@@ -78,7 +81,8 @@ Tailored buttons, icons and other controls that match the Wonderous design syste
 </p>
 
 ### Animations everywhere
-The application is full of animations, they can be found on each page.
+
+The application is full of animations.
 
 <p align="center">
     <img src="./images/android_discovering_artifact_20.gif" width="220">
@@ -87,6 +91,7 @@ The application is full of animations, they can be found on each page.
 </p>
 
 ### Blazor/JavaScript component
+
 The wonder photo gallery is created using the [Draggable Grid](https://github.com/RadekVyM/Draggable-Grid-JS) JavaScript control which is embedded via `BlazorWebView`.
 
 <p align="center">
