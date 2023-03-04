@@ -2,6 +2,7 @@
 using SimpleToolkit.SimpleShell.Transitions;
 using Marvelous.Core.Interfaces.Services;
 using Marvelous.Core.Interfaces.ViewModels;
+using SimpleToolkit.SimpleShell;
 
 namespace Marvelous.Maui.Views.Pages;
 
@@ -35,37 +36,17 @@ public partial class DiscoveredArtifactPage : BaseContentPage
             Color = primaryColor as Color
         };
 
-        this.SetTransition(
-            static args =>
-            {
-                if (args.TransitionType == SimpleShellTransitionType.Popping)
-                {
-                    args.OriginPage.Scale = 0.99 + (0.01 * (1 - args.Progress));
-                    args.OriginPage.TranslationX = args.Progress * args.OriginPage.Width;
-                }
-            },
+        this.SetTransition(new SimpleShellTransition(
+            callback: static args => { },
             starting: static args =>
             {
-                if (args.TransitionType == SimpleShellTransitionType.Pushing && args.DestinationPage is DiscoveredArtifactPage page)
+                if (args.DestinationPage is DiscoveredArtifactPage page)
                     page.AnimateIn();
             },
-            finished: static args =>
-            {
-                args.DestinationPage.Scale = 1;
-                args.DestinationPage.TranslationX = 0;
-                args.OriginPage.Scale = 1;
-                args.OriginPage.TranslationX = 0;
-            },
-            duration: static args => args.TransitionType == SimpleShellTransitionType.Pushing ? AnimationLength : 250u,
-            destinationPageInFront: static args =>
-            {
-                return args.TransitionType switch
-                {
-                    SimpleShellTransitionType.Switching => args.OriginPage is not MainMenuPage,
-                    SimpleShellTransitionType.Popping => false,
-                    _ => true
-                };
-            });
+            duration: static args => AnimationLength)
+            .CombinedWith(
+                transition: SimpleShell.Current.GetTransition(),
+                when: args => args.TransitionType != SimpleShellTransitionType.Pushing));
 	}
 
 

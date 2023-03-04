@@ -59,15 +59,9 @@ public partial class AppShell : SimpleShell
 				{
 					case SimpleShellTransitionType.Pushing:
 						args.DestinationPage.Opacity = args.DestinationPage.Width < 0 ? 0 : 1;
-#if IOS || MACCATALYST
-						args.DestinationPage.Scale = 0.99 + (0.01 * args.Progress);
-#endif
                         args.DestinationPage.TranslationX = Math.Max((1 - args.Progress) * args.DestinationPage.Width, 0);
 						break;
 					case SimpleShellTransitionType.Popping:
-#if IOS || MACCATALYST
-						args.OriginPage.Scale = 0.99 + (0.01 * (1 - args.Progress));
-#endif
 						args.OriginPage.TranslationX = args.Progress * args.OriginPage.Width;
 						break;
 				}
@@ -80,10 +74,8 @@ public partial class AppShell : SimpleShell
 			finished: static args =>
 			{
 				args.DestinationPage.Opacity = 1;
-				args.DestinationPage.Scale = 1;
 				args.DestinationPage.TranslationX = 0;
 				args.OriginPage.Opacity = 1;
-				args.OriginPage.Scale = 1;
 				args.OriginPage.TranslationX = 0;
 			},
 			duration: static args =>

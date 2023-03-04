@@ -422,8 +422,8 @@
 
 	<ItemGroup>
 	  <PackageReference Include="SimpleToolkit.Core" Version="2.0.3" />
-	  <PackageReference Include="SimpleToolkit.SimpleShell" Version="2.0.1" />
-	  <PackageReference Include="CommunityToolkit.Maui" Version="4.0.0" />
+	  <PackageReference Include="SimpleToolkit.SimpleShell" Version="2.1.0" />
+	  <PackageReference Include="CommunityToolkit.Maui" Version="5.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>

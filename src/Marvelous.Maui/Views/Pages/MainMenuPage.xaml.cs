@@ -6,6 +6,7 @@ using Marvelous.Core.Interfaces.Services;
 using Marvelous.Core.Interfaces.ViewModels;
 using Marvelous.Core.ViewModels.Parameters;
 using Marvelous.Maui.Views.Controls;
+using SimpleToolkit.SimpleShell;
 
 namespace Marvelous.Maui.Views.Pages;
 
@@ -24,30 +25,18 @@ public partial class MainMenuPage : BaseContentPage
 
 		InitializeComponent();
 
-        this.SetTransition(
-            args =>
+        this.SetTransition(new SimpleShellTransition(
+            callback: static args => { },
+            starting: static async args =>
             {
-                if (args.TransitionType == SimpleShellTransitionType.Popping)
-                {
-                    args.OriginPage.Scale = 0.99 + (0.01 * (1 - args.Progress));
-                    args.OriginPage.TranslationX = args.Progress * args.OriginPage.Width;
-                }
+                if (args.TransitionType != SimpleShellTransitionType.Popping && args.DestinationPage is MainMenuPage page)
+                    await page.illustrationsCarouselView.Show();
             },
-            starting: async args =>
-            {
-                if (args.TransitionType != SimpleShellTransitionType.Popping)
-                    await illustrationsCarouselView.Show();
-            },
-            finished: args =>
-            {
-                args.DestinationPage.Opacity = 1;
-                args.DestinationPage.Scale = 1;
-                args.DestinationPage.TranslationX = 0;
-                args.OriginPage.Opacity = 1;
-                args.OriginPage.Scale = 1;
-                args.OriginPage.TranslationX = 0;
-            },
-            destinationPageInFrontOnPopping: false);
+            destinationPageInFront: args => false,
+            duration: static args => 0)
+            .CombinedWith(
+                transition: SimpleShell.Current.GetTransition(),
+                when: args => args.TransitionType == SimpleShellTransitionType.Popping));
     }
 
 
