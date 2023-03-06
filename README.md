@@ -44,7 +44,7 @@ Here are some resources to learn more about the app and the amazing team that cr
 
 ## Features
 
-Marvelous .NET MAUI has highly expressive user interface, tailored to the mobile form factor, and does not conform to a stock design system. Only the .NET MAUI APIs and a few community libraries are used to achieve this level of expressiveness:
+Marvelous .NET MAUI has highly expressive user interface, tailored to the mobile form factor, and does not conform to a stock design system. Only .NET MAUI APIs and a few community libraries are used to achieve this level of expressiveness:
 
 - [.NET MAUI Community Toolkit](https://github.com/CommunityToolkit/Maui) - collection of common elements for development with .NET MAUI that developers tend to replicate across multiple apps
 - [SimpleToolkit](https://github.com/RadekVyM/SimpleToolkit) - library of helpers and simple, easily customizable controls
@@ -102,4 +102,4 @@ The wonder photo gallery is created using the [Draggable Grid](https://github.co
 
 As with the original app ([license](https://github.com/gskinnerTeam/flutter-wonderous-app/blob/main/LICENSE)), source code of this app is released under the MIT license. You can use the code for any purpose, including commercial projects.
 
-However, **visual assets are copyrighted** and **used with permission** from Google. Please visit the [Wonderous GitHub repository](https://github.com/gskinnerTeam/flutter-wonderous-app) for original version of the assets.
+However, **visual assets are copyrighted** and **used with permission**. Please visit the [Wonderous GitHub repository](https://github.com/gskinnerTeam/flutter-wonderous-app) for original version of the assets.
