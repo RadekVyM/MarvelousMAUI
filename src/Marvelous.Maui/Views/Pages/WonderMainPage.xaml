@@ -221,11 +221,6 @@
                             HeightRequest="250"
                             IsClippedToBounds="True"
                             Margin="0, 20, 0, 5">
-                            <!-- <controls:OpenStreetMapView
-                                LatLngParameters="{Binding LatLngParameters}"
-                                InputTransparent="True"/> -->
-
-                            <!-- https://www.google.com/maps/d/edit?mid=1-v7BBiPvzPMbgtJuo5hVccoDIFvG6rg&ll=26.776524959258957%2C78.04211890065208&z=6&hl=en -->
                             <Image
                                 Source="{Binding MapImage}"
                                 Aspect="AspectFill"
@@ -260,9 +255,9 @@
                             Margin="20, 0"/>
 
                         <!--
-                            TODO: On Android there is a bug that causes wrong values being returned in e.VerticalOffset when CollectionView is scrolled completely to the bottom
-                            and I click on this collectible
-                            Because of that collectible has to have static height
+                            TODO: On Android there is a bug that causes wrong values being returned in e.VerticalOffset
+                            when CollectionView is scrolled completely to the bottom and I click on this collectible
+                            Because of that, collectible has to have static height
                         -->
                         <ContentView
                             HeightRequest="160"

@@ -1,11 +1,10 @@
-using Microsoft.Maui.Controls.Shapes;
 using Marvelous.Core;
 using Marvelous.Core.Interfaces.Services;
 using Marvelous.Core.Interfaces.ViewModels;
 using Marvelous.Core.Models;
-using Marvelous.Core.ViewModels;
 using Marvelous.Maui.Models;
 using Marvelous.Maui.Views.Illustrations;
+using Microsoft.Maui.Controls.Shapes;
 
 namespace Marvelous.Maui.Views.Pages;
 
@@ -48,7 +47,7 @@ public partial class WonderMainPage : BaseContentPage
     }
 
 
-	protected override void OnSafeAreaChanged(Thickness safeArea)
+    protected override void OnSafeAreaChanged(Thickness safeArea)
 	{
         if (defaultMenuButtonBorderMargin == Thickness.Zero)
             defaultMenuButtonBorderMargin = menuButtonBorder.Margin;
@@ -142,6 +141,8 @@ public partial class WonderMainPage : BaseContentPage
             if (headerImageOverlay.Opacity != 0)
                 headerImageOverlay.Opacity = 0;
 #if IOS
+            // TODO: There is a problem with input transparency of an Image control on iOS
+            // Because of this, Z order of controls has to be different in different scroll positions
             collectionView.ZIndex = 1;
             headerImageContainer.ZIndex = 0;
 #endif
@@ -194,6 +195,7 @@ public partial class WonderMainPage : BaseContentPage
             return;
 
 #if ANDROID
+        // TODO: On Android, the header counts as an item but, not on iOS
         var currentSection = list[Math.Clamp(centerItemIndex - 1, 0, list.Count - 1)];
 #else
         var currentSection = list[centerItemIndex];
@@ -286,13 +288,6 @@ public partial class WonderMainPage : BaseContentPage
                 WonderType = viewModel.CurrentWonder.Type,
                 CollapsedSeparator = true,
                 VisibleCollectiblePosition = wonderConfig.MainPageCollectiblePosition,
-                /*
-                LatLngParameters = new Dictionary<string, object>
-                {
-                    [nameof(OpenStreetMap.Lat)] = wonder.Lat,
-                    [nameof(OpenStreetMap.Lng)] = wonder.Lng
-                }
-                */
             }
         };
 
@@ -308,6 +303,7 @@ public partial class WonderMainPage : BaseContentPage
 
         var offset = headerIllustrationContainer.HeightRequest + headerIllustrationContainer.Margin.VerticalThickness + headerTitleContainer.Height + headerImageContainer.HeightRequest + headerSectionTitleContainer.HeightRequest - wonderSectionTitleCutOutHeight;
 #if ANDROID
+        // TODO: On Android, margin is ignored on first load of the page (after 7.0.58 or 7.0.59 service release)
         collectionViewHeader.HeightRequest = offset;
 #elif IOS
         factsHistoryWonderSectionViewModel.Margin = new Thickness(0, offset, 0, 0);
@@ -452,7 +448,7 @@ public partial class WonderMainPage : BaseContentPage
         navigationService.GoTo(PageType.MainMenuPage);
     }
 
-    private async void MapTapped(object sender, TappedEventArgs e)
+    private static async void MapTapped(object sender, TappedEventArgs e)
     {
         var bindable = sender as BindableObject;
         var viewModel = bindable.BindingContext as LocationWonderSectionViewModel;

@@ -44,44 +44,24 @@ public partial class HorizontalSeparator : ContentView
 
     public void Expand()
     {
-        this.AbortAnimation(ExpandAnimationKey);
-
-        if (!IsCollapsedAnimated)
-        {
-            icon.Rotation = 0;
-            leftRect.ScaleX = 1;
-            rightRect.ScaleX = 1;
-            return;
-        }
-
-        var animation = new Animation();
-
-        animation.Add(0, 1, new Animation(d =>
-        {
-            icon.Rotation = d;
-        }, 0, 270, easing: Easing.SpringOut, finished: () =>
-        {
-            icon.Rotation = 0;
-        }));
-
-        animation.Add(0, 1, new Animation(d =>
-        {
-            leftRect.ScaleX = d;
-            rightRect.ScaleX = d;
-        }, 0, 1, easing: Easing.CubicInOut));
-
-        animation.Commit(this, ExpandAnimationKey, length: AnimationLength);
+        AnimateTo(ExpandAnimationKey, 0, 270, 0, 1);
     }
 
     public void Collapse()
     {
+        AnimateTo(CollapseAnimationKey, 270, 0, 1, 0);
+    }
+
+    private void AnimateTo(string key, double fromRotation, double toRotation, double fromScale, double toScale)
+    {
+        this.AbortAnimation(ExpandAnimationKey);
         this.AbortAnimation(CollapseAnimationKey);
 
         if (!IsCollapsedAnimated)
         {
-            icon.Rotation = 0;
-            leftRect.ScaleX = 0;
-            rightRect.ScaleX = 0;
+            icon.Rotation = toRotation;
+            leftRect.ScaleX = toScale;
+            rightRect.ScaleX = toScale;
             return;
         }
 
@@ -90,7 +70,7 @@ public partial class HorizontalSeparator : ContentView
         animation.Add(0, 1, new Animation(d =>
         {
             icon.Rotation = d;
-        }, 270, 0, easing: Easing.SpringOut, finished: () =>
+        }, fromRotation, toRotation, easing: Easing.SpringOut, finished: () =>
         {
             icon.Rotation = 0;
         }));
@@ -99,9 +79,9 @@ public partial class HorizontalSeparator : ContentView
         {
             leftRect.ScaleX = d;
             rightRect.ScaleX = d;
-        }, 1, 0, easing: Easing.CubicInOut));
+        }, fromScale, toScale, easing: Easing.CubicInOut));
 
-        animation.Commit(this, CollapseAnimationKey, length: AnimationLength);
+        animation.Commit(this, key, length: AnimationLength);
     }
 
     private static void OnIconColorChanged(BindableObject bindable, object oldValue, object newValue)

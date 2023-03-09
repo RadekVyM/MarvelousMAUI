@@ -96,10 +96,10 @@ public static class MauiProgram
 		builder.Services.AddTransient<IDiscoveredArtifactPageViewModel, DiscoveredArtifactPageViewModel>();
 
         builder.Services.AddSingleton<MainMenuPage>();
-        builder.Services.AddTransient<WonderArtifactsPage>();
-		builder.Services.AddTransient<WonderHistoryPage>();
-		builder.Services.AddTransient<WonderMainPage>();
-		builder.Services.AddTransient<WonderPhotoPage>();
+        builder.Services.AddSingleton<WonderArtifactsPage>();
+		builder.Services.AddSingleton<WonderHistoryPage>();
+		builder.Services.AddSingleton<WonderMainPage>();
+		builder.Services.AddSingleton<WonderPhotoPage>();
 		builder.Services.AddTransient<GlobalTimelinePage>();
 		builder.Services.AddTransient<UnsplashPhotoDetailPage>();
 		builder.Services.AddTransient<ArtifactPage>();
