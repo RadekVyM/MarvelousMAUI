@@ -66,8 +66,6 @@ public partial class PeriodArtifactView : Grid
         }
     }
 
-    public WonderLayerService WonderLayerService { get; set; }
-
 
     public PeriodArtifactView()
     {
@@ -356,7 +354,7 @@ public partial class PeriodArtifactView : Grid
     {
         backgroundDrawable.TimelineMargin = TimelineMargin;
         backgroundDrawable.TimelineRect = TimelineRect;
-        WonderLayerService?.UpdateWondersPosition(backgroundDrawable.WonderLayers, backgroundDrawable.MinYear, backgroundDrawable.MaxYear, TimelineRect.Width, 0, backgroundDrawable.MinWonderWidth);
+        WonderLayerService.UpdateWondersPosition(backgroundDrawable.WonderLayers, backgroundDrawable.MinYear, backgroundDrawable.MaxYear, TimelineRect.Width, 0, backgroundDrawable.MinWonderWidth);
 
         backgroundGraphicsView.Invalidate();
 
@@ -379,8 +377,8 @@ public partial class PeriodArtifactView : Grid
             if (viewModel.CurrentWonder is not null)
                 backgroundDrawable.SelectedWonder = viewModel.CurrentWonder.Type;
 
-            WonderLayerService?.UpdateWonders(viewModel.Wonders, backgroundDrawable.WonderLayers);
-            WonderLayerService?.UpdateWondersPosition(backgroundDrawable.WonderLayers, viewModel.MinYear, viewModel.MaxYear, TimelineRect.Width, 0, backgroundDrawable.MinWonderWidth);
+            WonderLayerService.UpdateWonders(viewModel.Wonders, backgroundDrawable.WonderLayers);
+            WonderLayerService.UpdateWondersPosition(backgroundDrawable.WonderLayers, viewModel.MinYear, viewModel.MaxYear, TimelineRect.Width, 0, backgroundDrawable.MinWonderWidth);
         }
 
         backgroundGraphicsView.Invalidate();
@@ -428,11 +426,11 @@ public partial class PeriodArtifactView : Grid
 
             canvas.ClipRectangle(backgroundRect);
 
-            canvas.SetFillPaint(new SolidPaint(ColorWithOpacity(BackgroundColor, BackgroundOpacity)), dirtyRect);
+            canvas.SetFillPaint(new SolidPaint(BackgroundColor.WithOpacity(BackgroundOpacity)), dirtyRect);
             canvas.FillRoundedRectangle(backgroundRect, CornerRadius, CornerRadius, backgroundBottomCornerRadius, backgroundBottomCornerRadius);
 
             RectF timelineRect = new Rect(TimelineMargin.Left, TimelineMargin.Top, dirtyRect.Width - TimelineMargin.HorizontalThickness, dirtyRect.Height - TimelineMargin.VerticalThickness);
-            canvas.SetFillPaint(new SolidPaint(ColorWithOpacity(TimelineColor, ExpandProgress)), timelineRect);
+            canvas.SetFillPaint(new SolidPaint(TimelineColor.WithOpacity(ExpandProgress)), timelineRect);
             canvas.FillRoundedRectangle(timelineRect, TimelineCornerRadius);
 
             DrawSearches(canvas);
@@ -445,8 +443,8 @@ public partial class PeriodArtifactView : Grid
                 SelectedWonder,
                 0,
                 Colors.Transparent,
-                new SolidPaint(ColorWithOpacity(Colors.White, 0.8 * ExpandProgress)),
-                new SolidPaint(ColorWithOpacity(Colors.White, 0.45 * ExpandProgress)));
+                new SolidPaint(Colors.White.WithOpacity(0.8 * ExpandProgress)),
+                new SolidPaint(Colors.White.WithOpacity(0.45 * ExpandProgress)));
 
             DrawSelectionBox(canvas, dirtyRect);
 
@@ -455,7 +453,7 @@ public partial class PeriodArtifactView : Grid
 
         private void DrawSelectionBox(ICanvas canvas, RectF dirtyRect)
         {
-            var color = ColorWithOpacity(Colors.White, 0.85 * ExpandProgress);
+            var color = Colors.White.WithOpacity(0.85 * ExpandProgress);
             var arrowWidth = ArrowThumbWidth * 0.22f;
             var arrowLeftOffset = (ArrowThumbWidth - arrowWidth) / 2f;
             var arrowTopOffset = (TimelineRect.Height / 2f) - arrowWidth;
@@ -483,7 +481,7 @@ public partial class PeriodArtifactView : Grid
         private void DrawArrows(ICanvas canvas, float arrowWidth, float arrowLeftOffset, float arrowTopOffset, RectF leftThumbRect, RectF rightThumbRect)
         {
             canvas.StrokeSize = 1.5f;
-            canvas.StrokeColor = ColorWithOpacity(TimelineColor, ExpandProgress);
+            canvas.StrokeColor = TimelineColor.WithOpacity(ExpandProgress);
             canvas.StrokeLineCap = LineCap.Round;
             canvas.StrokeLineJoin = LineJoin.Round;
 
@@ -511,7 +509,7 @@ public partial class PeriodArtifactView : Grid
             if (SearchesYears is null)
                 return;
 
-            var paint = new SolidPaint(ColorWithOpacity(SearchColor, SearchOpacity * ExpandProgress));
+            var paint = new SolidPaint(SearchColor.WithOpacity(SearchOpacity * ExpandProgress));
             var yearWidth = MaxYear - MinYear;
 
             foreach (var year in SearchesYears)
@@ -535,11 +533,6 @@ public partial class PeriodArtifactView : Grid
             backgroundRect.Bottom = Lerp(dirtyRect.Bottom, CollapsedRect.Bottom, CollapseProgress);
 
             return backgroundRect;
-        }
-
-        private Color ColorWithOpacity(Color color, double opacity)
-        {
-            return Color.FromRgba(color.Red, color.Green, color.Blue, opacity);
         }
     }
 }

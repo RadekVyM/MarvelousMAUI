@@ -9,7 +9,7 @@ namespace Marvelous.Maui.Views.Illustrations
         private double sphereSize => buildingWidth * 0.28;
         private double leavesHeight => Height * 0.475;
         private double cloudWidth => sphereSize * 1.5;
-        private double cloudHeight => cloudWidth / cloudRatio;
+        private double cloudHeight => cloudWidth / CloudRatio;
 
         protected override Rect defaultMainObjectBounds => new Rect((Width - buildingWidth) / 2, (Height - buildingHeight) / 2, buildingWidth, buildingWidth);
 
@@ -19,7 +19,7 @@ namespace Marvelous.Maui.Views.Illustrations
 
         protected override Rect defaultForegroundRightBounds => new Rect(Width - (leavesHeight * 1.2 * config.ForegroundRightRatio * 0.375), Height - (leavesHeight * 1.2), leavesHeight * 1.2 * config.ForegroundRightRatio, leavesHeight * 1.2);
 
-        protected override Rect defaultCloud1Bounds => new Rect((Width / 2) - sphereSize + 30, (Height / 10) + 20, sphereSize, sphereSize / cloudRatio);
+        protected override Rect defaultCloud1Bounds => new Rect((Width / 2) - sphereSize + 30, (Height / 10) + 20, sphereSize, sphereSize / CloudRatio);
 
         protected override Rect defaultCloud2Bounds => new Rect(-20, (Height / 10) + sphereSize - cloudHeight - 10, cloudWidth, cloudHeight);
 

@@ -69,7 +69,7 @@ public partial class IllustrationsCarouselView : ContentView
 
         Presenting?.Invoke(this, EventArgs.Empty);
 
-        verticalPanIndicatorView.AnimateIn(); // This is not in original design but I like it
+        verticalPanIndicatorView.AnimateIn(); // This is not in the original design but I like it
         await Task.WhenAll(
             currentIllustration.AnimateIn(),
             backgroundContainer.FadeTo(1, 200));

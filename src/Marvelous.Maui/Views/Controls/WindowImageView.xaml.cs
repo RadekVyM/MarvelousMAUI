@@ -4,10 +4,14 @@ namespace Marvelous.Maui.Views.Controls;
 
 public partial class WindowImageView : ContentView
 {
-    public static readonly BindableProperty VerticalDeltaProperty = BindableProperty.Create(nameof(VerticalDelta), typeof(double), typeof(WindowImageView), defaultValue: 0d, propertyChanged: OnVerticalDeltaChanged);
-    public static readonly BindableProperty ImageSourceProperty = BindableProperty.Create(nameof(ImageSource), typeof(ImageSource), typeof(WindowImageView), propertyChanged: OnImageSourceChanged);
-    public static readonly BindableProperty TopTextProperty = BindableProperty.Create(nameof(TopText), typeof(string), typeof(WindowImageView), propertyChanged: OnTopTextChanged);
-    public static readonly BindableProperty BottomTextProperty = BindableProperty.Create(nameof(BottomText), typeof(string), typeof(WindowImageView), propertyChanged: OnBottomTextChanged);
+    public static readonly BindableProperty VerticalDeltaProperty =
+        BindableProperty.Create(nameof(VerticalDelta), typeof(double), typeof(WindowImageView), defaultValue: 0d, propertyChanged: OnVerticalDeltaChanged);
+    public static readonly BindableProperty ImageSourceProperty =
+        BindableProperty.Create(nameof(ImageSource), typeof(ImageSource), typeof(WindowImageView), propertyChanged: OnImageSourceChanged);
+    public static readonly BindableProperty TopTextProperty =
+        BindableProperty.Create(nameof(TopText), typeof(string), typeof(WindowImageView), propertyChanged: OnTopTextChanged);
+    public static readonly BindableProperty BottomTextProperty =
+        BindableProperty.Create(nameof(BottomText), typeof(string), typeof(WindowImageView), propertyChanged: OnBottomTextChanged);
 
     public virtual double VerticalDelta
     {

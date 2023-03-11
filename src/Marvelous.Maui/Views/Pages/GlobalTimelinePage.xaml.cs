@@ -35,23 +35,19 @@ public partial class GlobalTimelinePage : BaseContentPage
 	private double realSpacing => collectionViewGrid.Height / 2;
 
 	private readonly Dictionary<int, List<LayerWonder>> wonderLayers = new Dictionary<int, List<LayerWonder>>();
-	private readonly GlobalTimelineDrawable drawable;
+	private readonly GlobalTimelineDrawable timelineDrawable;
 	private readonly IGlobalTimelinePageViewModel viewModel;
-	private readonly WonderLayerService wonderLayerService;
 
 
-	public GlobalTimelinePage(INavigationService navigationService, IGlobalTimelinePageViewModel viewModel, WonderLayerService wonderLayerService) : base(navigationService)
+	public GlobalTimelinePage(INavigationService navigationService, IGlobalTimelinePageViewModel viewModel) : base(navigationService)
     {
 		BindingContext = this.viewModel = viewModel;
 
         InitializeComponent();
 
-		this.wonderLayerService = wonderLayerService;
-		globalTimelineSlider.WonderLayerService = wonderLayerService;
-
         App.Current.Resources.TryGetValue("PrimaryColor", out object color);
 
-		graphicsView.Drawable = drawable = new GlobalTimelineDrawable
+		graphicsView.Drawable = timelineDrawable = new GlobalTimelineDrawable
 		{
 			LeftSpacing = LeftSpacing,
             DotColor = color as Color
@@ -77,12 +73,6 @@ public partial class GlobalTimelinePage : BaseContentPage
 		ScrollTo(labelIndex, true);
     }
 
-	private int GetLabelIndex(int year)
-	{
-		var yearLabelDifference = (int)YearLabelDifference;
-        return (((year / yearLabelDifference) * yearLabelDifference) + Math.Abs(minYear)) / yearLabelDifference;
-    }
-
 	private void UpdateAfterScroll()
     {
         UpdateYearLabels();
@@ -94,8 +84,8 @@ public partial class GlobalTimelinePage : BaseContentPage
         else
             eventCard.Hide();
 
-        drawable.CurrentEventYear = currentEvent?.Year ?? int.MinValue;
-        drawable.ScrollY = scrollY;
+        timelineDrawable.CurrentEventYear = currentEvent?.Year ?? int.MinValue;
+        timelineDrawable.ScrollY = scrollY;
         graphicsView.Invalidate();
 
         UpdateImages();
@@ -119,10 +109,10 @@ public partial class GlobalTimelinePage : BaseContentPage
 		collectionView.ItemsSource = list;
 		UpdateYearLabels();
 
-		drawable.TimelineHeight = timelineHeight;
-        drawable.MinYear = minYear;
-		drawable.MaxYear = maxYear;
-		drawable.EventYears = viewModel.TimelineEvents.Select(te => te.Year).ToList();
+		timelineDrawable.TimelineHeight = timelineHeight;
+        timelineDrawable.MinYear = minYear;
+		timelineDrawable.MaxYear = maxYear;
+		timelineDrawable.EventYears = viewModel.TimelineEvents.Select(te => te.Year).ToList();
 		graphicsView.Invalidate();
     }
 
@@ -162,7 +152,7 @@ public partial class GlobalTimelinePage : BaseContentPage
     {
         imagesAbsoluteLayout.Clear();
 
-        wonderLayerService.UpdateWonders(viewModel.Wonders, wonderLayers);
+        WonderLayerService.UpdateWonders(viewModel.Wonders, wonderLayers);
 
 		UpdateWondersPosition();
 
@@ -171,10 +161,10 @@ public partial class GlobalTimelinePage : BaseContentPage
 
 	private void UpdateWondersPosition()
 	{
-		wonderLayerService.UpdateWondersPosition(wonderLayers, minYear, maxYear, timelineHeight, realSpacing, minWonderHeight);
+        WonderLayerService.UpdateWondersPosition(wonderLayers, minYear, maxYear, timelineHeight, realSpacing, minWonderHeight);
 
-		drawable.WonderLayers = wonderLayers;
-		drawable.WonderWidth = wonderWidth;
+		timelineDrawable.WonderLayers = wonderLayers;
+		timelineDrawable.WonderWidth = wonderWidth;
 		graphicsView.Invalidate();
     }
 
@@ -221,7 +211,8 @@ public partial class GlobalTimelinePage : BaseContentPage
     private void ScrollTo(int labelIndex, bool animate = false)
     {
 #if ANDROID
-		var scrollToIndex = labelIndex + 1;
+        // TODO: On Android, the header counts as an item but, not on iOS
+        var scrollToIndex = labelIndex + 1;
 #else
         var scrollToIndex = labelIndex;
 #endif
@@ -261,6 +252,12 @@ public partial class GlobalTimelinePage : BaseContentPage
         return currentEvent;
     }
 
+    private int GetLabelIndex(int year)
+    {
+        var yearLabelDifference = (int)YearLabelDifference;
+        return (((year / yearLabelDifference) * yearLabelDifference) + Math.Abs(minYear)) / yearLabelDifference;
+    }
+
     private int GetCurrentYear()
     {
         var totalYears = Math.Abs(minYear) + Math.Abs(maxYear);
@@ -289,9 +286,9 @@ public partial class GlobalTimelinePage : BaseContentPage
 
         horizontalLine.X2 = collectionViewGrid.Width;
 
-		drawable.TimelineHeight = timelineHeight;
-		drawable.TopSpacing = realSpacing;
-		drawable.BottomSpacing = realSpacing;
+		timelineDrawable.TimelineHeight = timelineHeight;
+		timelineDrawable.TopSpacing = realSpacing;
+		timelineDrawable.BottomSpacing = realSpacing;
         graphicsView.Invalidate();
 
 		UpdateImages();
@@ -299,7 +296,7 @@ public partial class GlobalTimelinePage : BaseContentPage
         globalTimelineSlider.RelativeThumbWidth = collectionViewGrid.Height / totalTimelineHeight;
     }
 
-    private void ImageSizeChanged(object sender, EventArgs e)
+    private static void ImageSizeChanged(object sender, EventArgs e)
     {
         var image = sender as Image;
 
@@ -316,12 +313,12 @@ public partial class GlobalTimelinePage : BaseContentPage
     {
         if (e.PropertyName == nameof(IGlobalTimelinePageViewModel.TimelineEvents))
         {
-			globalTimelineSlider.TimelineEvents = viewModel.TimelineEvents;
+            globalTimelineSlider.UpdateWonderLayers(viewModel.Wonders, viewModel.TimelineEvents);
             UpdateYears();
         }
 		else if (e.PropertyName == nameof(IGlobalTimelinePageViewModel.Wonders))
         {
-            globalTimelineSlider.Wonders = viewModel.Wonders;
+            globalTimelineSlider.UpdateWonderLayers(viewModel.Wonders, viewModel.TimelineEvents);
             UpdateWonders();
 		}
 		else if (e.PropertyName == nameof(IGlobalTimelinePageViewModel.CurrentWonderType))

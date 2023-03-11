@@ -20,11 +20,11 @@ namespace Marvelous.Maui.Views.Illustrations
 
         protected override Rect defaultForegroundRightBounds => new Rect(Width - (flowersHeight * config.ForegroundRightRatio * 0.85), Height * 0.6, flowersHeight * config.ForegroundRightRatio, flowersHeight);
 
-        protected override Rect defaultCloud1Bounds => new Rect((Width - centerCloudWidth) / 2, centerCloudTop, centerCloudWidth, centerCloudWidth / cloudRatio);
+        protected override Rect defaultCloud1Bounds => new Rect((Width - centerCloudWidth) / 2, centerCloudTop, centerCloudWidth, centerCloudWidth / CloudRatio);
 
-        protected override Rect defaultCloud2Bounds => new Rect(-20, centerCloudTop + (centerCloudWidth / cloudRatio) + 30, centerCloudWidth * 0.7, (centerCloudWidth * 0.7) / cloudRatio);
+        protected override Rect defaultCloud2Bounds => new Rect(-20, centerCloudTop + (centerCloudWidth / CloudRatio) + 30, centerCloudWidth * 0.7, (centerCloudWidth * 0.7) / CloudRatio);
 
-        protected override Rect defaultCloud3Bounds => new Rect(Width / 8, centerCloudTop + ((centerCloudWidth / cloudRatio) * 2) + 80, centerCloudWidth * 0.8, (centerCloudWidth * 0.8) / cloudRatio);
+        protected override Rect defaultCloud3Bounds => new Rect(Width / 8, centerCloudTop + ((centerCloudWidth / CloudRatio) * 2) + 80, centerCloudWidth * 0.8, (centerCloudWidth * 0.8) / CloudRatio);
 
         protected override Rect outSkySphereBounds => new Rect(defaultSkySphereBounds.X, defaultSkySphereBounds.Y + (defaultSkySphereBounds.Height * 0.7), defaultSkySphereBounds.Width, defaultSkySphereBounds.Height);
 

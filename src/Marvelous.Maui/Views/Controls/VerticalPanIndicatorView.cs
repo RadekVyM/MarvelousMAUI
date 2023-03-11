@@ -2,6 +2,9 @@
 {
     public class VerticalPanIndicatorView : GraphicsView
     {
+        private const string AnimateInAniationKey = "AnimateIn";
+        private const uint AnimateInAniationLength = 500;
+
         private readonly VerticalPanIndicatorDrawable drawable;
        
         public static readonly BindableProperty ProgressProperty =
@@ -32,7 +35,7 @@
 
         public void AnimateIn()
         {
-            this.AbortAnimation("AnimateIn");
+            this.AbortAnimation(AnimateInAniationKey);
 
             var animation = new Animation();
 
@@ -49,7 +52,7 @@
                 Invalidate();
             }, 0, 1));
 
-            animation.Commit(this, "AnimateIn", length: 500);
+            animation.Commit(this, AnimateInAniationKey, length: AnimateInAniationLength);
         }
 
         private static void OnProgressPropertyChanged(BindableObject bindable, object oldValue, object newValue)

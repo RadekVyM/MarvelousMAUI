@@ -21,9 +21,6 @@
             <Border
                 x:Name="menuButtonBorder"
                 Style="{StaticResource AppBarButtonBorderStyle}">
-                <Border.StrokeShape>
-                    <Ellipse/>
-                </Border.StrokeShape>
                 <simpleCore:ContentButton
                     Clicked="MenuBackButtonClicked">
                     <simpleCore:Icon
@@ -56,11 +53,15 @@
                 x:Name="collectionView"
                 Scrolled="CollectionViewScrolled">
                 <CollectionView.Header>
-                    <ContentView x:Name="headerSpacer"/>
+                    <ContentView
+                        x:Name="headerSpacer"
+                        CompressedLayout.IsHeadless="True"/>
                 </CollectionView.Header>
 
                 <CollectionView.Footer>
-                    <ContentView x:Name="footerSpacer"/>
+                    <ContentView
+                        x:Name="footerSpacer"
+                        CompressedLayout.IsHeadless="True"/>
                 </CollectionView.Footer>
 
                 <CollectionView.ItemTemplate>
@@ -111,7 +112,7 @@
                 <Label
                     x:Name="secondYearLabel"
                     Grid.Column="1"
-                    FontSize="16" FontFamily="RalewayRegular"
+                    FontFamily="RalewayRegular" FontSize="16"
                     Margin="0,0,0,3"/>
             </HorizontalStackLayout>
 
@@ -123,8 +124,8 @@
                 <Rectangle.Fill>
                     <LinearGradientBrush
                         StartPoint="0,0" EndPoint="0,1">
-                        <GradientStop Offset="0" Color="#001c1b15"/>
-                        <GradientStop Offset="1" Color="#ff1c1b15"/>
+                        <GradientStop Offset="0" Color="{StaticResource TransparentDarkSecondaryColor}"/>
+                        <GradientStop Offset="1" Color="{StaticResource DarkSecondaryColor}"/>
                     </LinearGradientBrush>
                 </Rectangle.Fill>
             </Rectangle>
@@ -137,8 +138,8 @@
                 <Rectangle.Fill>
                     <LinearGradientBrush
                         StartPoint="0,0" EndPoint="0,1">
-                        <GradientStop Offset="0" Color="#ff1c1b15"/>
-                        <GradientStop Offset="1" Color="#001c1b15"/>
+                        <GradientStop Offset="0" Color="{StaticResource DarkSecondaryColor}"/>
+                        <GradientStop Offset="1" Color="{StaticResource TransparentDarkSecondaryColor}"/>
                     </LinearGradientBrush>
                 </Rectangle.Fill>
             </Rectangle>

@@ -10,7 +10,7 @@ namespace Marvelous.Maui.Views.Illustrations
         private double skySphereSize => (pyramidsHeight * 0.3);
         private double skySphereTop => pyramidsTop - skySphereSize + 20;
         private double centerCloudWidth => skySphereSize * 2.8;
-        private double centerCloudHeight => centerCloudWidth / cloudRatio;
+        private double centerCloudHeight => centerCloudWidth / CloudRatio;
         private double centerCloudTop => skySphereTop - 8;
 
         protected override Rect defaultMainObjectBounds => new Rect((Width - pyramidsWidth) / 2, pyramidsTop, pyramidsWidth, pyramidsHeight);

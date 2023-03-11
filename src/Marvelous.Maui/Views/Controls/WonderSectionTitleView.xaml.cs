@@ -12,8 +12,10 @@ public partial class WonderSectionTitleView : ContentView
 
     private readonly WonderSectionTitleViewDrawable drawable;
 
-    public static readonly BindableProperty WonderSectionProperty = BindableProperty.Create(nameof(WonderSection), typeof(WonderSectionViewModel), typeof(WonderSectionTitleView), propertyChanged: OnWonderSectionChanged);
-    public static readonly BindableProperty TitleSwitchDirectionProperty = BindableProperty.Create(nameof(TitleSwitchDirection), typeof(bool), typeof(WonderSectionTitleView), propertyChanged: OnTitleSwitchDirectionChanged);
+    public static readonly BindableProperty WonderSectionProperty =
+        BindableProperty.Create(nameof(WonderSection), typeof(WonderSectionViewModel), typeof(WonderSectionTitleView), propertyChanged: OnWonderSectionChanged);
+    public static readonly BindableProperty TitleSwitchDirectionProperty =
+        BindableProperty.Create(nameof(TitleSwitchDirection), typeof(bool), typeof(WonderSectionTitleView), propertyChanged: OnTitleSwitchDirectionChanged);
 
     public virtual WonderSectionViewModel WonderSection
     {
@@ -65,21 +67,10 @@ public partial class WonderSectionTitleView : ContentView
 
         var animation = new Animation();
 
-        animation.Add(0, 0.5, new Animation(d => icon.Scale = d, 1, 0, finished: () => icon.Source = GetIcon(WonderSection)));
+        animation.Add(0, 0.5, new Animation(d => icon.Scale = d, 1, 0, finished: () => icon.Source = WonderSection.Icon));
         animation.Add(0.5, 1, new Animation(d => icon.Scale = d, 0, 1, Easing.SpringOut));
 
         animation.Commit(this, IconAnimationKey, length: IconAnimationLength);
-    }
-
-    private string GetIcon(WonderSectionViewModel viewModel)
-    {
-        return viewModel switch
-        {
-            FactsHistoryWonderSectionViewModel => "common_history.png",
-            ConstructionWonderSectionViewModel => "common_construction.png",
-            LocationWonderSectionViewModel => "common_geography.png",
-            _ => ""
-        };
     }
 
     private static void OnWonderSectionChanged(BindableObject bindable, object oldValue, object newValue)
@@ -110,7 +101,7 @@ public partial class WonderSectionTitleView : ContentView
         public Color Background { get; set; }
         public Color TextColor { get; set; }
         public string Text { get; set; }
-        public string OldText { get; set; } = "Hello";
+        public string OldText { get; set; }
         public double Progress { get; set; } = 1;
         public bool Direction { get; set; }
 

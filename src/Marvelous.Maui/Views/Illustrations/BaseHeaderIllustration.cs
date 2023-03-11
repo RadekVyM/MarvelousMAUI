@@ -6,8 +6,9 @@ namespace Marvelous.Maui.Views.Illustrations
 {
     public abstract class BaseHeaderIllustration : AbsoluteLayout
     {
+        protected const double CloudRatio = 5.05455;
+
         protected readonly WonderViewConfig config;
-        protected readonly double cloudRatio = 5.05455;
 
         protected Image mainObject;
         protected Image skySphere;

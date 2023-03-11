@@ -4,8 +4,8 @@ public partial class EventCard : ContentView
 {
 	private const string ShowAnimationKey = "ShowAnimation";
 	private const string HideAnimationKey = "HideAnimation";
-	
 	private const uint AnimationLength = 500;
+	
 	private bool isHideAnimationRunning = false;
 
 

@@ -32,11 +32,16 @@ public partial class TabBar : ContentView
     public event EventHandler ItemSelected;
     public event EventHandler WonderClicked;
 
-    public static readonly BindableProperty CurrentWonderProperty = BindableProperty.Create(nameof(CurrentWonder), typeof(Wonder), typeof(TabBar), defaultValue: null, propertyChanged: OnCurrentWonderChanged);
-    public static readonly BindableProperty ShellItemsProperty = BindableProperty.Create(nameof(ShellItems), typeof(IEnumerable<BaseShellItem>), typeof(TabBar), defaultValue: null, propertyChanged: OnShellItemsChanged);
-    public static readonly BindableProperty CurrentShellItemProperty = BindableProperty.Create(nameof(CurrentShellItem), typeof(BaseShellItem), typeof(TabBar), defaultValue: null, propertyChanged: OnCurrentShellItemChanged);
-    public static readonly BindableProperty IsShownProperty = BindableProperty.Create(nameof(IsShown), typeof(bool), typeof(TabBar), defaultValue: true, propertyChanged: OnIsShownChanged);
-    public static readonly BindableProperty TabBarStyleProperty = BindableProperty.Create(nameof(TabBarStyle), typeof(TabBarStyle), typeof(TabBar), defaultValue: TabBarStyle.Light, propertyChanged: OnTabBarStyleChanged);
+    public static readonly BindableProperty CurrentWonderProperty =
+        BindableProperty.Create(nameof(CurrentWonder), typeof(Wonder), typeof(TabBar), defaultValue: null, propertyChanged: OnCurrentWonderChanged);
+    public static readonly BindableProperty ShellItemsProperty =
+        BindableProperty.Create(nameof(ShellItems), typeof(IEnumerable<BaseShellItem>), typeof(TabBar), defaultValue: null, propertyChanged: OnShellItemsChanged);
+    public static readonly BindableProperty CurrentShellItemProperty =
+        BindableProperty.Create(nameof(CurrentShellItem), typeof(BaseShellItem), typeof(TabBar), defaultValue: null, propertyChanged: OnCurrentShellItemChanged);
+    public static readonly BindableProperty IsShownProperty =
+        BindableProperty.Create(nameof(IsShown), typeof(bool), typeof(TabBar), defaultValue: true, propertyChanged: OnIsShownChanged);
+    public static readonly BindableProperty TabBarStyleProperty =
+        BindableProperty.Create(nameof(TabBarStyle), typeof(TabBarStyle), typeof(TabBar), defaultValue: TabBarStyle.Light, propertyChanged: OnTabBarStyleChanged);
 
     public virtual Wonder CurrentWonder
     {

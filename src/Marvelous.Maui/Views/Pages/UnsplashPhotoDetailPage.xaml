@@ -27,14 +27,6 @@
                     x:DataType="models:UnsplashPhoto">
                     <Grid
                         Background="Black">
-                        <!--
-                            There is a problem with recycled bitmaps on Android that causes a crash of the app.
-                            https://github.com/dotnet/maui/issues/10032
-                        
-                            Loop set to True throws NRE
-                        
-                            CurrentItem does not work
-                        -->
                         <Image
                             Source="{Binding Url, Converter={StaticResource UnsplashUrlConverter}}"
                             IsOpaque="True"

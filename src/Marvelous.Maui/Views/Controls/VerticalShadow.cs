@@ -4,10 +4,14 @@
     {
         private VerticalShadowDrawable drawable => Drawable as VerticalShadowDrawable;
 
-        public static readonly BindableProperty ColorProperty = BindableProperty.Create(nameof(Color), typeof(Color), typeof(VerticalShadow), defaultValue: null, propertyChanged: OnPropertyChanged);
-        public static readonly BindableProperty TransparentColorProperty = BindableProperty.Create(nameof(TransparentColor), typeof(Color), typeof(VerticalShadow), defaultValue: null, propertyChanged: OnPropertyChanged);
-        public static readonly BindableProperty OffsetProperty = BindableProperty.Create(nameof(Offset), typeof(float), typeof(VerticalShadow), defaultValue: 1f, propertyChanged: OnPropertyChanged);
-        public static readonly BindableProperty IsFromTopProperty = BindableProperty.Create(nameof(IsFromTop), typeof(bool), typeof(VerticalShadow), defaultValue: true, propertyChanged: OnPropertyChanged);
+        public static readonly BindableProperty ColorProperty =
+            BindableProperty.Create(nameof(Color), typeof(Color), typeof(VerticalShadow), defaultValue: null, propertyChanged: OnPropertyChanged);
+        public static readonly BindableProperty TransparentColorProperty =
+            BindableProperty.Create(nameof(TransparentColor), typeof(Color), typeof(VerticalShadow), defaultValue: null, propertyChanged: OnPropertyChanged);
+        public static readonly BindableProperty OffsetProperty =
+            BindableProperty.Create(nameof(Offset), typeof(float), typeof(VerticalShadow), defaultValue: 1f, propertyChanged: OnPropertyChanged);
+        public static readonly BindableProperty IsFromTopProperty =
+            BindableProperty.Create(nameof(IsFromTop), typeof(bool), typeof(VerticalShadow), defaultValue: true, propertyChanged: OnPropertyChanged);
 
         public virtual Color Color
         {

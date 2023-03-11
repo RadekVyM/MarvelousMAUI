@@ -16,8 +16,10 @@ public partial class AppMenu : ContentView
     private const double WonderButtonSpan = 3;
     private const double WonderButtonCornerRadius = 8;
 
-    public static readonly BindableProperty CurrentWonderProperty = BindableProperty.Create(nameof(CurrentWonder), typeof(Wonder), typeof(AppMenu), defaultBindingMode: BindingMode.TwoWay, propertyChanged: OnCurrentWonderChanged);
-    public static readonly BindableProperty WondersProperty = BindableProperty.Create(nameof(Wonders), typeof(IList<Wonder>), typeof(AppMenu), propertyChanged: OnWondersChanged);
+    public static readonly BindableProperty CurrentWonderProperty =
+        BindableProperty.Create(nameof(CurrentWonder), typeof(Wonder), typeof(AppMenu), defaultBindingMode: BindingMode.TwoWay, propertyChanged: OnCurrentWonderChanged);
+    public static readonly BindableProperty WondersProperty =
+        BindableProperty.Create(nameof(Wonders), typeof(IList<Wonder>), typeof(AppMenu), propertyChanged: OnWondersChanged);
 
     public virtual Wonder CurrentWonder
     {

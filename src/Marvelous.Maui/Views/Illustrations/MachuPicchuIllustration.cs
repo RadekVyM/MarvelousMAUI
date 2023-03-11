@@ -23,9 +23,9 @@ namespace Marvelous.Maui.Views.Illustrations
 
         protected override Rect defaultForegroundRightBounds => new Rect(bushWidth * -0.45, Height - (bushWidth * 0.5), bushWidth, bushWidth / config.ForegroundRightRatio);
 
-        protected override Rect defaultCloud1Bounds => new Rect((Width - centerCloudWidth) / 2, centerCloudTop, centerCloudWidth, centerCloudWidth / cloudRatio);
+        protected override Rect defaultCloud1Bounds => new Rect((Width - centerCloudWidth) / 2, centerCloudTop, centerCloudWidth, centerCloudWidth / CloudRatio);
 
-        protected override Rect defaultCloud2Bounds => new Rect(Width * 0.7, centerCloudTop - (centerCloudWidth / cloudRatio) + 15, centerCloudWidth * 0.9, (centerCloudWidth * 0.9) / cloudRatio);
+        protected override Rect defaultCloud2Bounds => new Rect(Width * 0.7, centerCloudTop - (centerCloudWidth / CloudRatio) + 15, centerCloudWidth * 0.9, (centerCloudWidth * 0.9) / CloudRatio);
 
         protected override Rect defaultCloud3Bounds => new Rect(Width / 3, Height * 0.4, centerCloudWidth * 0.7, centerCloudWidth * 0.7);
 

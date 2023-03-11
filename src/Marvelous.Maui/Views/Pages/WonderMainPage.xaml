@@ -411,9 +411,6 @@
             x:Name="menuButtonBorder"
             ZIndex="3"
             Style="{StaticResource AppBarButtonBorderStyle}">
-            <Border.StrokeShape>
-                <Ellipse/>
-            </Border.StrokeShape>
             <simpleCore:ContentButton
                 Clicked="MenuButtonClicked">
                 <simpleCore:Icon

@@ -2,6 +2,7 @@
 using SimpleToolkit.SimpleShell.Transitions;
 using Marvelous.Core.Interfaces.Services;
 using Marvelous.Core.Interfaces.ViewModels;
+using Marvelous.Maui.Extensions;
 using SimpleToolkit.SimpleShell;
 
 namespace Marvelous.Maui.Views.Pages;
@@ -263,7 +264,7 @@ public partial class DiscoveredArtifactPage : BaseContentPage
         {
             canvas.SaveState();
 
-            canvas.SetFillPaint(new SolidPaint(WithOpacity(BackgroundColor, BackgroundOpacity)), dirtyRect);
+            canvas.SetFillPaint(new SolidPaint(BackgroundColor.WithOpacity(BackgroundOpacity)), dirtyRect);
             canvas.FillRectangle(dirtyRect);
 
             var relativeAreaHeight = dirtyRect.Height - 150d - AppBarHeight - SafeArea.VerticalThickness;
@@ -292,8 +293,5 @@ public partial class DiscoveredArtifactPage : BaseContentPage
                 width - (width * scale),
                 height - (height * scale));
         }
-
-        private static Color WithOpacity(Color color, double opacity) =>
-            Color.FromRgba(color.Red, color.Green, color.Blue, opacity);
     }
 }

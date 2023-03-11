@@ -11,7 +11,7 @@ namespace Marvelous.Maui.Views.Illustrations
         private double leavesHeight => Height * 0.6;
         private double leavesTop => leavesHeight * -0.5;
         private double cloudWidth => Width * 0.6;
-        private double cloudHeight => cloudWidth / cloudRatio;
+        private double cloudHeight => cloudWidth / CloudRatio;
 
         protected override Rect defaultMainObjectBounds => new Rect((Width - buildingWidth) / 2, buildignTop, buildingWidth, buildingHeight);
 

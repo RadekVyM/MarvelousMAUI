@@ -50,6 +50,11 @@
                 <Setter Property="HorizontalOptions" Value="Start"/>
                 <Setter Property="VerticalOptions" Value="Start"/>
                 <Setter Property="Background" Value="{StaticResource SecondaryBrush}"/>
+                <Setter Property="StrokeShape">
+                    <Setter.Value>
+                        <Ellipse/>
+                    </Setter.Value>
+                </Setter>
             </Style>
 
             <Style x:Key="AppBarButtonIconStyle" TargetType="simpleCore:Icon">
@@ -78,12 +83,12 @@
                 <Setter Property="Margin" Value="20,0,20,125"/>
                 <Setter Property="LineHeight" Value="0.8"/>
                 <Setter Property="FontSize" Value="60"/>
-                <!-- Shadows are broken -->
-                <!--<Setter Property="Shadow">
+                <!-- TODO: Shadows are broken on Android -->
+                <!-- <Setter Property="Shadow">
                     <Setter.Value>
                         <Shadow/>
                     </Setter.Value>
-                </Setter>-->
+                </Setter> -->
             </Style>
 
             <Style x:Key="RectButtonBorderStyle" TargetType="Border">

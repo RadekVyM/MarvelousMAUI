@@ -4,7 +4,8 @@ namespace Marvelous.Maui.Views.Controls;
 
 public partial class WonderTitle : ContentView
 {
-    public static readonly BindableProperty TitleProperty = BindableProperty.Create(nameof(Title), typeof(string), typeof(WonderTitle), propertyChanged: OnTitleChanged);
+    public static readonly BindableProperty TitleProperty =
+        BindableProperty.Create(nameof(Title), typeof(string), typeof(WonderTitle), propertyChanged: OnTitleChanged);
 
     public virtual string Title
     {

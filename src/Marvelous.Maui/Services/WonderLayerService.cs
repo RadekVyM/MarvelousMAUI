@@ -3,9 +3,9 @@ using Marvelous.Maui.Models;
 
 namespace Marvelous.Maui.Services
 {
-    public class WonderLayerService
+    public static class WonderLayerService
     {
-        public void UpdateWonders(IList<Wonder> wonders, Dictionary<int, List<LayerWonder>> wonderLayers)
+        public static void UpdateWonders(IList<Wonder> wonders, Dictionary<int, List<LayerWonder>> wonderLayers)
         {
             wonderLayers.Clear();
 
@@ -27,7 +27,7 @@ namespace Marvelous.Maui.Services
             }
         }
 
-        public void UpdateWondersPosition(Dictionary<int, List<LayerWonder>> wonderLayers, int minYear, int maxYear, double timelineSize, double spacing, double minWonderSize)
+        public static void UpdateWondersPosition(Dictionary<int, List<LayerWonder>> wonderLayers, int minYear, int maxYear, double timelineSize, double spacing, double minWonderSize)
         {
             var totalYears = Math.Abs(minYear) + Math.Abs(maxYear);
             var yearOffset = timelineSize / totalYears;
@@ -61,7 +61,7 @@ namespace Marvelous.Maui.Services
             }
         }
 
-        private void AddWonderToLayer(int layer, Wonder wonder, Dictionary<int, List<LayerWonder>> wonderLayers)
+        private static void AddWonderToLayer(int layer, Wonder wonder, Dictionary<int, List<LayerWonder>> wonderLayers)
         {
             if (!wonderLayers.ContainsKey(layer))
                 wonderLayers[layer] = new List<LayerWonder>();
@@ -71,7 +71,7 @@ namespace Marvelous.Maui.Services
             wonderLayers[layer].Add(new LayerWonder(wonder.Type, wonder.StartYr, wonder.EndYr, config.Flattened, config.SecondaryColor));
         }
 
-        private void GetRidOfOverlaps(LayerWonder previous, LayerWonder next, double minWonderSize)
+        private static void GetRidOfOverlaps(LayerWonder previous, LayerWonder next, double minWonderSize)
         {
             var overlap = previous.End - next.Start;
             var toRemove = overlap / 2;

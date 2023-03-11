@@ -15,11 +15,11 @@ namespace Marvelous.Maui.Views.Illustrations
 
         protected override Rect defaultSkySphereBounds => new Rect((Width / 2) - 20, -3, sphereSize, sphereSize);
 
-        protected override Rect defaultCloud1Bounds => new Rect((Width - centerCloudWidth) * 0.4, centerCloudTop, centerCloudWidth, centerCloudWidth / cloudRatio);
+        protected override Rect defaultCloud1Bounds => new Rect((Width - centerCloudWidth) * 0.4, centerCloudTop, centerCloudWidth, centerCloudWidth / CloudRatio);
 
-        protected override Rect defaultCloud2Bounds => new Rect(-20, centerCloudTop + (centerCloudWidth / cloudRatio) + 10, centerCloudWidth * 0.5, (centerCloudWidth * 0.5) / cloudRatio);
+        protected override Rect defaultCloud2Bounds => new Rect(-20, centerCloudTop + (centerCloudWidth / CloudRatio) + 10, centerCloudWidth * 0.5, (centerCloudWidth * 0.5) / CloudRatio);
 
-        protected override Rect defaultCloud3Bounds => new Rect(Width / 8, centerCloudTop + ((centerCloudWidth / cloudRatio) * 2) + 10, centerCloudWidth * 0.8, (centerCloudWidth * 0.8) / cloudRatio);
+        protected override Rect defaultCloud3Bounds => new Rect(Width / 8, centerCloudTop + ((centerCloudWidth / CloudRatio) * 2) + 10, centerCloudWidth * 0.8, (centerCloudWidth * 0.8) / CloudRatio);
 
         protected override Rect backgroundBounds => new Rect(0, 0, Width, Height * 0.95);
 

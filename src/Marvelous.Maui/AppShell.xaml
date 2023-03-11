@@ -1,10 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+﻿<?xml version="1.0" encoding="UTF-8" ?>
 <simpleShell:SimpleShell
     x:Class="Marvelous.Maui.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:pages="clr-namespace:Marvelous.Maui.Views.Pages"
     xmlns:controls="clr-namespace:Marvelous.Maui.Views.Controls"
+    xmlns:core="clr-namespace:Marvelous.Core;assembly=Marvelous.Core"
     xmlns:simpleShell="clr-namespace:SimpleToolkit.SimpleShell;assembly=SimpleToolkit.SimpleShell"
     xmlns:simpleCore="clr-namespace:SimpleToolkit.Core;assembly=SimpleToolkit.Core"
     xmlns:extensions="clr-namespace:Marvelous.Maui.Extensions"
@@ -57,7 +58,7 @@
     <Tab>
         <ShellContent
             x:Name="mainMenuShellContent"
-            Title="Main Menu"
+            Title="{x:Static core:Localization.wonderDetailsTabSemanticBack}"
             Icon="common_tab_editorial.png"
             ContentTemplate="{DataTemplate pages:MainMenuPage}"
             Route="MainMenuPage"/>
@@ -65,7 +66,7 @@
 
     <Tab>
         <ShellContent
-            Title="Home"
+            Title="{x:Static core:Localization.wonderDetailsTabLabelInformation}"
             Icon="common_tab_editorial.png"
             extensions:ShellProperties.ActiveIcon="common_tab_editorial_active.png"
             extensions:ShellProperties.PageType="WonderMainPage"
@@ -75,7 +76,7 @@
 
     <Tab>
         <ShellContent
-            Title="Photos"
+            Title="{x:Static core:Localization.wonderDetailsTabLabelImages}"
             Icon="common_tab_photos.png"
             extensions:ShellProperties.ActiveIcon="common_tab_photos_active.png"
             extensions:ShellProperties.PageType="WonderPhotoPage"
@@ -85,7 +86,7 @@
 
     <Tab>
         <ShellContent
-            Title="Artifacts"
+            Title="{x:Static core:Localization.wonderDetailsTabLabelArtifacts}"
             Icon="common_tab_artifacts.png"
             extensions:ShellProperties.ActiveIcon="common_tab_artifacts_active.png"
             extensions:ShellProperties.PageType="WonderArtifactsPage"
@@ -95,7 +96,7 @@
 
     <Tab>
         <ShellContent
-            Title="History"
+            Title="{x:Static core:Localization.wonderDetailsTabLabelEvents}"
             Icon="common_tab_timeline.png"
             extensions:ShellProperties.ActiveIcon="common_tab_timeline_active.png"
             extensions:ShellProperties.PageType="WonderHistoryPage"

@@ -12,7 +12,7 @@ namespace Marvelous.Maui.Views.Illustrations
         private double poolHeight => Math.Max(((Height - buildingHeight) / 2) + (buildingHeight * 0.05), 2);
         private double poolWidth => poolHeight * config.TopLeftRatio;
         private double cloudWidth => Width * 0.6;
-        private double cloudHeight => cloudWidth / cloudRatio;
+        private double cloudHeight => cloudWidth / CloudRatio;
 
         protected override Rect defaultMainObjectBounds => new Rect((Width - buildingWidth) / 2, buildingTop, buildingWidth, buildingHeight);
 

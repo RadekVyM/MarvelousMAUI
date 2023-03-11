@@ -6,8 +6,10 @@
 
     <Color x:Key="PrimaryColor">#e1935a</Color>
     <Color x:Key="DarkPrimaryColor">#72492e</Color>
+    <Color x:Key="SuperDarkPrimaryColor">#361700</Color>
     <Color x:Key="SecondaryColor">#252621</Color>
-    <Color x:Key="DarkSecondaryColor">#1c1b15</Color>
+    <Color x:Key="DarkSecondaryColor">#ff1c1b15</Color>
+    <Color x:Key="TransparentDarkSecondaryColor">#001c1b15</Color>
     <Color x:Key="SuperDarkSecondaryColor">#0a0a08</Color>
     <Color x:Key="TertiaryColor">#f7ede3</Color>
     <Color x:Key="DarkTertiaryColor">#beaba1</Color>

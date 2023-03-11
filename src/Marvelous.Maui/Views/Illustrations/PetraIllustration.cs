@@ -10,7 +10,7 @@ namespace Marvelous.Maui.Views.Illustrations
         private double sphereSize => buildingWidth * 0.115;
         private double cliffHeight => Height;
         private double cloudWidth => sphereSize * 2.1;
-        private double cloudHeight => cloudWidth / cloudRatio;
+        private double cloudHeight => cloudWidth / CloudRatio;
 
         protected override Rect defaultMainObjectBounds => new Rect((Width - buildingWidth) / 2, buildingTop, buildingWidth, buildingHeight);
 

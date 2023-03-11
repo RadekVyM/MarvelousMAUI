@@ -13,7 +13,7 @@ namespace Marvelous.Maui.Views.Illustrations
         private double sphinxHeight => Math.Max(sphinxIdealHeight, Width / config.ForegroundRightRatio);
         private double sphinxIdealHeight => Height - dunesTop;
         private double centerCloudWidth => skySphereSize * 1.9;
-        private double centerCloudHeight => centerCloudWidth / cloudRatio;
+        private double centerCloudHeight => centerCloudWidth / CloudRatio;
         private double centerCloudTop => skySphereTop + 8;
 
         protected override Rect defaultMainObjectBounds => new Rect((Width - (pyramidsHeight * config.MainObjectRatio)) / 2, pyramidsTop, pyramidsHeight * config.MainObjectRatio, pyramidsHeight);

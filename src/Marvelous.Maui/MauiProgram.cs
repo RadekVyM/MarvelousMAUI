@@ -79,8 +79,6 @@ public static class MauiProgram
         builder.Services.AddSingleton<INavigationService, NavigationService>();
         builder.Services.AddSingleton<Marvelous.Core.Interfaces.Services.IBrowser, Marvelous.Maui.Services.Browser>();
 
-        builder.Services.AddSingleton<WonderLayerService>();
-
 		builder.Services.AddSingleton<AppShell>();
 
 		builder.Services.AddSingleton<IMainViewModel, MainViewModel>();

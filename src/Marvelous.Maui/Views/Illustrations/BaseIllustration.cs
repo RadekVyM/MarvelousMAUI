@@ -21,6 +21,7 @@ namespace Marvelous.Maui.Views.Illustrations
         public const uint AnimateOutLength = 500;
         public const uint AnimateMainObjectInLength = 400;
         public const uint AnimateMainObjectOutLength = 400;
+        protected const double CloudRatio = 5.05455;
 
         protected double offset;
         protected double foregroundScale;
@@ -60,7 +61,6 @@ namespace Marvelous.Maui.Views.Illustrations
         protected virtual Rect outCloud3Bounds => new Rect(-defaultCloud3Bounds.Width, defaultCloud3Bounds.Y, defaultCloud3Bounds.Width, defaultCloud3Bounds.Height);
 
         protected readonly WonderViewConfig config;
-        protected readonly double cloudRatio = 5.05455;
 
         public double Offset 
         {
@@ -345,7 +345,7 @@ namespace Marvelous.Maui.Views.Illustrations
 
 #if ANDROID
             // TODO: Workaround of a bug with wrong initial sizing of the label
-            await Task.Delay(100);
+            await Task.Delay(50);
 
             this.LayoutChildTo(illustrationTitle, new Rect(1, 1, 1, 1));
             this.LayoutChildTo(illustrationTitle, illustrationTitleBounds);

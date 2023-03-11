@@ -58,11 +58,15 @@ public partial class AppShell : SimpleShell
 				switch (args.TransitionType)
 				{
 					case SimpleShellTransitionType.Pushing:
-						args.DestinationPage.Opacity = args.DestinationPage.Width < 0 ? 0 : 1;
+						if (!IsRootPage(args.OriginPage) && args.OriginPage is not MainMenuPage)
+							args.OriginPage.TranslationX = args.Progress * -args.DestinationPage.Width * 0.2;
+                        args.DestinationPage.Opacity = args.DestinationPage.Width < 0 ? 0 : 1;
                         args.DestinationPage.TranslationX = Math.Max((1 - args.Progress) * args.DestinationPage.Width, 0);
 						break;
 					case SimpleShellTransitionType.Popping:
-						args.OriginPage.TranslationX = args.Progress * args.OriginPage.Width;
+                        if (!IsRootPage(args.DestinationPage) && args.DestinationPage is not MainMenuPage)
+                            args.DestinationPage.TranslationX = (1 - args.Progress) * -args.DestinationPage.Width * 0.2;
+                        args.OriginPage.TranslationX = args.Progress * args.OriginPage.Width;
 						break;
 				}
 			},
@@ -85,7 +89,7 @@ public partial class AppShell : SimpleShell
 				else if (args.TransitionType == SimpleShellTransitionType.Switching)
 					return 0;
 				else
-					return 250u;
+					return 240u;
 			},
 			destinationPageInFront: static args =>
 			{
@@ -100,7 +104,7 @@ public partial class AppShell : SimpleShell
 
 	protected override bool OnBackButtonPressed()
 	{
-		if (CurrentPage is WonderMainPage || CurrentPage is WonderPhotoPage || CurrentPage is WonderArtifactsPage || CurrentPage is WonderHistoryPage)
+		if (IsRootPage(CurrentPage))
 		{
 			navigationService.GoTo(PageType.MainMenuPage);
 			return true;
@@ -115,6 +119,11 @@ public partial class AppShell : SimpleShell
             return base.OnBackButtonPressed();
         }
 	}
+
+	private static bool IsRootPage(VisualElement page)
+	{
+		return page is WonderMainPage || page is WonderPhotoPage || page is WonderArtifactsPage || page is WonderHistoryPage;
+    }
 
 	private static void AppShellLoaded(object sender, EventArgs e)
 	{

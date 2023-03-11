@@ -5,9 +5,12 @@ namespace Marvelous.Maui.Views.Controls;
 
 public partial class UImagesView : ContentView
 {
-    public static readonly BindableProperty VerticalDeltaProperty = BindableProperty.Create(nameof(VerticalDelta), typeof(double), typeof(UImagesView), defaultValue: 0d, propertyChanged: OnVerticalDeltaChanged);
-    public static readonly BindableProperty LeftImageSourceProperty = BindableProperty.Create(nameof(LeftImageSource), typeof(ImageSource), typeof(UImagesView), propertyChanged: OnLeftImageSourceChanged);
-    public static readonly BindableProperty RightImageSourceProperty = BindableProperty.Create(nameof(RightImageSource), typeof(ImageSource), typeof(UImagesView), propertyChanged: OnRightImageSourceChanged);
+    public static readonly BindableProperty VerticalDeltaProperty =
+        BindableProperty.Create(nameof(VerticalDelta), typeof(double), typeof(UImagesView), defaultValue: 0d, propertyChanged: OnVerticalDeltaChanged);
+    public static readonly BindableProperty LeftImageSourceProperty =
+        BindableProperty.Create(nameof(LeftImageSource), typeof(ImageSource), typeof(UImagesView), propertyChanged: OnLeftImageSourceChanged);
+    public static readonly BindableProperty RightImageSourceProperty =
+        BindableProperty.Create(nameof(RightImageSource), typeof(ImageSource), typeof(UImagesView), propertyChanged: OnRightImageSourceChanged);
 
     public virtual double VerticalDelta
     {
@@ -93,7 +96,8 @@ public partial class UImagesView : ContentView
 
     private class PillDrawable : IDrawable
     {
-        private const float maxRadius = 100f;
+        private const float MaxRadius = 100f;
+        private const float VerticalOffset = 20f;
 
         public Color Color { get; set; }
 
@@ -101,15 +105,15 @@ public partial class UImagesView : ContentView
         {
             canvas.SaveState();
 
-            var radius = Math.Min(dirtyRect.Height / 2, Math.Min(maxRadius, dirtyRect.Width / 2));
-            var leftCenter = new PointF(radius, dirtyRect.Height - radius);
-            var rightCenter = new PointF(dirtyRect.Width - radius, radius);
+            var radius = Math.Min(dirtyRect.Height / 2, Math.Min(MaxRadius, dirtyRect.Width / 2));
+            var leftCenter = new PointF(radius, dirtyRect.Height - radius - VerticalOffset);
+            var rightCenter = new PointF(dirtyRect.Width - radius, radius + VerticalOffset);
 
             var vec = rightCenter - leftCenter;
             var leftVector = GetRightAngleVector(vec, true, radius);
             var rigthVector = GetRightAngleVector(vec, false, radius);
 
-            var angle = (float)(Math.Acos(((leftVector.Width * 0) + (leftVector.Height * -radius)) / (radius * radius)) / Math.PI) * 180f;
+            var angle = (float)(Math.Acos(Math.Abs(leftVector.Width) / radius) / Math.PI) * 180f;
 
             var path = new PathF()
                 .MoveTo(leftCenter + leftVector)
@@ -117,6 +121,7 @@ public partial class UImagesView : ContentView
                 .AddArc(rightCenter.X - radius, rightCenter.Y - radius, rightCenter.X + radius, rightCenter.Y + radius, 180f - angle, 360f - angle, true)
                 .LineTo(leftCenter + rigthVector)
                 .AddArc(leftCenter.X - radius, leftCenter.Y - radius, leftCenter.X + radius, leftCenter.Y + radius, 360f - angle, 180f - angle, true);
+            path.Close();
 
             canvas.StrokeColor = Color;
             canvas.StrokeSize = 1.5f;

@@ -10,13 +10,11 @@ public partial class ArtifactsPage : BaseContentPage
     private IArtifactsPageViewModel viewModel => BindingContext as IArtifactsPageViewModel;
 
 
-    public ArtifactsPage(INavigationService navigationService, IArtifactsPageViewModel viewModel, WonderLayerService wonderLayerService) : base(navigationService)
+    public ArtifactsPage(INavigationService navigationService, IArtifactsPageViewModel viewModel) : base(navigationService)
     {
         BindingContext = viewModel;
 
         InitializeComponent();
-
-        periodArtifactView.WonderLayerService = wonderLayerService;
 
         UpdateShadowOffset(0);
     }

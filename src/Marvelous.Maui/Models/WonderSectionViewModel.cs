@@ -7,6 +7,7 @@ namespace Marvelous.Maui.Models
     {
         private bool collapsedSeparator;
 
+        public string Icon { get; init; }
         public string Title { get; init; }
         public int VisibleCollectiblePosition { get; init; }
         public WonderType WonderType { get; init; }

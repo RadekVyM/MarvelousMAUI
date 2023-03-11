@@ -2,7 +2,8 @@ namespace Marvelous.Maui.Views.Controls;
 
 public partial class InfoText : ContentView
 {
-    public static readonly BindableProperty TextProperty = BindableProperty.Create(nameof(Text), typeof(string), typeof(InfoText), propertyChanged: OnTextChanged);
+    public static readonly BindableProperty TextProperty =
+        BindableProperty.Create(nameof(Text), typeof(string), typeof(InfoText), propertyChanged: OnTextChanged);
 
     public virtual string Text
     {

@@ -13,7 +13,6 @@ namespace Marvelous.Maui.Views.Pages;
 
 public partial class WonderHistoryPage : BaseContentPage
 {
-    private readonly WonderLayerService wonderLayerService;
     private readonly IWonderHistoryPageViewModel viewModel;
     private readonly TimelineDrawable drawable;
     private readonly Dictionary<int, List<LayerWonder>> wonderLayers = new Dictionary<int, List<LayerWonder>>();
@@ -28,10 +27,8 @@ public partial class WonderHistoryPage : BaseContentPage
 
     public WonderHistoryPage(
         INavigationService navigationService,
-        IWonderHistoryPageViewModel viewModel,
-        WonderLayerService wonderLayerService) : base(navigationService)
+        IWonderHistoryPageViewModel viewModel) : base(navigationService)
     {
-        this.wonderLayerService = wonderLayerService;
         BindingContext = this.viewModel = viewModel;
 
         InitializeComponent();
@@ -66,8 +63,8 @@ public partial class WonderHistoryPage : BaseContentPage
             minYear = viewModel.Wonders.MinWonderYear();
             maxYear = viewModel.Wonders.MaxWonderYear();
 
-            wonderLayerService.UpdateWonders(viewModel.Wonders, wonderLayers);
-            wonderLayerService.UpdateWondersPosition(wonderLayers, minYear, maxYear, headerGraphicsView.Width, 0, minWonderWidth);
+            WonderLayerService.UpdateWonders(viewModel.Wonders, wonderLayers);
+            WonderLayerService.UpdateWondersPosition(wonderLayers, minYear, maxYear, headerGraphicsView.Width, 0, minWonderWidth);
 
             drawable.WonderLayers = wonderLayers;
 
@@ -89,7 +86,7 @@ public partial class WonderHistoryPage : BaseContentPage
 
     private void HeaderGraphicsViewSizeChanged(object sender, EventArgs e)
     {
-        wonderLayerService.UpdateWondersPosition(wonderLayers, minYear, maxYear, headerGraphicsView.Width, 0, minWonderWidth);
+        WonderLayerService.UpdateWondersPosition(wonderLayers, minYear, maxYear, headerGraphicsView.Width, 0, minWonderWidth);
 
         drawable.MinWonderHeight = minWonderWidth;
         drawable.WonderSpacing = wonderSpacing;

@@ -11,36 +11,25 @@ namespace Marvelous.Maui.Views.Controls
         private readonly Dictionary<int, List<LayerWonder>> wonderLayers = new Dictionary<int, List<LayerWonder>>();
         private readonly GlobalTimelineSliderDrawable drawable;
 
-        private int minYear;
-        private int maxYear;
         private double startRelativePosition = 0;
+        private int minYear = 0;
+        private int maxYear = 0;
 
         private double wonderSpacing => 3;
         private double wondersHeight => Height * 0.55;
         private double minWonderWidth => (wondersHeight - ((wonderLayers.Count - 1) * wonderSpacing)) / wonderLayers.Count;
 
-        public static readonly BindableProperty CurrentWonderTypeProperty = BindableProperty.Create(nameof(CurrentWonderType), typeof(WonderType), typeof(GlobalTimelineSlider), propertyChanged: OnCurrentWonderChanged);
-        public static readonly BindableProperty WondersProperty = BindableProperty.Create(nameof(Wonders), typeof(IList<Wonder>), typeof(GlobalTimelineSlider), propertyChanged: OnWondersChanged);
-        public static readonly BindableProperty TimelineEventsProperty = BindableProperty.Create(nameof(TimelineEvents), typeof(IList<TimelineEvent>), typeof(GlobalTimelineSlider), propertyChanged: OnTimelineEventsChanged);
-        public static readonly BindableProperty RelativeThumbWidthProperty = BindableProperty.Create(nameof(RelativeThumbWidth), typeof(double), typeof(GlobalTimelineSlider), propertyChanged: OnRelativeThumbPropertyChanged);
-        public static readonly BindableProperty RelativeThumbPositionProperty = BindableProperty.Create(nameof(RelativeThumbPosition), typeof(double), typeof(GlobalTimelineSlider), propertyChanged: OnRelativeThumbPropertyChanged);
+        public static readonly BindableProperty CurrentWonderTypeProperty =
+            BindableProperty.Create(nameof(CurrentWonderType), typeof(WonderType), typeof(GlobalTimelineSlider), propertyChanged: OnCurrentWonderChanged);
+        public static readonly BindableProperty RelativeThumbWidthProperty =
+            BindableProperty.Create(nameof(RelativeThumbWidth), typeof(double), typeof(GlobalTimelineSlider), propertyChanged: OnRelativeThumbPropertyChanged);
+        public static readonly BindableProperty RelativeThumbPositionProperty =
+            BindableProperty.Create(nameof(RelativeThumbPosition), typeof(double), typeof(GlobalTimelineSlider), propertyChanged: OnRelativeThumbPropertyChanged);
 
         public virtual WonderType CurrentWonderType
         {
             get => (WonderType)GetValue(CurrentWonderTypeProperty);
             set => SetValue(CurrentWonderTypeProperty, value);
-        }
-
-        public virtual IList<Wonder> Wonders
-        {
-            get => (IList<Wonder>)GetValue(WondersProperty);
-            set => SetValue(WondersProperty, value);
-        }
-
-        public virtual IList<TimelineEvent> TimelineEvents
-        {
-            get => (IList<TimelineEvent>)GetValue(TimelineEventsProperty);
-            set => SetValue(TimelineEventsProperty, value);
         }
 
         public virtual double RelativeThumbWidth
@@ -56,7 +45,6 @@ namespace Marvelous.Maui.Views.Controls
         }
 
         public bool IsPanning { get; private set; } = false;
-        public WonderLayerService WonderLayerService { get; set; }
 
         public event Action<double> Scrolled;
 
@@ -77,6 +65,35 @@ namespace Marvelous.Maui.Views.Controls
             GestureRecognizers.Add(panRecognizer);
 
             SizeChanged += GlobalTimelineSliderSizeChanged;
+        }
+
+
+        public void UpdateWonderLayers(IList<Wonder> wonders, IList<TimelineEvent> timelineEvents)
+        {
+            if (wonders is null)
+                return;
+
+            UpdateMinMaxYears(wonders, timelineEvents);
+
+            WonderLayerService.UpdateWonders(wonders, wonderLayers);
+
+            WonderLayerService.UpdateWondersPosition(wonderLayers, minYear, maxYear, Width, 0, minWonderWidth);
+
+            Invalidate();
+        }
+
+        private void UpdateMinMaxYears(IList<Wonder> wonders, IList<TimelineEvent> timelineEvents)
+        {
+            if (timelineEvents is null || !timelineEvents.Any())
+            {
+                minYear = wonders.MinWonderYear();
+                maxYear = wonders.MaxWonderYear();
+            }
+            else
+            {
+                minYear = timelineEvents.MinEventYear();
+                maxYear = timelineEvents.MaxEventYear();
+            }
         }
 
         private void GlobalTimelineSliderSizeChanged(object sender, EventArgs e)
@@ -114,51 +131,13 @@ namespace Marvelous.Maui.Views.Controls
             }
         }
 
-        private void UpdateWonders()
-        {
-            if (Wonders is null)
-                return;
-
-            WonderLayerService.UpdateWonders(Wonders, wonderLayers);
-
-            WonderLayerService.UpdateWondersPosition(wonderLayers, minYear, maxYear, Width, 0, minWonderWidth);
-
-            Invalidate();
-        }
-
         private static void OnCurrentWonderChanged(BindableObject bindable, object oldValue, object newValue)
         {
             var slider = bindable as GlobalTimelineSlider;
 
             slider.drawable.SelectedWonder = slider.CurrentWonderType;
 
-            slider.UpdateWonders();
-        }
-
-        private static void OnWondersChanged(BindableObject bindable, object oldValue, object newValue)
-        {
-            var slider = bindable as GlobalTimelineSlider;
-
-            if (slider.TimelineEvents is null || !slider.TimelineEvents.Any())
-            {
-                slider.minYear = slider.Wonders.MinWonderYear();
-                slider.maxYear = slider.Wonders.MaxWonderYear();
-            }
-
-            slider.UpdateWonders();
-        }
-
-        private static void OnTimelineEventsChanged(BindableObject bindable, object oldValue, object newValue)
-        {
-            var slider = bindable as GlobalTimelineSlider;
-
-            if (slider.TimelineEvents is not null && slider.TimelineEvents.Any())
-            {
-                slider.minYear = slider.TimelineEvents.MinEventYear();
-                slider.maxYear = slider.TimelineEvents.MaxEventYear();
-            }
-
-            slider.UpdateWonders();
+            slider.Invalidate();
         }
 
         private static void OnRelativeThumbPropertyChanged(BindableObject bindable, object oldValue, object newValue)

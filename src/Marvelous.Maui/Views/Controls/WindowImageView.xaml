@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentView
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -10,7 +10,7 @@
         <Style x:Key="LabelStyle" TargetType="Label">
             <Setter Property="FontFamily" Value="CinzelDecorativeBold"/>
             <Setter Property="FontSize" Value="30"/>
-            <Setter Property="TextColor" Value="#361700"/>
+            <Setter Property="TextColor" Value="{StaticResource SuperDarkPrimaryColor}"/>
             <Setter Property="Opacity" Value="0.8"/>
             <Setter Property="Margin" Value="25, 2"/>
         </Style>

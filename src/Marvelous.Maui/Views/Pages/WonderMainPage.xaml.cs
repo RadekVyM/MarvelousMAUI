@@ -246,6 +246,7 @@ public partial class WonderMainPage : BaseContentPage
 
         factsHistoryWonderSectionViewModel = new FactsHistoryWonderSectionViewModel
         {
+            Icon = "common_history.png",
             Title = Localization.appBarTitleFactsHistory,
             HistoryInfo1 = wonder.HistoryInfo1,
             HistoryInfo2 = wonder.HistoryInfo2,
@@ -259,6 +260,7 @@ public partial class WonderMainPage : BaseContentPage
 
         constructionWonderSectionViewModel = new ConstructionWonderSectionViewModel
         {
+            Icon = "common_construction.png",
             Title = Localization.appBarTitleConstruction,
             ConstructionInfo1 = wonder.ConstructionInfo1,
             ConstructionInfo2 = wonder.ConstructionInfo2,
@@ -276,6 +278,7 @@ public partial class WonderMainPage : BaseContentPage
             constructionWonderSectionViewModel,
             new LocationWonderSectionViewModel
             {
+                Icon = "common_geography.png",
                 Title = Localization.appBarTitleLocation,
                 LocationInfo1 = wonder.LocationInfo1,
                 LocationInfo2 = wonder.LocationInfo2,

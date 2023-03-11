@@ -3,6 +3,7 @@
     public class IndicatorView : GraphicsView
     {
         private const int AnimationLength = 200;
+        private const string AnimationKey = "Animation";
 
         private readonly IndicatorDrawable drawable;
 
@@ -40,10 +41,13 @@
             Drawable = drawable = new IndicatorDrawable();
         }
 
+
         private void MoveTo(int newIndex)
         {
             if (drawable.SelectedIndex == newIndex)
                 return;
+
+            this.AbortAnimation(AnimationKey);
 
             drawable.OldSelectedIndex = drawable.SelectedIndex;
             drawable.SelectedIndex = newIndex;
@@ -54,7 +58,7 @@
                 Invalidate();
             });
 
-            animation.Commit(this, "Animation", length: AnimationLength, finished: (d, b) =>
+            animation.Commit(this, AnimationKey, length: AnimationLength, finished: (d, b) =>
             {
                 drawable.AnimationProgress = 1;
                 Invalidate();

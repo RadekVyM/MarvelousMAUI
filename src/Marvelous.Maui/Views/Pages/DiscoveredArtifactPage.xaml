@@ -100,9 +100,6 @@
                     x:Name="menuButtonBorder"
                     Style="{StaticResource AppBarButtonBorderStyle}"
                     InputTransparent="False">
-                    <Border.StrokeShape>
-                        <Ellipse/>
-                    </Border.StrokeShape>
                     <simpleCore:ContentButton
                         Clicked="MenuBackButtonClicked"
                         InputTransparent="False">
