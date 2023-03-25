@@ -1,5 +1,5 @@
-﻿using Microsoft.Maui.Controls.Shapes;
-using Marvelous.Core.Models;
+﻿using Marvelous.Core.Models;
+using Microsoft.Maui.Controls.Shapes;
 
 namespace Marvelous.Maui
 {

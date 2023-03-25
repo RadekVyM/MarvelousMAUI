@@ -1,8 +1,8 @@
-﻿using System.Windows.Input;
-using Marvelous.Core.Interfaces.Services;
+﻿using Marvelous.Core.Interfaces.Services;
 using Marvelous.Core.Interfaces.ViewModels;
 using Marvelous.Core.Models;
 using Marvelous.Core.ViewModels.Parameters;
+using System.Windows.Input;
 
 namespace Marvelous.Core.ViewModels
 {

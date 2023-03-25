@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using Marvelous.Core.Interfaces.Repositories;
+﻿using Marvelous.Core.Interfaces.Repositories;
 using Marvelous.Core.Interfaces.Services;
 using Marvelous.Core.Models;
 

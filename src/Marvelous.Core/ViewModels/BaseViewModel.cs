@@ -1,5 +1,5 @@
-﻿using System.ComponentModel;
-using Marvelous.Core.Interfaces.ViewModels;
+﻿using Marvelous.Core.Interfaces.ViewModels;
+using System.ComponentModel;
 
 namespace Marvelous.Core.ViewModels
 {

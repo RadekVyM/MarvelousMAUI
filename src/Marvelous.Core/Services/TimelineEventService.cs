@@ -26,10 +26,10 @@ namespace Marvelous.Core.Services
 
             return timelineEventRepository
                 .GetGlobalEvents()
-                .Concat(wonders.Select(w => new TimelineEvent 
-                { 
-                    Year = w.StartYr, 
-                    DescriptionKey = string.Format(Localization.timelineLabelConstruction, Localization.ResourceManager.GetString(w.Title)) 
+                .Concat(wonders.Select(w => new TimelineEvent
+                {
+                    Year = w.StartYr,
+                    DescriptionKey = string.Format(Localization.timelineLabelConstruction, Localization.ResourceManager.GetString(w.Title))
                 }))
                 .OrderBy(w => w.Year)
                 .ToList();

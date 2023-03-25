@@ -1,10 +1,10 @@
-﻿using System.Windows.Input;
-using Marvelous.Core.Models;
+﻿using Marvelous.Core.Models;
+using System.Windows.Input;
 
 namespace Marvelous.Core.Interfaces.ViewModels
 {
-	public interface ICollectionPageViewModel : IBasePageViewModel
-	{
+    public interface ICollectionPageViewModel : IBasePageViewModel
+    {
         IList<Collectible> Collectibles { get; }
         Collectible LastDiscoveredCollectible { get; }
         int DiscoveredCollectiblesPercentage { get; }

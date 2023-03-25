@@ -1,12 +1,12 @@
-﻿using System.Windows.Input;
-using Marvelous.Core.Interfaces.Services;
+﻿using Marvelous.Core.Interfaces.Services;
 using Marvelous.Core.Interfaces.ViewModels;
 using Marvelous.Core.Models;
 using Marvelous.Core.ViewModels.Parameters;
+using System.Windows.Input;
 
 namespace Marvelous.Core.ViewModels
 {
-	public abstract class BaseWonderCollectiblePageViewModel : BasePageViewModel, IBaseWonderCollectiblePageViewModel
+    public abstract class BaseWonderCollectiblePageViewModel : BasePageViewModel, IBaseWonderCollectiblePageViewModel
     {
         private Collectible collectible;
 
@@ -29,7 +29,7 @@ namespace Marvelous.Core.ViewModels
 
 
         public BaseWonderCollectiblePageViewModel(INavigationService navigationService, ICollectibleService collectibleService)
-		{
+        {
             this.navigationService = navigationService;
             this.collectibleService = collectibleService;
 

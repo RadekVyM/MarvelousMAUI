@@ -1,10 +1,9 @@
-﻿using System;
-using Marvelous.Core.Models;
+﻿using Marvelous.Core.Models;
 
 namespace Marvelous.Core.Extensions
 {
-	public static class CollectionExtensions
-	{
+    public static class CollectionExtensions
+    {
         public static int MinEventYear<T>(this T timelineEvents) where T : IEnumerable<TimelineEvent>
         {
             return CenturiesFloor(timelineEvents.Min(te => te.Year));

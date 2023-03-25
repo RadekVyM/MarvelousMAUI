@@ -19,7 +19,7 @@ namespace Marvelous.Maui.Services
         public async void GoTo(PageType pageType, IParameters parameters = null)
         {
             await Shell.Current.GoToAsync(GetPageRoute(pageType), true, new Dictionary<string, object>
-            { 
+            {
                 ["Parameters"] = parameters
             });
         }

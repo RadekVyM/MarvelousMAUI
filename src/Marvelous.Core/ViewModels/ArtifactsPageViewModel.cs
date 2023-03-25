@@ -1,10 +1,9 @@
-﻿using System.Collections.ObjectModel;
-using System.Windows.Input;
-using Marvelous.Core.Extensions;
+﻿using Marvelous.Core.Extensions;
 using Marvelous.Core.Interfaces.Services;
 using Marvelous.Core.Interfaces.ViewModels;
 using Marvelous.Core.Models;
 using Marvelous.Core.ViewModels.Parameters;
+using System.Windows.Input;
 
 namespace Marvelous.Core.ViewModels
 {
@@ -144,7 +143,7 @@ namespace Marvelous.Core.ViewModels
             this.artifactService = artifactService;
             this.wonderService = wonderService;
             this.searchService = searchService;
-            
+
             ArtifactCommand = new RelayCommand((parameter) =>
             {
                 var id = parameter.ToString();

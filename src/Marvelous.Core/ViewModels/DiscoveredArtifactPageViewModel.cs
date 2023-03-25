@@ -1,12 +1,12 @@
-﻿using System.Windows.Input;
-using Marvelous.Core.Interfaces.Services;
+﻿using Marvelous.Core.Interfaces.Services;
 using Marvelous.Core.Interfaces.ViewModels;
 using Marvelous.Core.Models;
 using Marvelous.Core.ViewModels.Parameters;
+using System.Windows.Input;
 
 namespace Marvelous.Core.ViewModels
 {
-	public class DiscoveredArtifactPageViewModel : BasePageViewModel, IDiscoveredArtifactPageViewModel
+    public class DiscoveredArtifactPageViewModel : BasePageViewModel, IDiscoveredArtifactPageViewModel
     {
         private Collectible collectible;
 
@@ -24,12 +24,12 @@ namespace Marvelous.Core.ViewModels
         public ICommand CollectionCommand { get; private set; }
 
 
-		public DiscoveredArtifactPageViewModel(INavigationService navigationService)
-		{
+        public DiscoveredArtifactPageViewModel(INavigationService navigationService)
+        {
 
-			CollectionCommand = new RelayCommand(() =>
-			{
-				navigationService.GoTo(PageType.CollectionPage);
+            CollectionCommand = new RelayCommand(() =>
+            {
+                navigationService.GoTo(PageType.CollectionPage);
             });
         }
 

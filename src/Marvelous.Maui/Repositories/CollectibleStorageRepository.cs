@@ -1,10 +1,9 @@
-﻿using System;
-using Marvelous.Core.Models;
+﻿using Marvelous.Core.Models;
 using Marvelous.Data.Repositories;
 
 namespace Marvelous.Maui.Repositories
 {
-	public class CollectibleStorageRepository : CollectibleRepository
+    public class CollectibleStorageRepository : CollectibleRepository
     {
         public override IList<Collectible> GetCollectibles()
         {
