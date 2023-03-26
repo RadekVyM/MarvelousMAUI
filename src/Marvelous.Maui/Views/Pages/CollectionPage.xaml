@@ -81,7 +81,7 @@
                             CompressedLayout.IsHeadless="True"
                             RowDefinitions="auto, auto">
                             <Label
-                                Text="{Binding WonderTitle, Converter={StaticResource LocalizationConverter}}"
+                                Text="{Binding WonderTitle, Converter={StaticResource EmptyToSpacesLocalizationConverter}}"
                                 TextColor="{StaticResource TertiaryColor}"
                                 HorizontalOptions="Center" VerticalOptions="Center"
                                 Margin="25"

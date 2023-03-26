@@ -334,8 +334,8 @@
         <Grid
             x:Name="headerTitleContainer"
             RowDefinitions="40, 135, 30, 28, 40"
-            RowSpacing="18"
             Padding="20, 0"
+            RowSpacing="18"
             VerticalOptions="Start"
             SizeChanged="HeaderTitleContainerSizeChanged"
             InputTransparent="True"
@@ -345,7 +345,6 @@
                 Grid.Row="0"
                 ColumnDefinitions="*, auto, *"
                 ColumnSpacing="15"
-                HeightRequest="40"
                 CompressedLayout.IsHeadless="True">
                 <Grid.Resources>
                     <Style TargetType="Rectangle">
@@ -369,14 +368,12 @@
                     Grid.Column="2"/>
             </Grid>
 
-            <Label
+            <controls:WonderTitle
                 x:Name="illustrationTitle"
                 Grid.Row="1"
-                Text="{Binding CurrentWonder.Title, Converter={StaticResource LocalizationConverter}}"
-                Margin="0, -10"
-                VerticalOptions="Center" VerticalTextAlignment="Center"
-                HeightRequest="135"
-                Style="{StaticResource TitleStyle}"/>
+                Title="{Binding CurrentWonder.Title}"
+                VerticalOptions="Center"
+                HeightRequest="135"/>
 
             <Label
                 Grid.Row="2"

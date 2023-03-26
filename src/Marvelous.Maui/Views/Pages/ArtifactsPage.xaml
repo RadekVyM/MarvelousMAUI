@@ -47,7 +47,7 @@
                     FontSize="13"
                     HorizontalOptions="Center"/>
                 <Label
-                    Text="{Binding CurrentWonder.Title, Converter={StaticResource LocalizationConverter}}"
+                    Text="{Binding CurrentWonder.Title, Converter={StaticResource EmptyToSpacesLocalizationConverter}}"
                     TextTransform="Uppercase"
                     TextColor="{StaticResource PrimaryColor}"
                     FontFamily="TenorSans"

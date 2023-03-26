@@ -5,7 +5,7 @@ public partial class HorizontalSeparator : ContentView
     private const string ExpandAnimationKey = "ExpandAnimation";
     private const string CollapseAnimationKey = "CollapseAnimation";
     private const uint AnimationLength = 2000;
-
+    private const int CompassRotation = 270;
     public static readonly BindableProperty IconColorProperty = BindableProperty.Create(nameof(IconColor), typeof(Color), typeof(HorizontalSeparator), defaultValue: null, propertyChanged: OnIconColorChanged);
     public static readonly BindableProperty LineColorProperty = BindableProperty.Create(nameof(LineColor), typeof(Color), typeof(HorizontalSeparator), defaultValue: null, propertyChanged: OnLineColorChanged);
     public static readonly BindableProperty CollapsedProperty = BindableProperty.Create(nameof(Collapsed), typeof(bool), typeof(HorizontalSeparator), defaultValue: false, propertyChanged: OnCollapsedChanged);
@@ -44,7 +44,7 @@ public partial class HorizontalSeparator : ContentView
 
     public void Expand()
     {
-        AnimateTo(ExpandAnimationKey, 0, 270, 0, 1);
+        AnimateTo(ExpandAnimationKey, 0, CompassRotation, 0, 1);
     }
 
     public void Collapse()
@@ -78,8 +78,12 @@ public partial class HorizontalSeparator : ContentView
         animation.Add(0, 1, new Animation(d =>
         {
             leftRect.ScaleX = d;
+        }, leftRect.ScaleX, toScale, easing: Easing.CubicInOut));
+
+        animation.Add(0, 1, new Animation(d =>
+        {
             rightRect.ScaleX = d;
-        }, fromScale, toScale, easing: Easing.CubicInOut));
+        }, rightRect.ScaleX, toScale, easing: Easing.CubicInOut));
 
         animation.Commit(this, key, length: AnimationLength);
     }

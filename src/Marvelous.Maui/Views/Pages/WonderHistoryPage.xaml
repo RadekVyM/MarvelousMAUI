@@ -50,12 +50,10 @@
                 </Rectangle>
             </Grid>
 
-            <Label
-                Text="{Binding CurrentWonder.Title, Converter={StaticResource LocalizationConverter}}"
-                Style="{StaticResource TitleStyle}"
-                VerticalOptions="End"
+            <controls:WonderTitle
+                Title="{Binding CurrentWonder.Title}"
                 Margin="20, 0, 20, -15"
-                Padding="5"/>
+                VerticalOptions="End"/>
 
             <GraphicsView
                 x:Name="headerGraphicsView"

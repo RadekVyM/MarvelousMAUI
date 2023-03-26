@@ -319,7 +319,11 @@ namespace Marvelous.Maui.Views.Illustrations
                 Margin = -1
             };
 
-            illustrationTitle = new WonderTitle();
+            illustrationTitle = new WonderTitle
+            {
+                Margin = new Thickness(20, 0, 20, 125),
+                VerticalOptions = LayoutOptions.End
+            };
         }
 
         protected Image CreateImage(string path)

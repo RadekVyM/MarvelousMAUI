@@ -466,7 +466,8 @@
     <value>wonder</value>
   </data>
   <data name="chichenItzaTitle" xml:space="preserve">
-    <value>Chichen Itza</value>
+    <value>Chichen
+Itza</value>
   </data>
   <data name="chichenItzaSubTitle" xml:space="preserve">
     <value>The Great Mayan City</value>
@@ -561,7 +562,8 @@ The stepped pyramid El Castillo stands about 98 feet (30 m) high and consists of
     <value>picture</value>
   </data>
   <data name="christRedeemerTitle" xml:space="preserve">
-    <value>Christ the Redeemer</value>
+    <value>Christ
+the Redeemer</value>
   </data>
   <data name="christRedeemerSubTitle" xml:space="preserve">
     <value>A symbol of peace</value>
@@ -748,7 +750,8 @@ The Colosseum is built of travertine limestone, tuff (volcanic rock), and brick-
     <value>picture</value>
   </data>
   <data name="greatWallTitle" xml:space="preserve">
-    <value>The Great Wall</value>
+    <value>The
+Great Wall</value>
   </data>
   <data name="greatWallSubTitle" xml:space="preserve">
     <value>Longest structure on Earth</value>
@@ -1043,7 +1046,8 @@ Archaeological work has only discovered evidence of Nabataean presence dating ba
     <value>vase</value>
   </data>
   <data name="pyramidsGizaTitle" xml:space="preserve">
-    <value>Pyramids of Giza</value>
+    <value>Pyramids
+of Giza</value>
   </data>
   <data name="pyramidsGizaSubTitle" xml:space="preserve">
     <value>The ancient wonder</value>
@@ -1138,7 +1142,8 @@ To ensure that the pyramid remained symmetrical, the exterior casing stones all 
     <value>jewelry</value>
   </data>
   <data name="tajMahalTitle" xml:space="preserve">
-    <value>Taj Mahal</value>
+    <value>Taj
+Mahal</value>
   </data>
   <data name="tajMahalSubTitle" xml:space="preserve">
     <value>Heaven on Earth</value>
@@ -1363,5 +1368,8 @@ The plinth and tomb took roughly 12 years to complete. The remaining parts of th
   </data>
   <data name="timelineEvent1969ce" xml:space="preserve">
     <value>Apollo 11 mission lands on the moon</value>
+  </data>
+  <data name="fillingWords" xml:space="preserve">
+    <value>the;of</value>
   </data>
 </root>
