@@ -6,7 +6,7 @@ public partial class WonderTitle : ContentView
 {
     private const string FontFamily = "YesevaOne";
     private const string FillingWordsKey = "fillingWords";
-    private const int FillingWordSize = 20;
+    private const int FillingWordSize = 16;
 
     public static readonly BindableProperty TitleProperty =
         BindableProperty.Create(nameof(Title), typeof(string), typeof(WonderTitle), propertyChanged: OnTitleChanged);
@@ -44,7 +44,7 @@ public partial class WonderTitle : ContentView
 
             for (int j = 0; j < words.Length; j++)
             {
-                var word = words[j];
+                var word = words[j].Trim();
                 var text = j != words.Length - 1 ? $"{word} " : word;
 
                 if (fillingWords.Contains(word.ToLower()))

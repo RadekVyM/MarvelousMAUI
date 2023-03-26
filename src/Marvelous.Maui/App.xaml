@@ -84,7 +84,7 @@
                 <Setter Property="HorizontalTextAlignment" Value="Center"/>
                 <Setter Property="VerticalTextAlignment" Value="Center"/>
                 <Setter Property="LineHeight" Value="0.8"/>
-                <Setter Property="FontSize" Value="50"/>
+                <Setter Property="FontSize" Value="46"/>
                 <!-- TODO: Shadows are broken on Android -->
                 <!-- <Setter Property="Shadow">
                     <Setter.Value>
