@@ -1,6 +1,5 @@
-﻿using System;
+﻿using Marvelous.Core;
 using System.Globalization;
-using Marvelous.Core;
 
 namespace Marvelous.Maui.Converters
 {
@@ -9,7 +8,7 @@ namespace Marvelous.Maui.Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var str = Localization.ResourceManager.GetString(value.ToString());
-            return string.Join(' ', (string.IsNullOrEmpty(str) ? value.ToString() : str).Split());
+            return string.Join(' ', (string.IsNullOrEmpty(str) ? value.ToString() : str).Split().Where(s => !string.IsNullOrWhiteSpace(s)));
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
