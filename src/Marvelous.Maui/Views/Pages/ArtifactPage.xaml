@@ -138,9 +138,7 @@
             x:Name="appBar"
             VerticalOptions="Start"
             HeightRequest="{StaticResource AppBarHeight}"
-            CompressedLayout.IsHeadless="True"
-            InputTransparent="True"
-            CascadeInputTransparent="False">
+            CompressedLayout.IsHeadless="True">
             <Border
                 x:Name="menuButtonBorder"
                 Style="{StaticResource AppBarButtonBorderStyle}"

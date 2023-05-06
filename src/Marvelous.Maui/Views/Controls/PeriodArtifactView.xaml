@@ -12,6 +12,11 @@
     InputTransparent="True"
     CascadeInputTransparent="False">
 
+    <!--
+        TODO: On Android, the InputTransparent property is broken, resulting in this control not working
+        https://github.com/dotnet/maui/pull/14846 - this PR will hopefully fix it
+    -->
+
     <Grid
         x:Name="largeGrid"
         CompressedLayout.IsHeadless="True"

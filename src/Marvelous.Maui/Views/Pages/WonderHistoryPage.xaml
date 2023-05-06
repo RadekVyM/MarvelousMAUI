@@ -99,13 +99,19 @@
                     Margin="-1"
                     CompressedLayout.IsHeadless="True">
 
-                    <RoundRectangle
-                        Fill="White"
-                        Stroke="White"
-                        CornerRadius="10, 10, 0, 0"
+                    <!--
+                        TODO: Sizing of shapes is weird again after the last updated
+                        Shape fills whole available space even if its height and VerticalOptions is set 
+                    -->
+                    <ContentView
                         VerticalOptions="End"
-                        HeightRequest="28"
-                        Margin="0, -1"/>
+                        HeightRequest="28">
+                        <RoundRectangle
+                            Fill="White"
+                            Stroke="White"
+                            CornerRadius="10, 10, 0, 0"
+                            Margin="0, -1"/>
+                    </ContentView>
                     <RoundRectangle
                         Fill="#9d9995"
                         HeightRequest="7" WidthRequest="40"

@@ -101,8 +101,8 @@ public partial class HorizontalSeparator : ContentView
 
         var color = newValue as Color;
 
-        separator.leftRect.Fill = color;
-        separator.rightRect.Fill = color;
+        separator.leftRect.BackgroundColor = color;
+        separator.rightRect.BackgroundColor = color;
     }
 
     private static void OnCollapsedChanged(BindableObject bindable, object oldValue, object newValue)
