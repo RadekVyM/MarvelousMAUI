@@ -104,13 +104,14 @@
             Route="WonderHistoryPage" />
     </Tab>
 
-    <simpleShell:SimpleShell.RootPageOverlay>
+    <simpleShell:SimpleShell.RootPageContainer>
         <Grid
             x:Name="rootPageOverlay"
             x:DataType="viewModels:MainViewModel"
             InputTransparent="{OnPlatform iOS=True}"
             CascadeInputTransparent="{OnPlatform iOS=False}"
             CompressedLayout.IsHeadless="True">
+            <simpleShell:SimpleNavigationHost/>
             <controls:TabBar
                 x:Name="tabBar"
                 VerticalOptions="End"
@@ -120,7 +121,7 @@
                 ShellItems="{Binding ShellContents, Source={x:Reference thisShell}, Converter={StaticResource WithoutFirstConverter}}"
                 CurrentWonder="{Binding CurrentWonder}"/>
         </Grid>
-    </simpleShell:SimpleShell.RootPageOverlay>
+    </simpleShell:SimpleShell.RootPageContainer>
     
     <simpleShell:SimpleShell.Content>
         <Grid

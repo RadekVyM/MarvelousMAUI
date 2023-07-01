@@ -47,7 +47,7 @@ public partial class DiscoveredArtifactPage : BaseContentPage
             duration: static args => AnimationLength)
             .CombinedWith(
                 transition: SimpleShell.Current.GetTransition(),
-                when: args => args.TransitionType != SimpleShellTransitionType.Pushing));
+                when: static args => args.TransitionType != SimpleShellTransitionType.Pushing));
 	}
 
 

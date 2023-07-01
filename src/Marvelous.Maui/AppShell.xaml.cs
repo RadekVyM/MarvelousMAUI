@@ -25,7 +25,7 @@ public partial class AppShell : SimpleShell
 
         this.navigationService = navigationService;
 
-        (RootPageOverlay as View).BindingContext = BindingContext;
+        (RootPageContainer as View).BindingContext = BindingContext;
         (Content as View).BindingContext = BindingContext;
 
         Loaded += AppShellLoaded;
@@ -53,7 +53,7 @@ public partial class AppShell : SimpleShell
     private void SetTransition()
     {
         this.SetTransition(
-            static args =>
+            callback: static args =>
             {
                 switch (args.TransitionType)
                 {
@@ -91,14 +91,17 @@ public partial class AppShell : SimpleShell
                 else
                     return 200u;
             },
-            destinationPageInFront: static args =>
+            destinationPageInFront: static args => args.TransitionType switch
             {
-                return args.TransitionType switch
-                {
-                    SimpleShellTransitionType.Switching => args.OriginPage is not MainMenuPage,
-                    SimpleShellTransitionType.Popping => false,
-                    _ => true
-                };
+                SimpleShellTransitionType.Switching => args.OriginPage is not MainMenuPage,
+                SimpleShellTransitionType.Popping => false,
+                _ => true
+            },
+            easing: static args => args.TransitionType switch
+            {
+                SimpleShellTransitionType.Pushing => Easing.CubicOut,
+                SimpleShellTransitionType.Popping => Easing.CubicIn,
+                _ => Easing.Linear
             });
     }
 
