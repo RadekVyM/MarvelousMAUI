@@ -57,7 +57,7 @@ Unique, custom-built carousel view which lets you to switch between all eight wo
 <p align="center">
     <img src="./images/android_illustrations_20.gif" width="220">
     &nbsp;&nbsp;
-    <img src="./images/iphone_illustrations_20.gif" width="229">
+    <img src="./images/iphone_illustrations.webp" width="229">
 </p>
 
 ### Unique scroll patterns
@@ -67,7 +67,7 @@ Unique scroll patterns and effects as you move through various pages.
 <p align="center">
     <img src="./images/android_main_wonder_page_20.gif" width="220">
     &nbsp;&nbsp;
-    <img src="./images/iphone_history_page_20.gif" width="229">
+    <img src="./images/iphone_history_page.webp" width="229">
 </p>
 
 ### Custom controls
@@ -77,7 +77,7 @@ Tailored buttons, icons and other controls that match the Wonderous design syste
 <p align="center">
     <img src="./images/android_artifacts_slider_20.gif" width="220">
     &nbsp;&nbsp;
-    <img src="./images/iphone_timeline_20.gif" width="229">
+    <img src="./images/iphone_timeline.webp" width="229">
 </p>
 
 ### Animations everywhere
