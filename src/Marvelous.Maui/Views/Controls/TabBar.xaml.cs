@@ -202,12 +202,12 @@ public partial class TabBar : ContentView
         switch (style)
         {
             case TabBarStyle.Light:
-                backgroundRect.Fill = defaultLightBackgroundColor;
+                backgroundRect.Background = defaultLightBackgroundColor;
                 wonderBoxView.Color = defaultLightBackgroundColor;
                 UpdateWonderButtonScale(lightWonderButtonScale);
                 break;
             case TabBarStyle.Transparent:
-                backgroundRect.Fill = defaultDarkBackgroundColor;
+                backgroundRect.Background = defaultDarkBackgroundColor;
                 wonderBoxView.Color = Colors.White;
                 UpdateWonderButtonScale(darkWonderButtonScale);
                 break;

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 	<PropertyGroup>
-		<TargetFrameworks>net7.0-android;net7.0-ios;net7.0-maccatalyst</TargetFrameworks>
-		<!--<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks>-->
+		<TargetFrameworks>net8.0-android;net8.0-ios;net8.0-maccatalyst</TargetFrameworks>
+		<!--<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net8.0-windows10.0.19041.0</TargetFrameworks>-->
 		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
 		<!-- <TargetFrameworks>$(TargetFrameworks);net6.0-tizen</TargetFrameworks> -->
 		<OutputType>Exe</OutputType>
@@ -30,11 +30,11 @@
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
 	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-android|AnyCPU'">
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-android|AnyCPU'">
 	  <PublishTrimmed>True</PublishTrimmed>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-ios|AnyCPU'">
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-ios|AnyCPU'">
 	  <CreatePackage>false</CreatePackage>
 	</PropertyGroup>
 
@@ -45,16 +45,18 @@
 
 	<ItemGroup>
 		<Folder Include="Repositories\" />
+		<Folder Include="Platforms\Android\Resources\anim\" />
+		<Folder Include="Transitions\" />
 	</ItemGroup>
 
 
-	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0-android'">
+	<ItemGroup Condition="'$(TargetFramework)' == 'net8.0-android'">
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg_android.svg" Color="#252621" />
 	</ItemGroup>
-	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0-ios'">
+	<ItemGroup Condition="'$(TargetFramework)' == 'net8.0-ios'">
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg_ios.svg" Color="#252621" />
 	</ItemGroup>
-	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0-maccatalyst'">
+	<ItemGroup Condition="'$(TargetFramework)' == 'net8.0-maccatalyst'">
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg_ios.svg" Color="#252621" />
 	</ItemGroup>
 
@@ -300,7 +302,6 @@
 		<None Remove="Resources\Images\common_app_logo_plain.png" />
 		<None Remove="Resources\Images\common_arrow_indicator.png" />
 		<None Remove="Resources\Images\common_cloud_white.png" />
-		<None Remove="Resources\Images\common_cloud_white.svg" />
 		<None Remove="Resources\Images\common_compass_full.png" />
 		<None Remove="Resources\Images\common_compass_simple.svg" />
 		<None Remove="Resources\Images\common_construction.png" />
@@ -409,21 +410,27 @@
 		<None Remove="Repositories\" />
 		<None Remove="Resources\Splash\common_app_logo.png" />
 		<None Remove="Resources\AppIcon\appiconfg.svg" />
+		<None Remove="Platforms\Android\Resources\anim\" />
+		<None Remove="Transitions\" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <EmbeddedResource Include="Resources\Embedded\B612Mono-Regular.ttf" />
+		<EmbeddedResource Include="Resources\Embedded\B612Mono-Regular.ttf" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\Marvelous.Core\Marvelous.Core.csproj" />
-	  <ProjectReference Include="..\Marvelous.Data\Marvelous.Data.csproj" />
+		<ProjectReference Include="..\Marvelous.Core\Marvelous.Core.csproj" />
+		<ProjectReference Include="..\Marvelous.Data\Marvelous.Data.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="SimpleToolkit.Core" Version="3.0.0" />
-	  <PackageReference Include="SimpleToolkit.SimpleShell" Version="3.0.1" />
-	  <PackageReference Include="CommunityToolkit.Maui" Version="5.2.0" />
+		<PackageReference Include="SimpleToolkit.Core" Version="4.0.0" />
+		<PackageReference Include="SimpleToolkit.SimpleShell" Version="4.0.0" />
+		<PackageReference Include="CommunityToolkit.Maui" Version="7.0.1" />
+
+		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebView.Maui" Version="$(MauiVersion)" />
 	</ItemGroup>
 
 	<ItemGroup>

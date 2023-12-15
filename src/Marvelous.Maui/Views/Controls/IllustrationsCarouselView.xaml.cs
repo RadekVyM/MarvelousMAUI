@@ -64,6 +64,9 @@ public partial class IllustrationsCarouselView : ContentView
 
     public async Task Show()
     {
+        if (!isHidden && IsVisible)
+            return;
+
         IsVisible = true;
         isHidden = false;
 
@@ -77,6 +80,9 @@ public partial class IllustrationsCarouselView : ContentView
 
     public async Task Hide()
     {
+        if (isHidden && !IsVisible)
+            return;
+
         isHidden = true;
         Hiding?.Invoke(this, EventArgs.Empty);
         verticalPanIndicatorView.Progress = 0;

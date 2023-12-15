@@ -347,13 +347,14 @@
                 ColumnSpacing="15"
                 CompressedLayout.IsHeadless="True">
                 <Grid.Resources>
-                    <Style TargetType="Rectangle">
-                        <Setter Property="HeightRequest" Value="2"/>
+                    <Style TargetType="ContentView">
+                        <!-- The color is set from code -->
+                        <Setter Property="HeightRequest" Value="1.2"/>
                         <Setter Property="VerticalOptions" Value="Center"/>
                     </Style>
                 </Grid.Resources>
                 
-                <Rectangle/>
+                <ContentView />
                 <Label
                     Grid.Column="1"
                     Text="{Binding CurrentWonder.SubTitle, Converter={StaticResource LocalizationConverter}}"
@@ -364,7 +365,7 @@
                     HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
                     Margin="0, 0, 0, 0"/>
                     <!-- Sizing of this label is weird. Text wraps even if there si enough space when FontSize is set to 13 -->
-                <Rectangle
+                <ContentView
                     Grid.Column="2"/>
             </Grid>
 

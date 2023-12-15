@@ -44,7 +44,7 @@ public static class MauiProgram
 
         builder.UseMauiCommunityToolkit();
 
-        builder.UseSimpleShell();
+        builder.UseSimpleShell(usePlatformTransitions: true);
         builder.UseSimpleToolkit();
 
         EntryHandler.Mapper.AppendToMapping("RemoveUnderline", (handler, entry) =>

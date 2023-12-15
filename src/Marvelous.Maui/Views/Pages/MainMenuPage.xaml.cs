@@ -6,7 +6,6 @@ using Marvelous.Core.Interfaces.Services;
 using Marvelous.Core.Interfaces.ViewModels;
 using Marvelous.Core.ViewModels.Parameters;
 using Marvelous.Maui.Views.Controls;
-using SimpleToolkit.SimpleShell;
 
 namespace Marvelous.Maui.Views.Pages;
 
@@ -25,18 +24,14 @@ public partial class MainMenuPage : BaseContentPage
 
 		InitializeComponent();
 
-        this.SetTransition(new SimpleShellTransition(
-            callback: static args => { },
-            starting: static async args =>
-            {
-                if (args.TransitionType != SimpleShellTransitionType.Popping && args.DestinationPage is MainMenuPage page)
-                    await page.illustrationsCarouselView.Show();
-            },
-            destinationPageInFront: args => false,
-            duration: static args => 0)
-            .CombinedWith(
-                transition: SimpleShell.Current.GetTransition(),
-                when: args => args.TransitionType == SimpleShellTransitionType.Popping));
+        this.SetTransition(new PlatformSimpleShellTransition
+        {
+#if ANDROID
+            DestinationPageInFrontOnSwitching = static (args) => true,
+#elif IOS
+            DestinationPageInFrontOnSwitching = static (args) => true
+#endif
+        });
     }
 
 
@@ -48,6 +43,8 @@ public partial class MainMenuPage : BaseContentPage
     protected override async void OnNavigatedTo(NavigatedToEventArgs args)
     {
         base.OnNavigatedTo(args);
+
+        _ = illustrationsCarouselView.Show();
 
         if (!isFirstNavigationTo)
             return;

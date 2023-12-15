@@ -1,9 +1,8 @@
-﻿using SimpleToolkit.SimpleShell.Extensions;
-using SimpleToolkit.SimpleShell.Transitions;
-using Marvelous.Core.Interfaces.Services;
+﻿using Marvelous.Core.Interfaces.Services;
 using Marvelous.Core.Interfaces.ViewModels;
 using Marvelous.Maui.Extensions;
-using SimpleToolkit.SimpleShell;
+using SimpleToolkit.SimpleShell.Extensions;
+using SimpleToolkit.SimpleShell.Transitions;
 
 namespace Marvelous.Maui.Views.Pages;
 
@@ -37,19 +36,25 @@ public partial class DiscoveredArtifactPage : BaseContentPage
             Color = primaryColor as Color
         };
 
-        this.SetTransition(new SimpleShellTransition(
-            callback: static args => { },
-            starting: static args =>
-            {
-                if (args.DestinationPage is DiscoveredArtifactPage page)
-                    page.AnimateIn();
-            },
-            duration: static args => AnimationLength)
-            .CombinedWith(
-                transition: SimpleShell.Current.GetTransition(),
-                when: static args => args.TransitionType != SimpleShellTransitionType.Pushing));
+        this.SetTransition(new PlatformSimpleShellTransition
+        {
+#if ANDROID
+            DestinationPageInFrontOnSwitching = static (args) => true,
+            PushingEnterAnimation = static (args) => Resource.Animation.none_1000,
+            PushingLeaveAnimation = static (args) => Resource.Animation.none_1000,
+#elif IOS || MACCATALYST
+            PushingAnimation = (args) => new Marvelous.Maui.Transitions.NoneAppleTransition(1000)
+#endif
+        });
 	}
 
+
+    protected override void OnNavigatedTo(NavigatedToEventArgs args)
+    {
+        base.OnNavigatedTo(args);
+
+        this.AnimateIn();
+    }
 
     private void AnimateIn()
     {

@@ -4,7 +4,6 @@ using Marvelous.Core.Interfaces.ViewModels;
 using Marvelous.Core.Models;
 using Marvelous.Maui.Models;
 using Marvelous.Maui.Views.Illustrations;
-using Microsoft.Maui.Controls.Shapes;
 
 namespace Marvelous.Maui.Views.Pages;
 
@@ -61,10 +60,12 @@ public partial class WonderMainPage : BaseContentPage
             defaultMenuButtonBorderMargin.Bottom);
     }
 
-	protected override void OnNavigatedTo(NavigatedToEventArgs args)
+	protected override async void OnNavigatedTo(NavigatedToEventArgs args)
 	{
 		base.OnNavigatedTo(args);
-		//scrollY = 0;
+        //scrollY = 0;
+        // TODO: It does not work without this on iOS. .NET 8 broke this
+        await Task.Delay(50);
         UpdateAllAfterScroll();
     }
 
@@ -73,12 +74,12 @@ public partial class WonderMainPage : BaseContentPage
 		var config = WonderViewConfig.GetWonderViewConfig(viewModel.CurrentWonder.Type);
 
 		headerTitleTopSeparatorContainer
-			.Where(v => v is Rectangle)
-			.Cast<Rectangle>()
+			.Where(v => v is ContentView)
+			.Cast<ContentView>()
 			.ToList()
 			.ForEach(r =>
 			{
-				r.Fill = config.SecondaryColor;
+				r.Background = config.SecondaryColor;
 			});
 
 		headerTitleBottomSeparator.LineColor = config.SecondaryColor;
@@ -114,7 +115,10 @@ public partial class WonderMainPage : BaseContentPage
 	private void UpdateHeaderImageAfterScroll()
     {
 		UpdateImageClip();
-		
+
+        if (minimizedHeaderImageContainerHeight > defaultHeaderImageContainerHeight)
+            return;
+
 		var newHeight = Math.Clamp(defaultHeaderImageContainerHeight + headerImageContainer.Margin.Top - scrollY, minimizedHeaderImageContainerHeight, defaultHeaderImageContainerHeight);
 
         if (headerImageContainer.HeightRequest != newHeight)
