@@ -22,7 +22,7 @@
             <Setter Property="LineHeight" Value="1.5"/>
         </Style>
 
-        <DataTemplate x:Key="ParagraphLabelDataTemplate">
+        <DataTemplate x:Key="ParagraphLabelDataTemplate" x:DataType="x:String">
             <Label
                 Text="{Binding .}"
                 Style="{StaticResource ParagraphLabel}"/>

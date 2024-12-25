@@ -13,8 +13,7 @@
         Clicked="ButtonClicked"
         VerticalOptions="Center" HorizontalOptions="Center"
         Margin="20"
-        HeightRequest="120" WidthRequest="120"
-        IsClippedToBounds="False">
+        HeightRequest="120" WidthRequest="120">
         <Image
             x:Name="image"/>
     </simpleCore:ContentButton>
