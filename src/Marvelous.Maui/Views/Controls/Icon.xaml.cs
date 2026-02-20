@@ -1,7 +1,11 @@
+using CommunityToolkit.Maui.Behaviors;
+
 namespace Marvelous.Maui.Views.Controls;
 
-public partial class Icon : Image
+public class Icon : Image
 {
+	private readonly IconTintColorBehavior tintBehavior;
+
 	public static readonly BindableProperty TintColorProperty =
 		BindableProperty.Create(nameof(TintColor), typeof(Color), typeof(Icon), propertyChanged: OnTintColorChanged);
 
@@ -13,7 +17,8 @@ public partial class Icon : Image
 
 	public Icon()
 	{
-		InitializeComponent();
+		tintBehavior = new IconTintColorBehavior();
+		Behaviors.Add(tintBehavior);
 	}
 
 	private static void OnTintColorChanged(BindableObject bindable, object oldValue, object newValue)
