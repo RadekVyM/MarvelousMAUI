@@ -1,6 +1,7 @@
-using SimpleToolkit.Core;
 using Marvelous.Core.Models;
 using Marvelous.Maui.Extensions;
+using SimpleToolkit.Helpers;
+using SimpleToolkit.SimpleButton;
 
 namespace Marvelous.Maui.Views.Controls;
 
@@ -9,7 +10,7 @@ public enum TabBarStyle
     Light, Transparent
 }
 
-public partial class TabBar : ContentView
+public partial class TabBar : Grid
 {
     private const string ShowAnimationKey = "ShowAnimation";
     private const string HideAnimationKey = "HideAnimation";
@@ -93,8 +94,16 @@ public partial class TabBar : ContentView
         };
 
         UpdateStyle(TabBarStyle.Light);
+
+        SizeChanged += OnSizeChanged;
     }
 
+
+    private void OnSizeChanged(object sender, EventArgs e)
+    {
+        var safeArea = WindowInsetsProvider.GetInsets();
+        OnSafeAreaChanged(safeArea);
+    }
 
     public void OnSafeAreaChanged(Thickness safeArea)
     {
@@ -135,7 +144,7 @@ public partial class TabBar : ContentView
     {
         for (int i = buttonsStartIndex; i < rootGrid.Count; i++)
         {
-            var button = rootGrid[i] as ContentButton;
+            var button = rootGrid[i] as SimpleButton;
             var icon = button.Content as Icon;
             var shellItem = button.BindingContext as BaseShellItem;
 
@@ -214,8 +223,8 @@ public partial class TabBar : ContentView
         }
 
         rootGrid
-            .Where(v => v is ContentButton cb && cb.BindingContext != CurrentShellItem)
-            .Cast<ContentButton>()
+            .Where(v => v is SimpleButton cb && cb.BindingContext != CurrentShellItem)
+            .Cast<SimpleButton>()
             .Select(cb => cb.Content)
             .Cast<Icon>()
             .ToList()
@@ -225,11 +234,11 @@ public partial class TabBar : ContentView
             icon.TintColor = activeIconColor;
     }
 
-    private ContentButton GetButtonOfBindingContext(object bindingContext)
+    private SimpleButton GetButtonOfBindingContext(object bindingContext)
     {
         return rootGrid.Children
-            .Where(v => v is ContentButton)
-            .FirstOrDefault(v => (v as ContentButton).BindingContext == bindingContext) as ContentButton;
+            .Where(v => v is SimpleButton)
+            .FirstOrDefault(v => (v as SimpleButton).BindingContext == bindingContext) as SimpleButton;
     }
 
     private Color GetDefaultButtonIconColor()
@@ -272,7 +281,7 @@ public partial class TabBar : ContentView
 
         for (int i = start; i < tabBar.rootGrid.Count; i++)
         {
-            var button = tabBar.rootGrid[i] as ContentButton;
+            var button = tabBar.rootGrid[i] as SimpleButton;
             var icon = button.Content as Icon;
             var shellItem = shellItems.Count <= i - start ? null : shellItems[i - start];
 

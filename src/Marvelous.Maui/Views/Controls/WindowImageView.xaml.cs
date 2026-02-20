@@ -2,7 +2,7 @@ using Microsoft.Maui.Controls.Shapes;
 
 namespace Marvelous.Maui.Views.Controls;
 
-public partial class WindowImageView : ContentView
+public partial class WindowImageView : Grid
 {
     public static readonly BindableProperty VerticalDeltaProperty =
         BindableProperty.Create(nameof(VerticalDelta), typeof(double), typeof(WindowImageView), defaultValue: 0d, propertyChanged: OnVerticalDeltaChanged);

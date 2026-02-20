@@ -7,9 +7,8 @@ public partial class App : Application
         InitializeComponent();
     }
 
-    protected override void OnHandlerChanged()
+    protected override Window CreateWindow(IActivationState activationState)
     {
-        base.OnHandlerChanged();
-        MainPage = this.Handler.MauiContext.Services.GetRequiredService<AppShell>();
+        return new Window(Handler.MauiContext.Services.GetRequiredService<AppShell>());
     }
 }

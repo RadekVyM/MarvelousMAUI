@@ -4,7 +4,7 @@ using Marvelous.Core.ViewModels.Parameters;
 using Marvelous.Maui.Extensions;
 using Marvelous.Maui.Views.Illustrations;
 using Marvelous.Maui.Views.Pages;
-using SimpleToolkit.Core;
+using SimpleToolkit.Helpers;
 using SimpleToolkit.SimpleShell;
 using SimpleToolkit.SimpleShell.Extensions;
 using SimpleToolkit.SimpleShell.Transitions;
@@ -28,7 +28,7 @@ public partial class AppShell : SimpleShell
         (RootPageContainer as View).BindingContext = BindingContext;
         (Content as View).BindingContext = BindingContext;
 
-        Loaded += AppShellLoaded;
+        SizeChanged += OnSizeChanged;
 
         RegisterRoutes();
         SetTransition();
@@ -128,16 +128,10 @@ public partial class AppShell : SimpleShell
         return page is WonderMainPage || page is WonderPhotoPage || page is WonderArtifactsPage || page is WonderHistoryPage;
     }
 
-    private static void AppShellLoaded(object sender, EventArgs e)
+    private void OnSizeChanged(object sender, EventArgs e)
     {
-        var shell = sender as AppShell;
-
-        shell.Window.SubscribeToSafeAreaChanges(safeArea =>
-        {
-            var margin = new Thickness(safeArea.Left, 0, safeArea.Right, safeArea.Bottom);
-            shell.statusBarBackground.HeightRequest = safeArea.Top;
-            shell.tabBar.OnSafeAreaChanged(safeArea);
-        });
+        var safeArea = WindowInsetsProvider.GetInsets();
+        statusBarBackground.HeightRequest = safeArea.Top;
     }
 
     private static void AppShellNavigating(object sender, ShellNavigatingEventArgs e)

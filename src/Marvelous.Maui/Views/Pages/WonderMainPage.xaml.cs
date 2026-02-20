@@ -4,6 +4,7 @@ using Marvelous.Core.Interfaces.ViewModels;
 using Marvelous.Core.Models;
 using Marvelous.Maui.Models;
 using Marvelous.Maui.Views.Illustrations;
+using SimpleToolkit.Helpers;
 
 namespace Marvelous.Maui.Views.Pages;
 
@@ -43,11 +44,14 @@ public partial class WonderMainPage : BaseContentPage
 		viewModel.PropertyChanged += ViewModelPropertyChanged;
 
 		collectionViewFooterContainer.HeightRequest = Controls.TabBar.TabBarHeight + 20;
+
+        SizeChanged += OnSizeChanged;
     }
 
+    private void OnSizeChanged(object sender, EventArgs e)
+    {
+        var safeArea = WindowInsetsProvider.GetInsets();
 
-    protected override void OnSafeAreaChanged(Thickness safeArea)
-	{
         if (defaultMenuButtonBorderMargin == Thickness.Zero)
             defaultMenuButtonBorderMargin = menuButtonBorder.Margin;
 

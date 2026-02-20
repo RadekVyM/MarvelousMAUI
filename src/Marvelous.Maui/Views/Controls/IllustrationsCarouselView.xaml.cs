@@ -1,10 +1,10 @@
-using SimpleToolkit.Core;
 using Marvelous.Core.Models;
 using Marvelous.Maui.Views.Illustrations;
+using SimpleToolkit.Helpers;
 
 namespace Marvelous.Maui.Views.Controls;
 
-public partial class IllustrationsCarouselView : ContentView
+public partial class IllustrationsCarouselView : Grid
 {
     private const int HorizontalSwipeDuration = 250;
     private double totalPanX = 0;
@@ -43,23 +43,13 @@ public partial class IllustrationsCarouselView : ContentView
 	{
 		InitializeComponent();
 
-        Loaded += IllustrationsCarouselViewLoaded;
-        Unloaded += IllustrationsCarouselViewUnloaded;
+        SizeChanged += OnSizeChanged;
     }
 
-    private void IllustrationsCarouselViewUnloaded(object sender, EventArgs e)
-    {
-        this.Window.UnsubscribeFromSafeAreaChanges(OnSafeAreaChanged);
-    }
 
-    private void IllustrationsCarouselViewLoaded(object sender, EventArgs e)
+    private void OnSizeChanged(object sender, EventArgs e)
     {
-        this.Window.SubscribeToSafeAreaChanges(OnSafeAreaChanged);
-    }
-
-    private void OnSafeAreaChanged(Thickness safeArea)
-    {
-        indicatorContainer.Margin = safeArea;
+        indicatorContainer.Margin = WindowInsetsProvider.GetInsets();
     }
 
     public async Task Show()
@@ -75,7 +65,7 @@ public partial class IllustrationsCarouselView : ContentView
         verticalPanIndicatorView.AnimateIn(); // This is not in the original design but I like it
         await Task.WhenAll(
             currentIllustration.AnimateIn(),
-            backgroundContainer.FadeTo(1, 200));
+            backgroundContainer.FadeToAsync(1, 200));
     }
 
     public async Task Hide()
@@ -90,7 +80,7 @@ public partial class IllustrationsCarouselView : ContentView
         await Task.WhenAll(
             currentIllustration.AnimateOut(),
             currentIllustration.AnimateForegroundScaleToDefault(),
-            backgroundContainer.FadeTo(0, 200));
+            backgroundContainer.FadeToAsync(0, 200));
         
         currentIllustration.ForegroundScale = 1;
 

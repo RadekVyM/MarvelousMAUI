@@ -7,31 +7,31 @@
     xmlns:controls="clr-namespace:Marvelous.Maui.Views.Controls"
     xmlns:vm="clr-namespace:Marvelous.Core.Interfaces.ViewModels;assembly=Marvelous.Core"
     xmlns:models="clr-namespace:Marvelous.Maui.Models;assembly=Marvelous.Maui"
-    xmlns:simpleCore="clr-namespace:SimpleToolkit.Core;assembly=SimpleToolkit.Core"
+    xmlns:sb="clr-namespace:SimpleToolkit.SimpleButton;assembly=SimpleToolkit.SimpleButton"
     x:Class="Marvelous.Maui.Views.Pages.WonderArtifactsPage"
     Title="WonderArtifactsPage"
-    
+
     x:DataType="vm:IWonderArtifactsPageViewModel">
 
     <Grid
         x:Name="rootGrid"
-        CompressedLayout.IsHeadless="True"
-        RowDefinitions="auto, *, 50, 95">
+        RowDefinitions="auto, *, 50, 95"
+        SafeAreaEdges="None">
         <Image
             Grid.RowSpan="4"
             Source="{Binding CurrentArtifact.ImageSmall}"
-            Aspect="AspectFill"/>
+            Aspect="AspectFill" />
 
         <Rectangle
             Grid.RowSpan="4"
             Fill="#aa000000"
-            Margin="-1"/>
+            Margin="-1" />
 
         <RoundRectangle
             x:Name="roundRectangle"
             Grid.Row="1" Grid.RowSpan="3"
             Fill="#daffffff"
-            Margin="-1, 120, -1, -1"/>
+            Margin="-1, 120, -1, -1" />
 
         <Label
             x:Name="titleLabel"
@@ -41,7 +41,7 @@
             TextColor="White"
             FontFamily="RalewayBold"
             FontSize="15"
-            TextTransform="Uppercase"/>
+            TextTransform="Uppercase" />
 
         <Grid
             Grid.Row="1"
@@ -54,12 +54,12 @@
                 FontFamily="TenorSans"
                 FontSize="30"
                 HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
-                MaxLines="2" LineBreakMode="WordWrap"/>
+                MaxLines="2" LineBreakMode="WordWrap" />
             <Label
                 Grid.Row="1"
                 Text="{Binding CurrentArtifact.Date}"
                 FontFamily="TenorSans"
-                HorizontalOptions="Center"/>
+                HorizontalOptions="Center" />
         </Grid>
 
         <CarouselView
@@ -80,7 +80,7 @@
                         <controls:ArtifactCoverFlowItem.GestureRecognizers>
                             <TapGestureRecognizer
                                 Command="{Binding Source={RelativeSource Mode=FindAncestorBindingContext, AncestorType={x:Type vm:IWonderArtifactsPageViewModel}}, Path=ArtifactCommand}"
-                                CommandParameter="{Binding Position}"/>
+                                CommandParameter="{Binding Position}" />
                         </controls:ArtifactCoverFlowItem.GestureRecognizers>
                     </controls:ArtifactCoverFlowItem>
                 </DataTemplate>
@@ -94,14 +94,14 @@
             CurrentIndex="{Binding CurrentArtifactIndex}"
             HeightRequest="6"
             Margin="0, 0, 0, 10"
-            Color="{StaticResource PrimaryColor}"/>
+            Color="{StaticResource PrimaryColor}" />
 
         <Border
             Grid.Row="3"
             Style="{StaticResource RectButtonBorderStyle}"
             Margin="20, 0"
             VerticalOptions="Start">
-            <simpleCore:ContentButton
+            <sb:SimpleButton
                 Command="{Binding BrowseArtifactsCommand}"
                 Style="{StaticResource RectContentButtonStyle}">
                 <HorizontalStackLayout
@@ -109,14 +109,14 @@
                     Spacing="10">
                     <Label
                         Text="{x:Static core:Localization.artifactsButtonBrowse}"
-                        Style="{StaticResource RectButtonLabelStyle}"/>
-                    <simpleCore:Icon
+                        Style="{StaticResource RectButtonLabelStyle}" />
+                    <controls:Icon
                         Source="common_icons_icon_search.png"
                         TintColor="White"
                         HeightRequest="20" WidthRequest="20"
-                        Margin="0, 0, 0, -2"/>
+                        Margin="0, 0, 0, -2" />
                 </HorizontalStackLayout>
-            </simpleCore:ContentButton>
+            </sb:SimpleButton>
         </Border>
     </Grid>
 </pages:BaseContentPage>

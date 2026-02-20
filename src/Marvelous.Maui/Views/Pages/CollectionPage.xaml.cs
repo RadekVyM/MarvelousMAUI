@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel;
-using CommunityToolkit.Maui.Views;
 using Marvelous.Core.Interfaces.Services;
 using Marvelous.Core.Interfaces.ViewModels;
 using Marvelous.Maui.Views.Controls;
 using Marvelous.Maui.Models;
+using SimpleToolkit.Helpers;
 
 namespace Marvelous.Maui.Views.Pages;
 
@@ -31,6 +31,8 @@ public partial class CollectionPage : BaseContentPage
         viewModel.PropertyChanged += ViewModelPropertyChanged;
 
         UpdateShadowOffset(0);
+
+        SizeChanged += OnSizeChanged;
     }
 
 
@@ -40,8 +42,9 @@ public partial class CollectionPage : BaseContentPage
         darkShadow.Offset = offset;
     }
 
-    protected override void OnSafeAreaChanged(Thickness safeArea)
+    private void OnSizeChanged(object sender, EventArgs e)
     {
+        var safeArea = WindowInsetsProvider.GetInsets();
         Padding = new Thickness(safeArea.Left, safeArea.Top, safeArea.Right, 0);
         countGrid.Padding = new Thickness(0, 0, 0, safeArea.Bottom);
     }
@@ -62,18 +65,12 @@ public partial class CollectionPage : BaseContentPage
 
     private async void ResetClicked(object sender, EventArgs e)
     {
-        var bindable = sender as BindableObject;
+        var dialog = new ConfirmCollectionResetPopup();
+        await Navigation.PushModalAsync(dialog);
 
-#if IOS
-        var width = this.Width - 40;
-#else
-        var width = this.Width;
-#endif
+        var confirmed = await dialog.Result.Task;
 
-        var dialog = new ConfirmCollectionResetPopup(width);
-        var confirmed = await this.ShowPopupAsync(dialog);
-
-        if (confirmed is bool c && c)
+        if (confirmed)
             viewModel?.ResetCollectionCommand?.Execute(null);
     }
 

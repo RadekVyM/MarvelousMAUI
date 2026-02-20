@@ -3,7 +3,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:pages="clr-namespace:Marvelous.Maui.Views.Pages"
-    xmlns:simpleCore="clr-namespace:SimpleToolkit.Core;assembly=SimpleToolkit.Core"
+    xmlns:sb="clr-namespace:SimpleToolkit.SimpleButton;assembly=SimpleToolkit.SimpleButton"
     xmlns:controls="clr-namespace:Marvelous.Maui.Views.Controls"
     xmlns:core="clr-namespace:Marvelous.Core;assembly=Marvelous.Core"
     x:Class="Marvelous.Maui.Views.Pages.GlobalTimelinePage"
@@ -11,27 +11,25 @@
 
     <Grid
         RowDefinitions="auto, *, 45, 75"
-        Margin="0, 0, 0, 20"
-        CompressedLayout.IsHeadless="True">
+        Margin="0, 0, 0, 20">
         <Grid
             x:Name="appBar"
             VerticalOptions="Start"
-            HeightRequest="{StaticResource AppBarHeight}"
-            CompressedLayout.IsHeadless="True">
+            HeightRequest="{StaticResource AppBarHeight}">
             <Border
                 x:Name="menuButtonBorder"
                 Style="{StaticResource AppBarButtonBorderStyle}">
-                <simpleCore:ContentButton
+                <sb:SimpleButton
                     Clicked="MenuBackButtonClicked">
-                    <simpleCore:Icon
+                    <controls:Icon
                         Source="common_icons_icon_back.png"
-                        Style="{StaticResource AppBarButtonIconStyle}"/>
-                </simpleCore:ContentButton>
+                        Style="{StaticResource AppBarButtonIconStyle}" />
+                </sb:SimpleButton>
             </Border>
 
             <Label
                 Text="{x:Static core:Localization.timelineTitleGlobalTimeline}"
-                Style="{StaticResource AppBarTitleLabelStyle}"/>
+                Style="{StaticResource AppBarTitleLabelStyle}" />
         </Grid>
 
         <Grid
@@ -41,33 +39,29 @@
             <GraphicsView
                 x:Name="graphicsView"
                 Background="Transparent"
-                InputTransparent="True"/>
+                InputTransparent="True" />
 
             <AbsoluteLayout
                 x:Name="imagesAbsoluteLayout"
                 InputTransparent="True"
-                Background="Transparent"
-                CompressedLayout.IsHeadless="True"/>
+                Background="Transparent" />
 
             <CollectionView
                 x:Name="collectionView"
                 Scrolled="CollectionViewScrolled">
                 <CollectionView.Header>
-                    <ContentView
-                        x:Name="headerSpacer"
-                        CompressedLayout.IsHeadless="True"/>
+                    <Grid
+                        x:Name="headerSpacer" />
                 </CollectionView.Header>
 
                 <CollectionView.Footer>
-                    <ContentView
-                        x:Name="footerSpacer"
-                        CompressedLayout.IsHeadless="True"/>
+                    <Grid
+                        x:Name="footerSpacer" />
                 </CollectionView.Footer>
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <ContentView
-                            CompressedLayout.IsHeadless="True">
+                        <Grid>
                             <Label
                                 Text="{Binding .}"
                                 FontSize="14" FontFamily="RalewayRegular"
@@ -76,8 +70,8 @@
                                 Margin="20, 0, 0, 0"
                                 Padding="0, 0, 0, 7"
                                 HorizontalOptions="Start"
-                                HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                        </ContentView>
+                                HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                        </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
@@ -89,31 +83,30 @@
                 HeightRequest="4"
                 Y1="2" Y2="2"
                 Stroke="{StaticResource TertiaryColor}" StrokeThickness="1"
-                StrokeDashArray="4,4" StrokeDashOffset="4"/>
+                StrokeDashArray="4,4" StrokeDashOffset="4" />
 
             <HorizontalStackLayout
                 InputTransparent="True"
                 VerticalOptions="Center" HorizontalOptions="End"
                 HeightRequest="40"
                 Margin="0,0,8,40"
-                Spacing="12"
-                CompressedLayout.IsHeadless="True">
+                Spacing="12">
                 <HorizontalStackLayout.Resources>
                     <Style TargetType="Label">
-                        <Setter Property="TextColor" Value="White"/>
-                        <Setter Property="VerticalOptions" Value="Center"/>
+                        <Setter Property="TextColor" Value="White" />
+                        <Setter Property="VerticalOptions" Value="Center" />
                     </Style>
                 </HorizontalStackLayout.Resources>
                 <Label
                     x:Name="yearLabel"
                     HorizontalOptions="End" HorizontalTextAlignment="End"
                     WidthRequest="150"
-                    FontFamily="TenorSans" FontSize="26"/>
+                    FontFamily="TenorSans" FontSize="26" />
                 <Label
                     x:Name="secondYearLabel"
                     Grid.Column="1"
                     FontFamily="RalewayRegular" FontSize="16"
-                    Margin="0,0,0,3"/>
+                    Margin="0,0,0,3" />
             </HorizontalStackLayout>
 
             <Rectangle
@@ -124,8 +117,8 @@
                 <Rectangle.Fill>
                     <LinearGradientBrush
                         StartPoint="0,0" EndPoint="0,1">
-                        <GradientStop Offset="0" Color="{StaticResource TransparentDarkSecondaryColor}"/>
-                        <GradientStop Offset="1" Color="{StaticResource DarkSecondaryColor}"/>
+                        <GradientStop Offset="0" Color="{StaticResource TransparentDarkSecondaryColor}" />
+                        <GradientStop Offset="1" Color="{StaticResource DarkSecondaryColor}" />
                     </LinearGradientBrush>
                 </Rectangle.Fill>
             </Rectangle>
@@ -138,8 +131,8 @@
                 <Rectangle.Fill>
                     <LinearGradientBrush
                         StartPoint="0,0" EndPoint="0,1">
-                        <GradientStop Offset="0" Color="{StaticResource DarkSecondaryColor}"/>
-                        <GradientStop Offset="1" Color="{StaticResource TransparentDarkSecondaryColor}"/>
+                        <GradientStop Offset="0" Color="{StaticResource DarkSecondaryColor}" />
+                        <GradientStop Offset="1" Color="{StaticResource TransparentDarkSecondaryColor}" />
                     </LinearGradientBrush>
                 </Rectangle.Fill>
             </Rectangle>
@@ -148,7 +141,7 @@
                 x:Name="eventCard"
                 VerticalOptions="Start"
                 Margin="20"
-                InputTransparent="True"/>
+                InputTransparent="True" />
         </Grid>
 
         <Label
@@ -157,10 +150,10 @@
             TextColor="White"
             FontFamily="RalewayRegular" FontSize="17"
             HorizontalTextAlignment="Center"
-            VerticalTextAlignment="Center"/>
+            VerticalTextAlignment="Center" />
 
         <controls:GlobalTimelineSlider
             x:Name="globalTimelineSlider"
-            Grid.Row="3"/>
+            Grid.Row="3" />
     </Grid>
 </pages:BaseContentPage>

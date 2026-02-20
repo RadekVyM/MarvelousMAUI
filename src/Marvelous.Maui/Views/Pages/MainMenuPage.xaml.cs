@@ -1,11 +1,13 @@
-using CommunityToolkit.Maui.Views;
-using SimpleToolkit.Core;
 using SimpleToolkit.SimpleShell.Extensions;
 using SimpleToolkit.SimpleShell.Transitions;
 using Marvelous.Core.Interfaces.Services;
 using Marvelous.Core.Interfaces.ViewModels;
 using Marvelous.Core.ViewModels.Parameters;
 using Marvelous.Maui.Views.Controls;
+using CommunityToolkit.Maui.Extensions;
+using SimpleToolkit.SimpleButton;
+using SimpleToolkit.Helpers;
+using CommunityToolkit.Maui;
 
 namespace Marvelous.Maui.Views.Pages;
 
@@ -32,8 +34,9 @@ public partial class MainMenuPage : BaseContentPage
             DestinationPageInFrontOnSwitching = static (args) => true
 #endif
         });
-    }
 
+        SizeChanged += OnSizeChanged;
+    }
 
     public async void TransitionOut()
     {
@@ -51,13 +54,15 @@ public partial class MainMenuPage : BaseContentPage
 
         await Task.Delay(1000);
 
-        ShowAboutThisAppPopup();
+        await ShowAboutThisAppPopup();
 
         isFirstNavigationTo = false;
     }
 
-    protected override void OnSafeAreaChanged(Thickness safeArea)
+    private void OnSizeChanged(object sender, EventArgs e)
     {
+        var safeArea = WindowInsetsProvider.GetInsets();
+
         if (defaultMenuButtonBorder == Thickness.Zero)
             defaultMenuButtonBorder = menuButtonBorder.Margin;
 
@@ -104,7 +109,7 @@ public partial class MainMenuPage : BaseContentPage
 
     private void MenuButtonClicked(object sender, EventArgs e)
     {
-        var button = sender as ContentButton;
+        var button = sender as SimpleButton;
 
         isMenuHidden = false;
 
@@ -123,14 +128,15 @@ public partial class MainMenuPage : BaseContentPage
         menuButtonBorder.IsVisible = false;
     }
 
-    private void AboutThisAppClicked(object sender, EventArgs e)
+    private async void AboutThisAppClicked(object sender, EventArgs e)
     {
-        ShowAboutThisAppPopup();
+        await ShowAboutThisAppPopup();
     }
 
-    private void ShowAboutThisAppPopup()
+    private async Task ShowAboutThisAppPopup()
     {
         var popup = new AboutThisAppPopup(Math.Min(this.Width - 60d, 400d));
-        this.ShowPopup(popup);
+
+        await Navigation.PushModalAsync(popup);
     }
 }

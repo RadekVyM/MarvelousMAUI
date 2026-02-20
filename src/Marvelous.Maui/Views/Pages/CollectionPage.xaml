@@ -7,7 +7,7 @@
     xmlns:models="clr-namespace:Marvelous.Core.Models;assembly=Marvelous.Core"
     xmlns:localModels="clr-namespace:Marvelous.Maui.Models"
     xmlns:vm="clr-namespace:Marvelous.Core.Interfaces.ViewModels;assembly=Marvelous.Core"
-    xmlns:simpleCore="clr-namespace:SimpleToolkit.Core;assembly=SimpleToolkit.Core"
+    xmlns:sb="clr-namespace:SimpleToolkit.SimpleButton;assembly=SimpleToolkit.SimpleButton"
     xmlns:controls="clr-namespace:Marvelous.Maui.Views.Controls"
 
     x:Class="Marvelous.Maui.Views.Pages.CollectionPage"
@@ -18,21 +18,20 @@
 
     <Grid
         RowDefinitions="auto, auto, *, auto"
-        CompressedLayout.IsHeadless="True">
+        SafeAreaEdges="None">
         <Grid
             x:Name="appBar"
             VerticalOptions="Start"
-            HeightRequest="{StaticResource AppBarHeight}"
-            CompressedLayout.IsHeadless="True">
+            HeightRequest="{StaticResource AppBarHeight}">
             <Border
                 x:Name="menuButtonBorder"
                 Style="{StaticResource AppBarButtonBorderStyle}">
-                <simpleCore:ContentButton
+                <sb:SimpleButton
                     Clicked="MenuBackButtonClicked">
-                    <simpleCore:Icon
+                    <controls:Icon
                         Source="common_icons_icon_back.png"
-                        Style="{StaticResource AppBarButtonIconStyle}"/>
-                </simpleCore:ContentButton>
+                        Style="{StaticResource AppBarButtonIconStyle}" />
+                </sb:SimpleButton>
             </Border>
 
             <Label
@@ -41,7 +40,7 @@
                 TextColor="White"
                 FontFamily="RalewayBold"
                 FontSize="15"
-                TextTransform="Uppercase"/>
+                TextTransform="Uppercase" />
         </Grid>
 
         
@@ -55,12 +54,12 @@
             <Label.Text>
                 <MultiBinding StringFormat="{x:Static core:Localization.newlyDiscoveredLabelNew}">
                     <Binding Path="DiscoveredAndNotExploredCollectiblesCount" />
-                    <Binding Path="DiscoveredAndNotExploredCollectiblesCount" Converter="{StaticResource CountToPluralConverter}"/>
+                    <Binding Path="DiscoveredAndNotExploredCollectiblesCount" Converter="{StaticResource CountToPluralConverter}" />
                 </MultiBinding>
             </Label.Text>
 
             <Label.GestureRecognizers>
-                <TapGestureRecognizer Tapped="NewlyDiscoveredItemsTapped"/>
+                <TapGestureRecognizer Tapped="NewlyDiscoveredItemsTapped" />
             </Label.GestureRecognizers>
         </Label>
 
@@ -78,7 +77,6 @@
                     <DataTemplate
                         x:DataType="localModels:CollectibleGroupViewModel">
                         <Grid
-                            CompressedLayout.IsHeadless="True"
                             RowDefinitions="auto, auto">
                             <Label
                                 Text="{Binding WonderTitle, Converter={StaticResource EmptyToSpacesLocalizationConverter}}"
@@ -87,15 +85,14 @@
                                 Margin="25"
                                 FontFamily="TenorSans"
                                 FontSize="15"
-                                TextTransform="Uppercase"/>
+                                TextTransform="Uppercase" />
 
                             <StackLayout
                                 Grid.Row="1"
                                 BindableLayout.ItemsSource="{Binding .}"
                                 Orientation="Horizontal"
                                 Margin="20, 0, 20, 20"
-                                Spacing="20"
-                                CompressedLayout.IsHeadless="True">
+                                Spacing="20">
 
                                 <BindableLayout.ItemTemplate>
                                     <DataTemplate
@@ -105,7 +102,7 @@
                                             HeightRequest="200"
                                             Collectible="{Binding ., Mode=OneTime}"
                                             CollectibleState="{Binding CollectibleState}"
-                                            Command="{Binding BindingContext.ArtifactCommand, Source={x:Reference page}, Mode=OneTime}"/>
+                                            Command="{Binding BindingContext.ArtifactCommand, Source={x:Reference page}, Mode=OneTime}" />
                                     </DataTemplate>
                                 </BindableLayout.ItemTemplate>
                             </StackLayout>
@@ -114,13 +111,12 @@
                 </CollectionView.ItemTemplate>
 
                 <CollectionView.Footer>
-                    <ContentView
-                        CompressedLayout.IsHeadless="True">
+                    <Grid>
                         <Border
                             Style="{StaticResource RectButtonBorderStyle}"
                             Margin="20, 20, 20, 70"
                             VerticalOptions="Start">
-                            <simpleCore:ContentButton
+                            <sb:SimpleButton
                                 Clicked="ResetClicked"
                                 Style="{StaticResource RectContentButtonStyle}"
                                 Padding="20"
@@ -128,10 +124,10 @@
                                 <Label
                                     Text="{x:Static core:Localization.collectionButtonReset}"
                                     Style="{StaticResource RectButtonLabelStyle}"
-                                    TextColor="{StaticResource SecondaryColor}"/>
-                            </simpleCore:ContentButton>
+                                    TextColor="{StaticResource SecondaryColor}" />
+                            </sb:SimpleButton>
                         </Border>
-                    </ContentView>
+                    </Grid>
                 </CollectionView.Footer>
             </CollectionView>
 
@@ -142,7 +138,7 @@
                 Color="{StaticResource SuperDarkSecondaryColor}"
                 TransparentColor="#000a0a08"
                 IsFromTop="True"
-                Offset="0"/>
+                Offset="0" />
 
             <Rectangle
                 InputTransparent="True"
@@ -152,8 +148,8 @@
                 <Rectangle.Fill>
                     <LinearGradientBrush
                         StartPoint="0,0" EndPoint="0,1">
-                        <GradientStop Offset="0.1" Color="#00252621"/>
-                        <GradientStop Offset="1" Color="{StaticResource SecondaryColor}"/>
+                        <GradientStop Offset="0.1" Color="#00252621" />
+                        <GradientStop Offset="1" Color="{StaticResource SecondaryColor}" />
                     </LinearGradientBrush>
                 </Rectangle.Fill>
             </Rectangle>
@@ -163,13 +159,14 @@
             x:Name="countGrid"
             Grid.Row="3"
             Background="{StaticResource SecondaryBrush}"
-            RowDefinitions="40, 50">
+            RowDefinitions="40, 50"
+            SafeAreaEdges="None">
             <Label
                 TextColor="{StaticResource PrimaryColor}"
                 FontFamily="RalewayRegular"
                 Text="{Binding DiscoveredCollectiblesPercentage, StringFormat={x:Static core:Localization.collectionLabelDiscovered}}"
                 HorizontalOptions="Start" VerticalOptions="End"
-                Margin="20, 0"/>
+                Margin="20, 0" />
             <Label
                 TextColor="{StaticResource TertiaryColor}"
                 FontFamily="RalewayRegular"
@@ -189,7 +186,7 @@
                 Background="Transparent"
                 VerticalOptions="Start"
                 HeightRequest="8"
-                Margin="20, 15"/>
+                Margin="20, 15" />
         </Grid>
     </Grid>
 </pages:BaseContentPage>

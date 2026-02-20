@@ -1,6 +1,7 @@
 ﻿using Marvelous.Core.Interfaces.Services;
 using Marvelous.Core.Interfaces.ViewModels;
 using Marvelous.Maui.Extensions;
+using SimpleToolkit.Helpers;
 using SimpleToolkit.SimpleShell.Extensions;
 using SimpleToolkit.SimpleShell.Transitions;
 
@@ -46,8 +47,9 @@ public partial class DiscoveredArtifactPage : BaseContentPage
             PushingAnimation = (args) => new Marvelous.Maui.Transitions.NoneAppleTransition(1000)
 #endif
         });
-	}
 
+        SizeChanged += OnSizeChanged;
+	}
 
     protected override void OnNavigatedTo(NavigatedToEventArgs args)
     {
@@ -127,9 +129,9 @@ public partial class DiscoveredArtifactPage : BaseContentPage
         }
     }
 
-    protected override void OnSafeAreaChanged(Thickness safeArea)
+    private void OnSizeChanged(object sender, EventArgs e)
     {
-        innerGrid.Padding = safeArea;
+        var safeArea = WindowInsetsProvider.GetInsets();
         backgroundDrawable.SafeArea = safeArea;
         backgroundGraphicsView.Invalidate();
     }

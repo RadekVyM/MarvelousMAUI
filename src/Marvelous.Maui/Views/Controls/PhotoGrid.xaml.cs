@@ -1,8 +1,9 @@
 ﻿using Marvelous.Maui.Blazor;
+using Microsoft.AspNetCore.Components.WebView.Maui;
 
 namespace Marvelous.Maui.Views.Controls;
 
-public partial class PhotoGrid : ContentView
+public partial class PhotoGrid : BlazorWebView
 {
 	public PhotoGrid()
 	{
@@ -11,7 +12,7 @@ public partial class PhotoGrid : ContentView
 
     protected override void OnBindingContextChanged()
     {
-        blazorWebView.RootComponents.FirstOrDefault().Parameters = new Dictionary<string, object>()
+        RootComponents.FirstOrDefault().Parameters = new Dictionary<string, object>()
         {
             [nameof(PhotoGallery.ViewModel)] = BindingContext
         };

@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:pages="clr-namespace:Marvelous.Maui.Views.Pages"
     xmlns:controls="clr-namespace:Marvelous.Maui.Views.Controls"
-    xmlns:simpleCore="clr-namespace:SimpleToolkit.Core;assembly=SimpleToolkit.Core"
+    xmlns:sb="clr-namespace:SimpleToolkit.SimpleButton;assembly=SimpleToolkit.SimpleButton"
     xmlns:viewModels="clr-namespace:Marvelous.Core.Interfaces.ViewModels;assembly=Marvelous.Core"
     xmlns:models="clr-namespace:Marvelous.Core.Models;assembly=Marvelous.Core"
     xmlns:core="clr-namespace:Marvelous.Core;assembly=Marvelous.Core"
@@ -16,12 +16,11 @@
     x:DataType="viewModels:IWonderHistoryPageViewModel">
 
     <Grid
-        CompressedLayout.IsHeadless="True">
+        SafeAreaEdges="None">
         <Grid
             x:Name="headerGrid"
             RowDefinitions="5*, 2*"
-            VerticalOptions="Start"
-            CompressedLayout.IsHeadless="True">
+            VerticalOptions="Start">
             <Grid
                 IsClippedToBounds="True">
                 <Border
@@ -34,7 +33,7 @@
                         x:Name="headerImage"
                         Background="Transparent"
                         Aspect="AspectFill"
-                        Margin="0,0,0,-80"/>
+                        Margin="0,0,0,-80" />
                 </Border>
                 <Rectangle
                     VerticalOptions="End"
@@ -43,8 +42,8 @@
                     <Rectangle.Fill>
                         <LinearGradientBrush
                             StartPoint="0,0" EndPoint="0,1">
-                            <GradientStop Offset="0.1" Color="#001c1b15"/>
-                            <GradientStop Offset="1" Color="#ff1c1b15"/>
+                            <GradientStop Offset="0.1" Color="#001c1b15" />
+                            <GradientStop Offset="1" Color="#ff1c1b15" />
                         </LinearGradientBrush>
                     </Rectangle.Fill>
                 </Rectangle>
@@ -53,13 +52,13 @@
             <controls:WonderTitle
                 Title="{Binding CurrentWonder.Title}"
                 Margin="20, 0, 20, -15"
-                VerticalOptions="End"/>
+                VerticalOptions="End" />
 
             <GraphicsView
                 x:Name="headerGraphicsView"
                 Grid.Row="1"
                 Background="Transparent"
-                Margin="20, 10, 20, 70"/>
+                Margin="20, 10, 20, 70" />
 
             <HorizontalStackLayout
                 Grid.Row="1"
@@ -71,8 +70,8 @@
                     FontFamily="RalewayRegular">
                     <Label.Text>
                         <MultiBinding Converter="{StaticResource TimelineDateConverter}">
-                            <Binding Path="CurrentWonder.StartYr"/>
-                            <Binding Path="CurrentWonder.EndYr"/>
+                            <Binding Path="CurrentWonder.StartYr" />
+                            <Binding Path="CurrentWonder.EndYr" />
                         </MultiBinding>
                     </Label.Text>
                 </Label>
@@ -80,12 +79,12 @@
                 <Ellipse
                     Fill="{StaticResource TertiaryBrush}"
                     HeightRequest="6" WidthRequest="6"
-                    Margin="0, 4, 0, 0"/>
+                    Margin="0, 4, 0, 0" />
 
                 <Label
                     Text="{Binding TimelineEra.TitleKey, Converter={StaticResource LocalizationConverter}}"
                     TextColor="{StaticResource TertiaryColor}"
-                    FontFamily="RalewayRegular"/>
+                    FontFamily="RalewayRegular" />
             </HorizontalStackLayout>
         </Grid>
         
@@ -96,8 +95,7 @@
             <CollectionView.Header>
                 <Grid
                     x:Name="collectionHeaderGrid"
-                    Margin="-1"
-                    CompressedLayout.IsHeadless="True">
+                    Margin="-1">
 
                     <!--
                         TODO: Sizing of shapes is weird again after the last updated
@@ -110,14 +108,14 @@
                             Fill="White"
                             Stroke="White"
                             CornerRadius="10, 10, 0, 0"
-                            Margin="0, -1"/>
+                            Margin="0, -1" />
                     </ContentView>
                     <RoundRectangle
                         Fill="#9d9995"
                         HeightRequest="7" WidthRequest="40"
                         CornerRadius="4"
                         Margin="10"
-                        HorizontalOptions="Center" VerticalOptions="End"/>
+                        HorizontalOptions="Center" VerticalOptions="End" />
                 </Grid>
             </CollectionView.Header>
             <CollectionView.Footer>
@@ -130,27 +128,27 @@
                     <Border
                         Style="{StaticResource RectButtonBorderStyle}"
                         VerticalOptions="Center">
-                        <simpleCore:ContentButton
+                        <sb:SimpleButton
                             Command="{Binding GlobalTimelineCommand}"
                             Style="{StaticResource RectContentButtonStyle}"
                             Padding="20">
                             <Label
                                 Text="{x:Static core:Localization.eventsListButtonOpenGlobal}"
-                                Style="{StaticResource RectButtonLabelStyle}"/>
-                        </simpleCore:ContentButton>
+                                Style="{StaticResource RectButtonLabelStyle}" />
+                        </sb:SimpleButton>
                     </Border>
 
                     <controls:HorizontalSeparator
                         Grid.Row="1"
                         IconColor="{StaticResource DarkTertiaryColor}"
-                        LineColor="{StaticResource DarkTertiaryColor}"/>
+                        LineColor="{StaticResource DarkTertiaryColor}" />
                     
                     <controls:CollectibleItemView
                         Grid.Row="2"
                         Collectible="{Binding Collectible}"
                         Command="{Binding CollectibleCommand}"
                         Position="0"
-                        VisiblePosition="0"/>
+                        VisiblePosition="0" />
                 </Grid>
             </CollectionView.Footer>
             <CollectionView.ItemTemplate>
@@ -161,7 +159,7 @@
                         Margin="-1">
                         <controls:EventCard
                             BindingContext="{Binding .}"
-                            Margin="20, 8"/>
+                            Margin="20, 8" />
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

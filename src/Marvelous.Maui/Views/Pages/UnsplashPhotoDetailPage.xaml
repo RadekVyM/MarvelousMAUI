@@ -3,19 +3,19 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:pages="clr-namespace:Marvelous.Maui.Views.Pages"
-    xmlns:simpleCore="clr-namespace:SimpleToolkit.Core;assembly=SimpleToolkit.Core"
+    xmlns:controls="clr-namespace:Marvelous.Maui.Views.Controls"
+    xmlns:sb="clr-namespace:SimpleToolkit.SimpleButton;assembly=SimpleToolkit.SimpleButton"
     xmlns:vm="clr-namespace:Marvelous.Core.Interfaces.ViewModels;assembly=Marvelous.Core"
     xmlns:models="clr-namespace:Marvelous.Core.Models;assembly=Marvelous.Core"
     x:Class="Marvelous.Maui.Views.Pages.UnsplashPhotoDetailPage"
-    
+
     Background="Black"
-    
+
     Title="UnsplashPhotoDetailPage"
 
     x:DataType="vm:IUnsplashPhotoDetailPageViewModel">
 
-    <Grid
-        CompressedLayout.IsHeadless="True">
+    <Grid>
         <CarouselView
             x:Name="carouselView"
             Background="Black"
@@ -31,24 +31,23 @@
                             Source="{Binding Url, Converter={StaticResource UnsplashUrlConverter}}"
                             IsOpaque="True"
                             Background="Black"
-                            Margin="1"/>
+                            Margin="1" />
                     </Grid>
                 </DataTemplate>
             </CarouselView.ItemTemplate>
         </CarouselView>
 
-        <simpleCore:ContentButton
+        <sb:SimpleButton
             Background="Transparent"
             HorizontalOptions="Start" VerticalOptions="Start"
             WidthRequest="40" HeightRequest="40"
             Margin="25, 20"
             Clicked="CloseButtonClicked">
-            <simpleCore:Icon
+            <controls:Icon
                 VerticalOptions="Center" HorizontalOptions="Center"
                 WidthRequest="30" HeightRequest="30"
                 Source="common_icons_icon_close.png"
-                TintColor="White"/>
-        </simpleCore:ContentButton>
+                TintColor="White" />
+        </sb:SimpleButton>
     </Grid>
-    
 </pages:BaseContentPage>

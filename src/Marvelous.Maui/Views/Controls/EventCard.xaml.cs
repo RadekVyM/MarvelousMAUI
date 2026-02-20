@@ -1,6 +1,6 @@
 namespace Marvelous.Maui.Views.Controls;
 
-public partial class EventCard : ContentView
+public partial class EventCard : Grid
 {
 	private const string ShowAnimationKey = "ShowAnimation";
 	private const string HideAnimationKey = "HideAnimation";

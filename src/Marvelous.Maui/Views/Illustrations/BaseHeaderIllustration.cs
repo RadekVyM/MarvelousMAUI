@@ -28,6 +28,7 @@ namespace Marvelous.Maui.Views.Illustrations
         public BaseHeaderIllustration(WonderType wonderType)
         {
             IsClippedToBounds = true;
+            SafeAreaEdges = SafeAreaEdges.None;
 
             config = WonderViewConfig.GetWonderViewConfig(wonderType);
 
@@ -36,8 +37,6 @@ namespace Marvelous.Maui.Views.Illustrations
             AddViewsToLayout();
 
             SizeChanged += BaseIllustrationSizeChanged;
-
-            CompressedLayout.SetIsHeadless(this, true);
         }
 
 

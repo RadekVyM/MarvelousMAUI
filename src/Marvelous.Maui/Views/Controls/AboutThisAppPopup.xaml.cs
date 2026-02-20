@@ -1,9 +1,6 @@
-﻿using CommunityToolkit.Maui.Views;
-using Microsoft.Maui.ApplicationModel;
+﻿namespace Marvelous.Maui.Views.Controls;
 
-namespace Marvelous.Maui.Views.Controls;
-
-public partial class AboutThisAppPopup : Popup
+public partial class AboutThisAppPopup : ContentPage
 {
 	public AboutThisAppPopup(double width)
 	{
@@ -13,9 +10,9 @@ public partial class AboutThisAppPopup : Popup
         versionLabel.Text = AppInfo.Current.VersionString;
     }
 
-    private void CloseButtonClicked(object sender, EventArgs e)
+    private async void CloseButtonClicked(object sender, EventArgs e)
     {
-        Close();
+        await Navigation.PopModalAsync();
     }
 
     private void GitHubTapped(object sender, TappedEventArgs e)

@@ -6,7 +6,7 @@ using Marvelous.Maui.Converters;
 
 namespace Marvelous.Maui.Views.Controls;
 
-public partial class CollectibleItemView : ContentView
+public partial class CollectibleItemView : Grid
 {
     private const string ShakyAnimationKey = "ShakyAnimation";
     private const string HideAnimationKey = "HideAnimation";

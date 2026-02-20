@@ -9,7 +9,7 @@ using Marvelous.Maui.Repositories;
 using Marvelous.Maui.Services;
 using Marvelous.Maui.Views.Pages;
 using Microsoft.Maui.Handlers;
-using SimpleToolkit.Core;
+using SimpleToolkit.SimpleButton;
 using SimpleToolkit.SimpleShell;
 
 namespace Marvelous.Maui;
@@ -45,7 +45,7 @@ public static class MauiProgram
         builder.UseMauiCommunityToolkit();
 
         builder.UseSimpleShell(usePlatformTransitions: true);
-        builder.UseSimpleToolkit();
+        builder.UseSimpleButton();
 
         EntryHandler.Mapper.AppendToMapping("RemoveUnderline", (handler, entry) =>
         {
@@ -55,11 +55,6 @@ public static class MauiProgram
             handler.PlatformView.BorderStyle = UIKit.UITextBorderStyle.None;
 #endif
         });
-
-        builder.DisplayContentBehindBars();
-#if ANDROID
-        builder.SetDefaultStatusBarAppearance(Colors.Transparent, true);
-#endif
 
         builder.Services.AddSingleton<ICollectibleRepository, CollectibleStorageRepository>();
         builder.Services.AddSingleton<IHighlightRepository, HighlightRepository>();

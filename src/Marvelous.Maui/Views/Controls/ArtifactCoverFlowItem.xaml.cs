@@ -3,7 +3,7 @@ using Marvelous.Maui.Extensions;
 
 namespace Marvelous.Maui.Views.Controls;
 
-public partial class ArtifactCoverFlowItem : ContentView
+public partial class ArtifactCoverFlowItem : Grid
 {
     private const string ImageScaleAnimationKey = "ImageScaleAnimation";
     private const double MinImageHeightScale = 0.5d;

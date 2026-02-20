@@ -1,4 +1,3 @@
-using Microsoft.Maui.Controls;
 using Microsoft.Maui.Controls.Shapes;
 using Marvelous.Core.Extensions;
 using Marvelous.Core.Interfaces.Services;
@@ -7,7 +6,6 @@ using Marvelous.Core.Models;
 using Marvelous.Maui.Extensions;
 using Marvelous.Maui.Models;
 using Marvelous.Maui.Services;
-using TabBar = Marvelous.Maui.Views.Controls.TabBar;
 
 namespace Marvelous.Maui.Views.Pages;
 

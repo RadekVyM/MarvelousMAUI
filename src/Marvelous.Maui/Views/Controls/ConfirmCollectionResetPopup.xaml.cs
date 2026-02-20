@@ -1,23 +1,33 @@
-﻿using CommunityToolkit.Maui.Views;
+﻿namespace Marvelous.Maui.Views.Controls;
 
-namespace Marvelous.Maui.Views.Controls;
-
-public partial class ConfirmCollectionResetPopup : Popup
+public partial class ConfirmCollectionResetPopup : ContentPage
 {
-	public ConfirmCollectionResetPopup(double width)
+    public TaskCompletionSource<bool> Result { get; } = new();
+
+	public ConfirmCollectionResetPopup()
 	{
 		InitializeComponent();
 
-        rootGrid.WidthRequest = width;
+        Unloaded += OnUnloaded;
     }
 
-    private void OkClicked(object sender, EventArgs e)
+    private void OnUnloaded(object sender, EventArgs e)
     {
-        Close(true);
+        if (!Result.Task.IsCompleted)
+            Result.SetResult(false);
     }
 
-    private void CancelClicked(object sender, EventArgs e)
+    private async void OkClicked(object sender, EventArgs e)
     {
-        Close(false);
+        Result.SetResult(true);
+        // TODO: It crashes on iOS. It may be a problem in SimpleShell
+        await Navigation.PopModalAsync();
+    }
+
+    private async void CancelClicked(object sender, EventArgs e)
+    {
+        Result.SetResult(false);
+        // TODO: It crashes on iOS. It may be a problem in SimpleShell
+        await Navigation.PopModalAsync();
     }
 }

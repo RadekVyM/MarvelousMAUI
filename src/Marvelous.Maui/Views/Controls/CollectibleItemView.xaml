@@ -1,21 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentView
+<Grid
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:simpleCore="clr-namespace:SimpleToolkit.Core;assembly=SimpleToolkit.Core"
+    xmlns:sb="clr-namespace:SimpleToolkit.SimpleButton;assembly=SimpleToolkit.SimpleButton"
 
-    x:Class="Marvelous.Maui.Views.Controls.CollectibleItemView"
+    x:Class="Marvelous.Maui.Views.Controls.CollectibleItemView">
 
-    CompressedLayout.IsHeadless="True">
-
-    <simpleCore:ContentButton
+    <sb:SimpleButton
         x:Name="button"
         Clicked="ButtonClicked"
         VerticalOptions="Center" HorizontalOptions="Center"
         Margin="20"
         HeightRequest="120" WidthRequest="120">
         <Image
-            x:Name="image"/>
-    </simpleCore:ContentButton>
+            x:Name="image" />
+    </sb:SimpleButton>
 
-</ContentView>
+</Grid>

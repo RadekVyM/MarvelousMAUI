@@ -1,15 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<toolkit:Popup
+<ContentPage
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:core="clr-namespace:Marvelous.Core;assembly=Marvelous.Core"
-    xmlns:simpleCore="clr-namespace:SimpleToolkit.Core;assembly=SimpleToolkit.Core"
+    xmlns:sb="clr-namespace:SimpleToolkit.SimpleButton;assembly=SimpleToolkit.SimpleButton"
+    xmlns:system="clr-namespace:System;assembly=mscorlib"
     
-    CanBeDismissedByTappingOutsideOfPopup="True"
-
-    Color="Transparent"
-    HorizontalOptions="Fill" VerticalOptions="End"
+    Background="Transparent"
+    BackgroundColor="Transparent"
+    Visual="Material"
 
     x:Class="Marvelous.Maui.Views.Controls.ConfirmCollectionResetPopup">
 
@@ -19,20 +18,28 @@
         HeightRequest="270"
         RowDefinitions="*, auto, auto"
         RowSpacing="10"
+        HorizontalOptions="Fill" VerticalOptions="End"
         Padding="{OnPlatform Default='25, 30, 25, 20', iOS='25, 30, 25, 15'}">
+
+        <Grid.Shadow>
+            <Shadow
+                Brush="Black"
+                Radius="60"
+                Opacity="0.4" />
+        </Grid.Shadow>
 
         <Label
             Text="{x:Static core:Localization.collectionPopupResetConfirm}"
             FontFamily="RalewayRegular"
             FontSize="16"
             LineHeight="1.3"
-            TextColor="{StaticResource TertiaryColor}"/>
+            TextColor="{StaticResource TertiaryColor}" />
 
         <Border
             Grid.Row="1"
             Style="{StaticResource RectButtonBorderStyle}"
             VerticalOptions="Start">
-            <simpleCore:ContentButton
+            <sb:SimpleButton
                 Clicked="OkClicked"
                 Style="{StaticResource RectContentButtonStyle}"
                 Padding="20"
@@ -40,15 +47,15 @@
                 <Label
                     Text="{x:Static core:Localization.appModalsButtonOk}"
                     Style="{StaticResource RectButtonLabelStyle}"
-                    TextColor="{StaticResource SecondaryColor}"/>
-            </simpleCore:ContentButton>
+                    TextColor="{StaticResource SecondaryColor}" />
+            </sb:SimpleButton>
         </Border>
         
         <Border
             Grid.Row="2"
             Style="{StaticResource RectButtonBorderStyle}"
             VerticalOptions="Start">
-            <simpleCore:ContentButton
+            <sb:SimpleButton
                 Clicked="CancelClicked"
                 Style="{StaticResource RectContentButtonStyle}"
                 Padding="20"
@@ -56,9 +63,8 @@
                 <Label
                     Text="{x:Static core:Localization.appModalsButtonCancel}"
                     Style="{StaticResource RectButtonLabelStyle}"
-                    TextColor="{StaticResource TertiaryColor}"/>
-            </simpleCore:ContentButton>
+                    TextColor="{StaticResource TertiaryColor}" />
+            </sb:SimpleButton>
         </Border>
     </Grid>
-</toolkit:Popup>
-
+</ContentPage>

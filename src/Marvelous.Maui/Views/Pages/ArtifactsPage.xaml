@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:pages="clr-namespace:Marvelous.Maui.Views.Pages"
     xmlns:core="clr-namespace:Marvelous.Core;assembly=Marvelous.Core"
-    xmlns:simpleCore="clr-namespace:SimpleToolkit.Core;assembly=SimpleToolkit.Core"
+    xmlns:sb="clr-namespace:SimpleToolkit.SimpleButton;assembly=SimpleToolkit.SimpleButton"
     xmlns:controls="clr-namespace:Marvelous.Maui.Views.Controls"
     xmlns:vm="clr-namespace:Marvelous.Core.Interfaces.ViewModels;assembly=Marvelous.Core"
     xmlns:models="clr-namespace:Marvelous.Core.Models;assembly=Marvelous.Core"
@@ -18,22 +18,21 @@
 
     <Grid
         RowDefinitions="auto, 70, 40, *"
-        CompressedLayout.IsHeadless="True">
+        SafeAreaEdges="None">
 
         <Grid
             x:Name="appBar"
             VerticalOptions="Start"
-            HeightRequest="{StaticResource AppBarHeight}"
-            CompressedLayout.IsHeadless="True">
+            HeightRequest="{StaticResource AppBarHeight}">
             <Border
                 x:Name="menuButtonBorder"
                 Style="{StaticResource AppBarButtonBorderStyle}">
-                <simpleCore:ContentButton
+                <sb:SimpleButton
                     Clicked="MenuBackButtonClicked">
-                    <simpleCore:Icon
+                    <controls:Icon
                         Source="common_icons_icon_back.png"
-                        Style="{StaticResource AppBarButtonIconStyle}"/>
-                </simpleCore:ContentButton>
+                        Style="{StaticResource AppBarButtonIconStyle}" />
+                </sb:SimpleButton>
             </Border>
 
             <VerticalStackLayout
@@ -45,14 +44,14 @@
                     TextColor="White"
                     FontFamily="RalewayBold"
                     FontSize="13"
-                    HorizontalOptions="Center"/>
+                    HorizontalOptions="Center" />
                 <Label
                     Text="{Binding CurrentWonder.Title, Converter={StaticResource EmptyToSpacesLocalizationConverter}}"
                     TextTransform="Uppercase"
                     TextColor="{StaticResource PrimaryColor}"
                     FontFamily="TenorSans"
                     FontSize="14"
-                    HorizontalOptions="Center"/>
+                    HorizontalOptions="Center" />
             </VerticalStackLayout>
         </Grid>
 
@@ -68,15 +67,15 @@
                 Stroke="Transparent"
                 StrokeThickness="0">
                 <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="6"/>
+                    <RoundRectangle CornerRadius="6" />
                 </Border.StrokeShape>
                 <Grid
                     ColumnDefinitions="40, *, 40">
-                    <simpleCore:Icon
+                    <controls:Icon
                         Source="common_icons_icon_search.png"
                         HorizontalOptions="Center" VerticalOptions="Center"
                         HeightRequest="24" WidthRequest="24"
-                        TintColor="{StaticResource Gray500}"/>
+                        TintColor="{StaticResource Gray500}" />
                     <Entry
                         x:Name="searchEntry"
                         Grid.Column="1"
@@ -85,7 +84,7 @@
                         Placeholder="{x:Static core:Localization.searchInputHintSearch}"
                         Focused="SearchEntryFocused" Unfocused="SearchEntryUnfocused"
                         Completed="SearchEntryCompleted"
-                        TextChanged="SearchEntryTextChanged"/>
+                        TextChanged="SearchEntryTextChanged" />
                     <Border
                         x:Name="resetSearchButtonBorder"
                         Grid.Column="2"
@@ -96,14 +95,14 @@
                         <Border.StrokeShape>
                             <Ellipse/>
                         </Border.StrokeShape>
-                        <simpleCore:ContentButton
+                        <sb:SimpleButton
                             Clicked="ResetSearchContentButtonClicked">
-                            <simpleCore:Icon
+                            <controls:Icon
                                 Source="common_icons_icon_close.png"
                                 HeightRequest="15" WidthRequest="15"
                                 TintColor="White"
-                                VerticalOptions="Center" HorizontalOptions="Center"/>
-                        </simpleCore:ContentButton>
+                                VerticalOptions="Center" HorizontalOptions="Center" />
+                        </sb:SimpleButton>
                     </Border>
                 </Grid>
             </Border>
@@ -130,7 +129,7 @@
                         TextDecorations="Underline"
                         FontFamily="RalewayRegular">
                         <Span.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="TimeframeTapped"/>
+                            <TapGestureRecognizer Tapped="TimeframeTapped" />
                         </Span.GestureRecognizers>
                     </Span>
                 </FormattedString>
@@ -139,7 +138,8 @@
 
         <Grid
             Grid.Row="3"
-            Background="{StaticResource SecondaryBrush}">
+            Background="{StaticResource SecondaryBrush}"
+            SafeAreaEdges="None">
             <CollectionView
                 ItemsSource="{Binding Searches}"
                 VerticalScrollBarVisibility="Never"
@@ -149,7 +149,7 @@
                     <GridItemsLayout
                         Orientation="Vertical"
                         Span="2"
-                        HorizontalItemSpacing="20" VerticalItemSpacing="20"/>
+                        HorizontalItemSpacing="20" VerticalItemSpacing="20" />
                 </CollectionView.ItemsLayout>
 
                 <CollectionView.ItemTemplate>
@@ -158,17 +158,17 @@
                             Stroke="Transparent"
                             StrokeThickness="0">
                             <Border.StrokeShape>
-                                <RoundRectangle CornerRadius="6"/>
+                                <RoundRectangle CornerRadius="6" />
                             </Border.StrokeShape>
                             <Image
                                 Background="{StaticResource DarkSecondaryBrush}"
                                 HeightRequest="180"
                                 Source="{Binding ImageUrl, Converter={StaticResource NetMuseumImageConverter}}"
-                                Aspect="AspectFill"/>
+                                Aspect="AspectFill" />
                             <Border.GestureRecognizers>
                                 <TapGestureRecognizer
                                     Command="{Binding Source={x:Reference page}, Path=BindingContext.ArtifactCommand}"
-                                    CommandParameter="{Binding Id}"/>
+                                    CommandParameter="{Binding Id}" />
                             </Border.GestureRecognizers>
                         </Border>
                     </DataTemplate>
@@ -179,21 +179,21 @@
                         <VerticalStackLayout
                             HorizontalOptions="Center" VerticalOptions="Center"
                             Spacing="10">
-                            <simpleCore:Icon
+                            <controls:Icon
                                 Source="common_calendar.png"
                                 HorizontalOptions="Center"
                                 WidthRequest="30" HeightRequest="30"
-                                TintColor="Gray"/>
+                                TintColor="Gray" />
                             <Label
                                 TextColor="Gray">
                                 <Label.FormattedText>
                                     <FormattedString>
                                         <Span
                                             Text="{x:Static core:Localization.artifactsSearchLabelAdjust}"
-                                            FontFamily="RalewayRegular"/>
+                                            FontFamily="RalewayRegular" />
                                         <Span
                                             Text="{x:Static core:Localization.artifactsSearchLabelTimeframe}"
-                                            FontFamily="RalewayRegular"/>
+                                            FontFamily="RalewayRegular" />
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>
@@ -203,15 +203,13 @@
 
                 <CollectionView.Header>
                     <Rectangle
-                        HeightRequest="{OnPlatform Default=20, Android=10}"
-                        CompressedLayout.IsHeadless="True"/>
+                        HeightRequest="{OnPlatform Default=20, Android=10}" />
                 </CollectionView.Header>
                 
                 <CollectionView.Footer>
                     <Rectangle
                         x:Name="footerRectangle"
-                        HeightRequest="80"
-                        CompressedLayout.IsHeadless="True"/>
+                        HeightRequest="80" />
                 </CollectionView.Footer>
             </CollectionView>
             
@@ -222,13 +220,13 @@
                 Color="{StaticResource SuperDarkSecondaryColor}"
                 TransparentColor="#000a0a08"
                 IsFromTop="True"
-                Offset="0"/>
+                Offset="0" />
         </Grid>
 
         <controls:PeriodArtifactView
             x:Name="periodArtifactView"
             Grid.Row="3"
-            VerticalOptions="End"/>
+            VerticalOptions="End" />
 
         <Border
             x:Name="suggestionBorder"
@@ -242,7 +240,7 @@
             VerticalOptions="Start"
             IsVisible="false">
             <Border.StrokeShape>
-                <RoundRectangle CornerRadius="6"/>
+                <RoundRectangle CornerRadius="6" />
             </Border.StrokeShape>
             <CollectionView
                 ItemsSource="{Binding SearchSuggestions}"
@@ -255,11 +253,11 @@
                             Text="{x:Static core:Localization.searchInputTitleSuggestions}"
                             TextTransform="Uppercase"
                             FontFamily="TenorSans"
-                            Margin="0, 10"/>
+                            Margin="0, 10" />
                         <BoxView
                             HeightRequest="1"
                             HorizontalOptions="Fill"
-                            Color="{StaticResource Gray400}"/>
+                            Color="{StaticResource Gray400}" />
                     </VerticalStackLayout>
                 </CollectionView.Header>
                 <CollectionView.ItemTemplate>
@@ -268,17 +266,17 @@
                             <Label
                                 Text="{Binding .}"
                                 Padding="18, 7"
-                                FontFamily="RalewayRegular"/>
+                                FontFamily="RalewayRegular" />
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer
                                     Tapped="SuggestionTapped"
-                                    CommandParameter="{Binding .}"/>
+                                    CommandParameter="{Binding .}" />
                             </Grid.GestureRecognizers>
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
                 <CollectionView.Footer>
-                    <Rectangle HeightRequest="10"/>
+                    <Rectangle HeightRequest="10" />
                 </CollectionView.Footer>
             </CollectionView>
         </Border>

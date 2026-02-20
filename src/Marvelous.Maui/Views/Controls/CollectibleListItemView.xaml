@@ -7,7 +7,7 @@
     xmlns:models="clr-namespace:Marvelous.Core.Models;assembly=Marvelous.Core"
     xmlns:localModels="clr-namespace:Marvelous.Maui.Models"
     xmlns:vm="clr-namespace:Marvelous.Core.Interfaces.ViewModels;assembly=Marvelous.Core"
-    xmlns:simpleCore="clr-namespace:SimpleToolkit.Core;assembly=SimpleToolkit.Core"
+    xmlns:sb="clr-namespace:SimpleToolkit.SimpleButton;assembly=SimpleToolkit.SimpleButton"
     xmlns:controls="clr-namespace:Marvelous.Maui.Views.Controls"
 
     x:Class="Marvelous.Maui.Views.Controls.CollectibleListItemView">
@@ -17,24 +17,24 @@
         Background="{StaticResource DarkSecondaryBrush}"
         HeightRequest="200">
 
-        <simpleCore:Icon
+        <controls:Icon
             x:Name="icon"
             TintColor="{StaticResource SecondaryColor}"
-            Margin="20"/>
+            Margin="20" />
 
-        <simpleCore:ContentButton
+        <sb:SimpleButton
             x:Name="button"
             Clicked="ButtonClicked">
             <Image
                 x:Name="image"
-                Aspect="AspectFill"/>
-        </simpleCore:ContentButton>
+                Aspect="AspectFill" />
+        </sb:SimpleButton>
 
         <Rectangle
             x:Name="rectangle"
             InputTransparent="True"
             Stroke="{StaticResource PrimaryBrush}"
-            StrokeThickness="3"/>
+            StrokeThickness="3" />
     </Grid>
 </ContentView>
 

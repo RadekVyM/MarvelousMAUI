@@ -1,6 +1,7 @@
 using Marvelous.Core.Interfaces.Services;
 using Marvelous.Core.Interfaces.ViewModels;
 using Marvelous.Maui.Models;
+using SimpleToolkit.Helpers;
 
 namespace Marvelous.Maui.Views.Pages;
 
@@ -16,7 +17,7 @@ public partial class WonderArtifactsPage : BaseContentPage
 		
 		InitializeComponent();
 
-        SizeChanged += WonderArtifactsPageSizeChanged;
+        SizeChanged += OnSizeChanged;
     }
 
 
@@ -37,14 +38,12 @@ public partial class WonderArtifactsPage : BaseContentPage
         }
     }
 
-    protected override void OnSafeAreaChanged(Thickness safeArea)
+    private void OnSizeChanged(object sender, EventArgs e)
     {
+        var safeArea = WindowInsetsProvider.GetInsets();
         titleLabel.Margin = new Thickness(0, safeArea.Top, 0, 0);
         rootGrid.Margin = new Thickness(safeArea.Left, 0, safeArea.Right, safeArea.Bottom + Controls.TabBar.TabBarHeight - 1);
-    }
 
-    private void WonderArtifactsPageSizeChanged(object sender, EventArgs e)
-    {
         var radius = Width / 2;
         roundRectangle.CornerRadius = new CornerRadius(radius, radius, 0, 0);
     }

@@ -1,25 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentView
+<Grid
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="Marvelous.Maui.Views.Controls.UImagesView">
+    x:Class="Marvelous.Maui.Views.Controls.UImagesView"
 
-    <Grid
-        ColumnDefinitions="3*, 5*"
-        CompressedLayout.IsHeadless="True">
-        <GraphicsView
-            x:Name="graphicsView"
-            Grid.ColumnSpan="2"/>
-        <Image
-            x:Name="leftImage"
-            Aspect="AspectFill"
-            Margin="10, 0, 0, 0"
-            SizeChanged="ImageSizeChanged"/>
-        <Image
-            x:Name="rightImage"
-            Grid.Column="1"
-            Aspect="AspectFill"
-            Margin="0, 0, 10, 0"
-            SizeChanged="ImageSizeChanged"/>
-    </Grid>
-</ContentView>
+    ColumnDefinitions="3*, 5*">
+
+    <GraphicsView
+        x:Name="graphicsView"
+        Grid.ColumnSpan="2" />
+    <Image
+        x:Name="leftImage"
+        Aspect="AspectFill"
+        Margin="10, 0, 0, 0"
+        SizeChanged="ImageSizeChanged" />
+    <Image
+        x:Name="rightImage"
+        Grid.Column="1"
+        Aspect="AspectFill"
+        Margin="0, 0, 10, 0"
+        SizeChanged="ImageSizeChanged" />
+</Grid>

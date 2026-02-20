@@ -1,9 +1,8 @@
 using Microsoft.Maui.Controls.Shapes;
-using Microsoft.Maui.Graphics;
 
 namespace Marvelous.Maui.Views.Controls;
 
-public partial class UImagesView : ContentView
+public partial class UImagesView : Grid
 {
     public static readonly BindableProperty VerticalDeltaProperty =
         BindableProperty.Create(nameof(VerticalDelta), typeof(double), typeof(UImagesView), defaultValue: 0d, propertyChanged: OnVerticalDeltaChanged);

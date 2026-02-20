@@ -3,7 +3,7 @@ using Font = Microsoft.Maui.Graphics.Font;
 
 namespace Marvelous.Maui.Views.Controls;
 
-public partial class WonderSectionTitleView : ContentView
+public partial class WonderSectionTitleView : Grid
 {
     private const string TitleAnimationKey = "TitleAnimation";
     private const string IconAnimationKey = "IconAnimation";

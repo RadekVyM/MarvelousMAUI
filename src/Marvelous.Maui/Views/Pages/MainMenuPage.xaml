@@ -3,30 +3,31 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:Marvelous.Maui.Views.Controls"
-    xmlns:simpleCore="clr-namespace:SimpleToolkit.Core;assembly=SimpleToolkit.Core"
+    xmlns:sb="clr-namespace:SimpleToolkit.SimpleButton;assembly=SimpleToolkit.SimpleButton"
     xmlns:pages="clr-namespace:Marvelous.Maui.Views.Pages"
     x:Class="Marvelous.Maui.Views.Pages.MainMenuPage"
     Title="MainMenuPage"
     Background="Transparent">
 
-    <Grid>
+    <Grid
+        SafeAreaEdges="None">
         <controls:IllustrationsCarouselView
             x:Name="illustrationsCarouselView"
             CurrentWonder="{Binding CurrentWonder}"
             Wonders="{Binding Wonders}"
             Closing="IllustrationsCarouselViewClosing"
             Hiding="IllustrationsCarouselViewHiding"
-            Presenting="IllustrationsCarouselViewPresenting"/>
+            Presenting="IllustrationsCarouselViewPresenting" />
 
         <Border
             x:Name="menuButtonBorder"
             Style="{StaticResource AppBarButtonBorderStyle}">
-            <simpleCore:ContentButton
+            <sb:SimpleButton
                 Clicked="MenuButtonClicked">
-                <simpleCore:Icon
+                <controls:Icon
                     Source="common_icons_icon_menu.png"
-                    Style="{StaticResource AppBarButtonIconStyle}"/>
-            </simpleCore:ContentButton>
+                    Style="{StaticResource AppBarButtonIconStyle}" />
+            </sb:SimpleButton>
         </Border>
 
         <controls:AppMenu
@@ -36,6 +37,6 @@
             Hidden="AppMenuHidden"
             Presenting="AppMenuPresenting"
             AboutThisAppClicked="AboutThisAppClicked"
-            InputTransparent="False"/>
+            InputTransparent="False" />
     </Grid>
 </pages:BaseContentPage>

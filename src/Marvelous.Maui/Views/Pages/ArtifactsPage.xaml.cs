@@ -1,6 +1,7 @@
 using Marvelous.Core.Interfaces.Services;
 using Marvelous.Core.Interfaces.ViewModels;
 using Marvelous.Maui.Services;
+using SimpleToolkit.Helpers;
 
 namespace Marvelous.Maui.Views.Pages;
 
@@ -17,8 +18,9 @@ public partial class ArtifactsPage : BaseContentPage
         InitializeComponent();
 
         UpdateShadowOffset(0);
-    }
 
+        SizeChanged += OnSizeChanged;
+    }
 
     private void UpdateShadowOffset(double scrollY)
     {
@@ -26,8 +28,9 @@ public partial class ArtifactsPage : BaseContentPage
         darkShadow.Offset = offset;
     }
 
-    protected override void OnSafeAreaChanged(Thickness safeArea)
+    private void OnSizeChanged(object sender, EventArgs e)
     {
+        var safeArea = WindowInsetsProvider.GetInsets();
         Padding = new Thickness(safeArea.Left, safeArea.Top, safeArea.Right, 0);
 
         periodArtifactView.SafeArea = safeArea;

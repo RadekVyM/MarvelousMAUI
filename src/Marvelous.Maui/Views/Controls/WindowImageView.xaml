@@ -1,25 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentView
+<Grid
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="Marvelous.Maui.Views.Controls.WindowImageView"
-    
-    CompressedLayout.IsHeadless="True">
+    x:Class="Marvelous.Maui.Views.Controls.WindowImageView">
 
-    <ContentView.Resources>
+    <Grid.Resources>
         <Style x:Key="LabelStyle" TargetType="Label">
-            <Setter Property="FontFamily" Value="CinzelDecorativeBold"/>
-            <Setter Property="FontSize" Value="30"/>
-            <Setter Property="TextColor" Value="{StaticResource SuperDarkPrimaryColor}"/>
-            <Setter Property="Opacity" Value="0.8"/>
-            <Setter Property="Margin" Value="25, 2"/>
+            <Setter Property="FontFamily" Value="CinzelDecorativeBold" />
+            <Setter Property="FontSize" Value="30" />
+            <Setter Property="TextColor" Value="{StaticResource SuperDarkPrimaryColor}" />
+            <Setter Property="Opacity" Value="0.8" />
+            <Setter Property="Margin" Value="25, 2" />
         </Style>
-    </ContentView.Resources>
+    </Grid.Resources>
     
     <Grid
         RowDefinitions="1.2*, *"
-        Margin="20"
-        CompressedLayout.IsHeadless="True">
+        Margin="20">
         <Border
             x:Name="imageBorder"
             Grid.RowSpan="2"
@@ -30,28 +27,27 @@
             SizeChanged="ImageBorderSizeChanged">
             <Grid 
                 x:Name="imageContainer"
-                SizeChanged="ImageContainerSizeChanged"
-                CompressedLayout.IsHeadless="True">
+                SizeChanged="ImageContainerSizeChanged">
                 <Image
                     x:Name="image"
                     Aspect="AspectFill"
                     Opacity="0.6"
-                    SizeChanged="ImageSizeChanged"/>
+                    SizeChanged="ImageSizeChanged" />
                 <Rectangle
                     Opacity="0.15"
-                    Fill="{StaticResource PrimaryBrush}"/>
+                    Fill="{StaticResource PrimaryBrush}" />
             </Grid>
         </Border>
         <Label
             x:Name="topLabel"
             VerticalOptions="End"
             HorizontalTextAlignment="Center"
-            Style="{StaticResource LabelStyle}"/>
+            Style="{StaticResource LabelStyle}" />
         <Label
             x:Name="bottomLabel"
             Grid.Row="1"
             VerticalOptions="Start"
             HorizontalTextAlignment="Center"
-            Style="{StaticResource LabelStyle}"/>
+            Style="{StaticResource LabelStyle}" />
     </Grid>
-</ContentView>
+</Grid>

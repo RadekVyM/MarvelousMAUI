@@ -13,14 +13,15 @@
     Background="Black">
 
     <Grid
-        CompressedLayout.IsHeadless="True">
+        SafeAreaEdges="None">
         <ActivityIndicator
             IsRunning="True"
             HorizontalOptions="Center" VerticalOptions="Center"
-            Color="{StaticResource PrimaryColor}"/>
+            Color="{StaticResource PrimaryColor}" />
         <controls:DelayedView
             x:Name="delayed"
             x:TypeArguments="controls:PhotoGrid"
-            Delay="250"/>
+            Delay="250"
+            SafeAreaEdges="None" />
     </Grid>
 </pages:BaseContentPage>

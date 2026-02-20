@@ -9,7 +9,6 @@ namespace Marvelous.Core.ViewModels
     public class WonderMainPageViewModel : BaseWonderCollectiblePageViewModel, IWonderMainPageViewModel
     {
         private Wonder currentWonder;
-        private Collectible collectible;
 
         private readonly IWonderService wonderService;
 

@@ -1,12 +1,12 @@
 using Microsoft.Maui.Controls.Shapes;
-using SimpleToolkit.Core;
 using Marvelous.Core.Models;
 using Marvelous.Maui.Extensions;
-using CommunityToolkit.Maui.Views;
+using SimpleToolkit.SimpleButton;
+using SimpleToolkit.Helpers;
 
 namespace Marvelous.Maui.Views.Controls;
 
-public partial class AppMenu : ContentView
+public partial class AppMenu : Grid
 {
     private const string ShowAnimationKey = "ShowAnimation";
     private const string HideAnimationKey = "HideAnimation";
@@ -53,14 +53,13 @@ public partial class AppMenu : ContentView
 	{
         Presenting?.Invoke(this, EventArgs.Empty);
         IsVisible = true;
-        App.Current.MainPage.Window.SubscribeToSafeAreaChanges(OnSafeAreaChanged);
 
         this.AbortAnimation(ShowAnimationKey);
 
         var animation = new Animation();
 
-        var buttons = buttonsStackLayout.Where(v => v is ContentButton).Cast<ContentButton>().Select(b => b.Content).ToList();
-        var lines = buttonsStackLayout.Where(v => v is not ContentButton).Cast<View>().ToList();
+        var buttons = buttonsStackLayout.OfType<SimpleButton>().Select(b => b.Content).ToList();
+        var lines = buttonsStackLayout.Where(v => v is not SimpleButton).Cast<View>().ToList();
         buttons.ForEach(b => b.Opacity = 0);
         lines.ForEach(l => l.Opacity = 0);
 
@@ -111,8 +110,6 @@ public partial class AppMenu : ContentView
 
 	public void Hide()
     {
-        App.Current.MainPage.Window.UnsubscribeFromSafeAreaChanges(OnSafeAreaChanged);
-
         this.AbortAnimation(HideAnimationKey);
 
         var animation = new Animation(d => Opacity = d, 1, 0);
@@ -154,7 +151,7 @@ public partial class AppMenu : ContentView
             BindingContext = wonder
         };
 
-        var contentButton = new ContentButton
+        var contentButton = new SimpleButton
         {
             BindingContext = wonder
         };
@@ -212,11 +209,6 @@ public partial class AppMenu : ContentView
         }
     }
 
-    private void OnSafeAreaChanged(Thickness safeArea)
-    {
-        rootContentGrid.Margin = safeArea;
-    }
-
 	private void CloseButtonClicked(object sender, EventArgs e)
 	{
 		Hide();
@@ -224,7 +216,7 @@ public partial class AppMenu : ContentView
 
     private void ContentButtonClicked(object sender, EventArgs e)
     {
-        var button = sender as ContentButton;
+        var button = sender as SimpleButton;
 
         var wonder = Wonders.FirstOrDefault(w => w.Type == (WonderType)button.BindingContext);
         CurrentWonder = wonder;

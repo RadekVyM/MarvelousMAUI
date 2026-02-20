@@ -20,13 +20,4 @@ public partial class WonderPhotoPage : BaseContentPage
 
 		delayed.LoadView();
     }
-
-	protected override void OnSafeAreaChanged(Thickness safeArea)
-	{
-#if ANDROID
-		this.Padding = new Thickness(safeArea.Left, 0, safeArea.Right, safeArea.Bottom);
-#else
-		this.Padding = new Thickness(safeArea.Left, 0, safeArea.Right, 0);
-#endif
-    }
 }

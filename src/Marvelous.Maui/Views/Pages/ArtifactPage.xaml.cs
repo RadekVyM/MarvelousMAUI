@@ -1,5 +1,6 @@
 using Marvelous.Core.Interfaces.Services;
 using Marvelous.Core.Interfaces.ViewModels;
+using SimpleToolkit.Helpers;
 
 namespace Marvelous.Maui.Views.Pages;
 
@@ -21,8 +22,9 @@ public partial class ArtifactPage : BaseContentPage
         horizontalSeparator.IsCollapsedAnimated = false;
         horizontalSeparator.Collapsed = true;
         horizontalSeparator.IsCollapsedAnimated = true;
-    }
 
+        SizeChanged += OnSizeChanged;
+    }
 
     protected override void OnNavigatedTo(NavigatedToEventArgs args)
     {
@@ -30,8 +32,9 @@ public partial class ArtifactPage : BaseContentPage
         horizontalSeparator.Expand();
     }
 
-    protected override void OnSafeAreaChanged(Thickness safeArea)
+    private void OnSizeChanged(object sender, EventArgs e)
     {
+        var safeArea = WindowInsetsProvider.GetInsets();
         this.Padding = new Thickness(safeArea.Left, safeArea.Top, safeArea.Right, 0);
         detailsStackLayout.Padding = new Thickness(0, MaxImageHeight, 0, safeArea.Bottom);
     }

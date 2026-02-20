@@ -7,7 +7,7 @@
     xmlns:controls="clr-namespace:Marvelous.Maui.Views.Controls"
     xmlns:core="clr-namespace:Marvelous.Core;assembly=Marvelous.Core"
     xmlns:simpleShell="clr-namespace:SimpleToolkit.SimpleShell;assembly=SimpleToolkit.SimpleShell"
-    xmlns:simpleCore="clr-namespace:SimpleToolkit.Core;assembly=SimpleToolkit.Core"
+    xmlns:sb="clr-namespace:SimpleToolkit.SimpleButton;assembly=SimpleToolkit.SimpleButton"
     xmlns:extensions="clr-namespace:Marvelous.Maui.Extensions"
     xmlns:local="clr-namespace:Marvelous.Maui"
     xmlns:illustrations="clr-namespace:Marvelous.Maui.Views.Illustrations"
@@ -19,37 +19,37 @@
         <VisualStateGroup x:Name="SimpleShellContentStates">
             <VisualState x:Name="SimpleShellContentState">
                 <VisualState.Setters>
-                    <Setter TargetName="tabBar" Property="controls:TabBar.IsShown" Value="true"/>
-                    <Setter TargetName="tabBar" Property="controls:TabBar.TabBarStyle" Value="Light"/>
+                    <Setter TargetName="tabBar" Property="controls:TabBar.IsShown" Value="true" />
+                    <Setter TargetName="tabBar" Property="controls:TabBar.TabBarStyle" Value="Light" />
                 </VisualState.Setters>
             </VisualState>
             <VisualState x:Name="SimpleShellContentState.MainMenuPage">
                 <VisualState.Setters>
-                    <Setter TargetName="tabBar" Property="controls:TabBar.IsShown" Value="false"/>
+                    <Setter TargetName="tabBar" Property="controls:TabBar.IsShown" Value="false" />
                 </VisualState.Setters>
             </VisualState>
             <VisualState x:Name="SimpleShellContentState.WonderMainPage">
                 <VisualState.Setters>
-                    <Setter TargetName="tabBar" Property="controls:TabBar.IsShown" Value="true"/>
-                    <Setter TargetName="tabBar" Property="controls:TabBar.TabBarStyle" Value="Light"/>
+                    <Setter TargetName="tabBar" Property="controls:TabBar.IsShown" Value="true" />
+                    <Setter TargetName="tabBar" Property="controls:TabBar.TabBarStyle" Value="Light" />
                 </VisualState.Setters>
             </VisualState>
             <VisualState x:Name="SimpleShellContentState.WonderPhotoPage">
                 <VisualState.Setters>
-                    <Setter TargetName="tabBar" Property="controls:TabBar.IsShown" Value="true"/>
-                    <Setter TargetName="tabBar" Property="controls:TabBar.TabBarStyle" Value="Transparent"/>
+                    <Setter TargetName="tabBar" Property="controls:TabBar.IsShown" Value="true" />
+                    <Setter TargetName="tabBar" Property="controls:TabBar.TabBarStyle" Value="Transparent" />
                 </VisualState.Setters>
             </VisualState>
             <VisualState x:Name="SimpleShellContentState.WonderArtifactsPage">
                 <VisualState.Setters>
-                    <Setter TargetName="tabBar" Property="controls:TabBar.IsShown" Value="true"/>
-                    <Setter TargetName="tabBar" Property="controls:TabBar.TabBarStyle" Value="Light"/>
+                    <Setter TargetName="tabBar" Property="controls:TabBar.IsShown" Value="true" />
+                    <Setter TargetName="tabBar" Property="controls:TabBar.TabBarStyle" Value="Light" />
                 </VisualState.Setters>
             </VisualState>
             <VisualState x:Name="SimpleShellContentState.WonderHistoryPage">
                 <VisualState.Setters>
-                    <Setter TargetName="tabBar" Property="controls:TabBar.IsShown" Value="true"/>
-                    <Setter TargetName="tabBar" Property="controls:TabBar.TabBarStyle" Value="Light"/>
+                    <Setter TargetName="tabBar" Property="controls:TabBar.IsShown" Value="true" />
+                    <Setter TargetName="tabBar" Property="controls:TabBar.TabBarStyle" Value="Light" />
                 </VisualState.Setters>
             </VisualState>
         </VisualStateGroup>
@@ -61,7 +61,7 @@
             Title="{x:Static core:Localization.wonderDetailsTabSemanticBack}"
             Icon="common_tab_editorial.png"
             ContentTemplate="{DataTemplate pages:MainMenuPage}"
-            Route="MainMenuPage"/>
+            Route="MainMenuPage" />
     </Tab>
 
     <Tab>
@@ -110,7 +110,7 @@
             x:DataType="viewModels:MainViewModel"
             InputTransparent="{OnPlatform iOS=True}"
             CascadeInputTransparent="{OnPlatform iOS=False}"
-            CompressedLayout.IsHeadless="True">
+            SafeAreaEdges="None">
             <simpleShell:SimpleNavigationHost/>
             <controls:TabBar
                 x:Name="tabBar"
@@ -119,7 +119,7 @@
                 WonderClicked="TabBarWonderClicked"
                 CurrentShellItem="{Binding CurrentShellContent, Source={x:Reference thisShell}, Mode=OneWay}"
                 ShellItems="{Binding ShellContents, Source={x:Reference thisShell}, Converter={StaticResource WithoutFirstConverter}}"
-                CurrentWonder="{Binding CurrentWonder}"/>
+                CurrentWonder="{Binding CurrentWonder}" />
         </Grid>
     </simpleShell:SimpleShell.RootPageContainer>
     
@@ -127,15 +127,15 @@
         <Grid
             x:Name="rootGrid"
             x:DataType="viewModels:MainViewModel"
-            CompressedLayout.IsHeadless="True">
+            SafeAreaEdges="None">
             <simpleShell:SimpleNavigationHost
-                x:Name="navHost"/>
+                x:Name="navHost" />
             <Rectangle
                 x:Name="statusBarBackground"
                 VerticalOptions="Start"
                 Fill="Black"
                 Opacity="0.3"
-                Margin="-1"/>
+                Margin="-1" />
         </Grid>
     </simpleShell:SimpleShell.Content>
     
